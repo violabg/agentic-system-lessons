@@ -2,7 +2,7 @@
 
 Questo è il documento di lettura principale del corso.
 
-**Inizia da [Perché un sistema agentico](introduction.md):** il problema da risolvere, cosa imparare, limiti e trasferimento nel proprio progetto. Questa cartella è la fonte per preparare le lezioni, non un sistema da installare integralmente.
+**Inizia da [Perché un sistema agentico](introduction.md) e dalla [Lezione 1](lesson-01-introduzione.md):** il problema da risolvere, cosa imparare, limiti e trasferimento nel proprio progetto. Questa cartella è la fonte per preparare le lezioni, non un sistema da installare integralmente.
 
 Questo corso insegna a sviluppatori esperti come riconoscere, usare e adattare i principi di un sistema agentico enterprise. Agent, skill e custom instructions sono esempi dei contratti che compongono il sistema.
 
@@ -30,20 +30,24 @@ Al termine, ogni partecipante sa:
 
 | Lezione | Principio | Decisione che gli studenti imparano a prendere |
 | --- | --- | --- |
-| 1 | Ruoli e autorità delimitata | Quale responsabilità non può cambiare autorità in silenzio? |
-| 2 | Conoscenza selettiva e governata | Quale fonte è necessaria e autorevole per questo task? |
-| 3 | Gate e controllo umano | Dove il rischio richiede prova o approvazione prima di avanzare? |
-| 4 | Artifact, provenienza e ownership | Quale record deve sopravvivere alla conversazione e chi lo possiede? |
-| 5 | Validazione come evidenza | Quale prova dimostra davvero che il handoff è affidabile? |
-| 6 | Composizione e ciclo di vita | Dove vive una regola e come si evita drift fra superfici? |
+| 1 | Introduzione: il problema e le sei leve | Quali controlli rendono il vibe coding osservabile e trasferibile? |
+| 2 | Autorità delimitata e conoscenza selettiva | Chi può decidere e quali fonti governano questo task? |
+| 3 | Gate, controllo umano e artifact durevoli | Quale evidenza consente il passaggio e quale record deve sopravvivere? |
+| 4 | Validazione come evidenza | Quale prova può smentire il risultato e quale rischio resta aperto? |
+| 5 | Composizione, ownership e ciclo di vita | Dove vive la regola e come si corregge il drift? |
 
 Ogni lezione dura 45 minuti e termina con un esercizio breve. Le lezioni sono ordinate per costruire il modello, ma ogni principio resta trasferibile a un repository diverso.
 
 ## Materiali
 
 - [introduction.md](introduction.md): motivazione, obiettivi, limiti e primo trasferimento al proprio progetto.
-- [principles.md](principles.md): fonte didattica per i sei principi.
-- [slides/README.md](slides/README.md): sei slide pronte per la lezione.
+- [lesson-01-introduzione.md](lesson-01-introduzione.md): quadro introduttivo e modello del corso.
+- [lesson-02-autorita-e-conoscenza.md](lesson-02-autorita-e-conoscenza.md): ruoli e conoscenza selettiva.
+- [lesson-03-gate-e-artifact.md](lesson-03-gate-e-artifact.md): gate, controllo umano e artifact.
+- [lesson-04-validazione.md](lesson-04-validazione.md): prove, limiti e rischio residuo.
+- [lesson-05-composizione-e-ciclo-di-vita.md](lesson-05-composizione-e-ciclo-di-vita.md): ownership e manutenzione.
+- [principles.md](principles.md): riferimento sintetico per i sei principi.
+- [slides/README.md](slides/README.md): materiali visuali di supporto alle cinque lezioni.
 - [role-maps/README.md](role-maps/README.md): mappe visuali di agent e skill canonical.
 - [system-map.md](system-map.md): mappe Mermaid del modello e delle sue superfici.
 

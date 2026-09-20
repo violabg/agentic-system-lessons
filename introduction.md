@@ -1,6 +1,6 @@
 # Perché un Sistema Agentico
 
-[Lettura principale](README.md) · [I sei principi](principles.md)
+[Lettura principale](README.md) · [Le cinque lezioni](lesson-01-introduzione.md) · [I sei principi](principles.md)
 
 ## Il Problema Prima Della Soluzione
 
@@ -32,7 +32,7 @@ L'agente deve conoscere come eseguire il controllo, i prerequisiti e come interp
 
 Le [istruzioni canonical](system/canonical/instructions/AGENTS.md) richiedono la validazione configurata prima dell'handoff. Creare test richiede l'autorità prevista dal ruolo; Direct Implementor non crea test unitari o di integrazione. Se manca una capability necessaria o un gate resta insoddisfatto, il lavoro resta bloccato in quel punto: una review generica non lo sblocca automaticamente.
 
-Anche un test verde dimostra solo ciò che il test controlla. Una review dello stesso agente non è una prova indipendente; requisiti e controlli possono condividere la stessa assunzione sbagliata. La responsabilità di scegliere criteri adeguati e accettare il rischio residuo rimane del team. La [lezione sulla validazione](principles.md#5-validazione-come-evidenza) spiega anche le restrizioni dei singoli ruoli canonical.
+Anche un test verde dimostra solo ciò che il test controlla. Una review dello stesso agente non è una prova indipendente; requisiti e controlli possono condividere la stessa assunzione sbagliata. La responsabilità di scegliere criteri adeguati e accettare il rischio residuo rimane del team. La [lezione sulla validazione](lesson-04-validazione.md) spiega anche le restrizioni dei singoli ruoli canonical.
 
 ## Trasferire Nel Proprio Repository
 
@@ -55,10 +55,10 @@ Stack, dominio, dimensione del team e costo degli errori cambiano i controlli ne
 
 Il lavoro quotidiano è il banco di prova: osserva l'errore o l'attrito, identifica se dipende da conoscenza mancante, responsabilità ambigua o verifica insufficiente; correggi la fonte proprietaria; riprova il caso; conserva o rivedi la correzione in base al risultato. Aggiorna o rimuovi regole obsolete e duplicazioni. Non trasformare ogni incidente in una nuova istruzione universale.
 
-Questo ciclo sviluppa la [composizione e il ciclo di vita](principles.md#6-composizione-e-ciclo-di-vita-espliciti), senza aggiungere un nuovo principio.
+Questo ciclo sviluppa la [composizione e il ciclo di vita](lesson-05-composizione-e-ciclo-di-vita.md), senza aggiungere un nuovo principio.
 
 ## Prima Domanda Per I Colleghi
 
 Scegli un errore ricorrente del tuo repository. Quale conoscenza avrebbe aiutato a evitarlo? Quale verifica lo avrebbe rilevato? Qual è la modifica minima al workflow da provare sul prossimo task, e quale risultato ti farebbe mantenerla o cambiarla?
 
-[Prosegui con i principi](principles.md) · [Torna al corso](README.md)
+[Inizia dalla prima lezione](lesson-01-introduzione.md) · [Prosegui con i principi](principles.md) · [Torna al corso](README.md)
