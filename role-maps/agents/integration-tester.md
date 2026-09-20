@@ -1,6 +1,6 @@
 # Integration Tester
 
-[Indice mappe](../README.md) · [Contratto canonical](system/canonical/agents/integration-tester.agent.md)
+[Indice mappe](../README.md) · [Contratto canonical](../../system/canonical/agents/integration-tester.agent.md)
 
 ## In 30 Secondi
 

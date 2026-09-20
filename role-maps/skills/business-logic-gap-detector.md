@@ -1,6 +1,6 @@
 # Business Logic Gap Detector
 
-[Indice mappe](../README.md) · [Contratto canonical](system/canonical/skills/business-logic-gap-detector/SKILL.md)
+[Indice mappe](../README.md) · [Contratto canonical](../../system/canonical/skills/business-logic-gap-detector/SKILL.md)
 
 ## In 30 Secondi
 

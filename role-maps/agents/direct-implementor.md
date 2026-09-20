@@ -1,6 +1,6 @@
 # Direct Implementor
 
-[Indice mappe](../README.md) · [Contratto canonical](system/canonical/agents/direct-implementor.agent.md) · [Confronto con Implementor](implementor.md)
+[Indice mappe](../README.md) · [Contratto canonical](../../system/canonical/agents/direct-implementor.agent.md) · [Confronto con Implementor](implementor.md)
 
 ## In 30 Secondi
 

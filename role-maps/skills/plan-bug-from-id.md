@@ -1,6 +1,6 @@
 # Plan Bug From Id
 
-[Indice mappe](../README.md) · [Contratto canonical](system/canonical/skills/plan-bug-from-id/SKILL.md)
+[Indice mappe](../README.md) · [Contratto canonical](../../system/canonical/skills/plan-bug-from-id/SKILL.md)
 
 ## In 30 Secondi
 

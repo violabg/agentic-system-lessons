@@ -1,6 +1,6 @@
 # Author Repo Skill
 
-[Indice mappe](../README.md) · [Contratto canonical](system/canonical/skills/author-repo-skill/SKILL.md)
+[Indice mappe](../README.md) · [Contratto canonical](../../system/canonical/skills/author-repo-skill/SKILL.md)
 
 ## In 30 Secondi
 
