@@ -11,10 +11,10 @@
 | 1. Ruoli | Scegliere il percorso per due varianti: A richiede un piano approvabile da un altro team; B richiede implementazione dai requisiti senza documento di piano. | A: Planner → Implementor. B: Direct Implementor, mantenendo intervista e gate. Se la richiesta include nuovi test, assegnare un workflow autorizzato separato. |
 | 2. Conoscenza | Scegliere fonti, indicare cosa lo screenshot non può provare. | Knowledge per la responsabilità di dominio; codice per wiring e firme; immagine per evidenza visiva. Il pattern legacy non prevale sulla regola. |
 | 3. Gate | Risolvere se la motivazione serve anche per chiusure automatiche; indicare il gate che blocca. | La risposta cambia il requisito e va chiarita prima della modifica. Nel percorso diretto, intervista e validazione del design svolgono questo controllo senza inventare un piano. |
-| 4. Artifact | Compilare il record sotto; indicare cosa riusare al cambio di collega. | Fonti, risposta, regole, stato e prove devono sopravvivere alla chat anche nel percorso senza piano. Riprendere solo la sessione nota. |
+| 4. Artifact | Compilare il record; nella variante A il codice rifiuta motivazioni vuote e accetta quelle valide: basta uno scenario happy path? | No: scenari distinti per i due rami, derivati dal codice; verificare link albero/dettagli e backlink secondo la mappa Planner. Sono scenari pianificati, non prove eseguite. Nella variante B persistono gli artifact previsti senza inventare un piano. |
 | 5. Validazione | La build è verde: si può dichiarare impossibile una chiusura senza motivazione? | No: servono prove del comportamento, inclusa una chiamata che evita la UI. Registrare cosa è stato davvero verificato e chi produce le prove mancanti; Direct Implementor non crea test. |
 | 6. Composizione | Collocare la regola di dominio e un nuovo limite del ruolo. | Regola nel documento di knowledge proprietario; limite nel contratto del ruolo. Le altre superfici instradano. Registrare le personalizzazioni per la manutenzione. |
-| 7. Bootstrap | La piattaforma non ha subagent o MCP; Vision è richiesto per lo screenshot. Proporre binding, modello e verifica. | Valutare strumenti nativi o fallback approvati e operazioni inline previste, verificandone i prerequisiti. Decidere modello Vision supportato o default approvato; bloccare ciò che resta indisponibile. |
+| 7. Bootstrap | Scegliere due ambienti target: uno senza subagent/MCP, l’altro inaccessibile per prove runtime. Vision è richiesto. Proporre binding, modello e verifiche. | Fonti ufficiali per client/versione, binding nativi o fallback approvati e prerequisiti; modello supportato o default approvato. Preservare copie complete e verificare adapter. Confronto statico verde non verifica il client inaccessibile: resta `unverified`; operazioni necessarie mancanti sono `blocked`. |
 
 Il record seguente è un esercizio didattico, non un nuovo artifact obbligatorio del runtime. Direct Implementor espone i requisiti del Gate 3 solo in chat e persiste regole, risposte e stato nei gate dedicati.
 
@@ -29,6 +29,10 @@ Il record seguente è un esercizio didattico, non un nuovo artifact obbligatorio
 - Verifica effettuata, risultato e cosa non dimostra:
 - Prova mancante, rischio residuo e prossimo responsabile:
 - Binding di capability, prerequisiti e scelta approvata:
+- Host di esecuzione e ambienti target scelti, client/versione:
+- Fonte ufficiale, URL/data/versione ed evidenza locale:
+- Copia completa, slot approvati, adapter e consumatori condivisi:
+- Preservazione verificata e prova runtime distinta, stato per ruolo/operazione:
 - Contratto generato da ispezionare e criterio di correzione:
 
 ## Valutazione E Trasferimento
@@ -36,3 +40,9 @@ Il record seguente è un esercizio didattico, non un nuovo artifact obbligatorio
 Attribuire 0 (assente), 1 (dichiarato) o 2 (motivato con evidenza) a: confine di autorità, qualità delle fonti, gate e record, validazione e rischio residuo. Il punteggio guida il debrief; non certifica un sistema di produzione.
 
 **Domanda finale:** nel vostro repository quale evidenza cambierebbe questa scelta, e chi dovrebbe approvare il cambiamento? Far rispondere ogni gruppo con una decisione concreta, non con il nome di un agente.
+
+## Prima, Dopo E Nel Proprio Repository
+
+Prima della spiegazione, scrivere individualmente: “Deciderei … perché …; cambierei idea se …”. Dopo l'esercizio, annotare quale evidenza ha confermato o corretto la decisione e quale rischio resta aperto. Riutilizzare la stessa rubrica per confrontare le due risposte; non premiare il solo uso dei termini del corso.
+
+Per trasferire il metodo, scegliere un task reale futuro e completare: failure mode osservato, fonte autorevole, modifica minima entro la propria autorità, verifica eseguibile e prerequisiti, esito atteso, risultato che farebbe rivedere la modifica. Dopo quel task aggiungere risultato effettivo, limite della prova e decisione di mantenimento. È una proposta di apprendimento, non un artifact runtime obbligatorio.

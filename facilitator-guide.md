@@ -4,6 +4,8 @@
 
 ## Prima del Corso
 
+Aprire con [Perché un sistema agentico](introduction.md): raccogliere un errore ricorrente del lavoro quotidiano e collegarlo a conoscenza mancante o verifica insufficiente. Chiarire che il corso non promette modelli deterministici, contesto illimitato o una soluzione universale. L'introduzione è il framing delle sette lezioni, non un'ottava lezione.
+
 Ricordare in massimo cinque minuti i prerequisiti: agent, skill e custom instructions. Il corso inizia quando la domanda diventa: quali controlli trasformano questi blocchi in un sistema affidabile?
 
 Mostrare un repository dimostrativo solo quando serve un'evidenza concreta, per non più di cinque minuti per lezione. Non modificare il repository demo durante il corso.
@@ -72,6 +74,8 @@ Mostrare un repository dimostrativo solo quando serve un'evidenza concreta, per 
 
 Una lezione è riuscita se gli studenti producono una decisione motivata da un obiettivo di controllo. Non valutare l'abilità di ricordare nomi di file, agent o comandi.
 
+Nel debrief finale chiedere un trasferimento al proprio repository: failure mode reale, fonte autorevole, controllo eseguibile con prerequisiti, limite della prova e modifica minima da sperimentare. Far dichiarare quale risultato del prossimo task giustificherebbe mantenere o rivedere quella modifica.
+
 ## Conduzione Del Caso Condiviso
 
 Usare [Una richiesta, due percorsi](workshop-exercise.md) nei 13 minuti già previsti per ogni esercizio: 2 minuti di lettura, 7 di confronto, 4 per scrivere decisione e prova. Le soluzioni attese e la rubrica sono nella scheda; nel debrief chiedere prima la motivazione, poi mostrare la soluzione. Il caso non aggiunge una lezione e non richiede accesso a un repository privato.
@@ -86,5 +90,23 @@ Correggere esplicitamente questi equivoci:
 - “L'upgrade copia i tool di un altro ruolo”: far cercare l'entry esatta del file nelle answers; se manca, serve una decisione.
 
 Per lezione 7, far verificare anche lo schema YAML di test se Integration Tester è selezionato, la ripresa per ID noto senza enumerare sessioni, e il modello Vision se selezionato. I default ordinari basati su evidenza possono essere approvati insieme; le decisioni materiali irrisolte restano esplicite. Non usare una raccomandazione come se fosse approvazione.
+
+## Richiami Per Le Fonti Correnti
+
+Nella lezione 4 usare la [mappa Planner](role-maps/agents/planner.md#ispezionare-il-piano-prima-del-handoff) per distinguere un piano navigabile e coverage derivata dal codice da una semplice approvazione verbale. Nella lezione 5 chiedere perché scenari scritti non dimostrano test eseguiti.
+
+Nella lezione 7 usare i due ambienti del caso condiviso: chiedere host distinto dal target, fonti per client/versione, preservazione delle copie e prova del caricamento completo tramite adapter. Correggere “confronto statico verde significa compatibile”: un client inaccessibile resta non verificato. Nella lezione 6 seguire la [manutenzione multiambiente](system-map.md#manutenzione-di-più-ambienti), senza inventare esiti durante la migrazione o rimuovere file ancora condivisi.
+
+## Far Emergere Il Ragionamento
+
+Questa è una scelta didattica, non un nuovo gate canonical. Restare nei 45 minuti già previsti: nei primi cinque minuti ogni partecipante scrive da solo una decisione sul caso, il rischio e la prova richiesta, prima della spiegazione. Dalla seconda lezione richiamare anche una decisione della lezione precedente senza riaprire gli appunti; poi verificarla con la fonte. Non assegnare punti alla sicurezza con cui si risponde.
+
+Nei minuti 5–15 mostrare un esempio ragionato e un controesempio plausibile: per esempio, “build verde, quindi requisito verificato”. Chiedere prima una previsione, poi mostrare quale evidenza manca. Negli esercizi alternare chi propone e chi cerca il caso che smentisce la proposta. Nelle prime due lezioni offrire il record parzialmente compilato; nelle successive lasciare solo le domande guida. La riduzione dell'aiuto riguarda l'esercizio, mai i controlli obbligatori del workflow.
+
+Usare gli ultimi cinque minuti per un exit ticket individuale: **decisione iniziale → decisione rivista → evidenza che l'ha cambiata → limite ancora aperto**. Confrontarlo con la risposta iniziale usando la rubrica del caso condiviso. Se una lacuna resta comune al gruppo, riprenderla nell'apertura successiva con un caso diverso; non aggiungere subito altre regole o slide.
+
+Nella lezione 7 scegliere in anticipo una sola operazione di un ruolo da seguire sui due ambienti. Tenere dettagli di formato, JSON e migrazione nelle fonti di consultazione. L'obiettivo è distinguere approvazione, preservazione e prova runtime, non ricordare tutti i campi. Le soluzioni della scheda servono al facilitatore dopo la decisione individuale: durante l'esercizio mostrare soltanto la consegna.
+
+Dopo il corso proporre un piccolo esperimento nel proprio repository: un errore osservato, una fonte, un controllo minimo autorizzato e un risultato che ne smentirebbe l'utilità. Al task successivo registrare esito e rischio residuo e decidere se mantenere, correggere o rimuovere il controllo. Il trasferimento si valuta con questa evidenza, non con il numero di agent o documenti aggiunti.
 
 [Torna alla lettura principale](README.md)

@@ -22,7 +22,7 @@ Mostrare una transizione da piano ad implementazione e i requisiti di approvazio
 
 ## Lezione 4: Artifact
 
-Usare uno schema fittizio di inventario regole, risposte in memoria, log ed execution report. Chiedere cosa sopravvive alla chat senza un piano e quale record cambia dopo un refinement. Spiegare la ripresa della sola sessione nota per ID, senza enumerare altre sessioni.
+Per la variante con piano, aprire la [mappa Planner](role-maps/agents/planner.md#ispezionare-il-piano-prima-del-handoff) e confrontare happy path e guardia con gli scenari pianificati; controllare un link albero/dettagli e il backlink. Per la variante diretta, usare uno schema fittizio di inventario regole, risposte in memoria, log ed execution report. Chiedere cosa sopravvive alla chat senza un piano e quale record cambia dopo un refinement. Spiegare la ripresa della sola sessione nota per ID, senza enumerare altre sessioni.
 
 ## Lezione 5: Validazione
 
@@ -34,6 +34,6 @@ Mostrare la mappa di [system-map.md](system-map.md) e il manifest del demo. Chie
 
 ## Lezione 7: Bootstrap
 
-Mostrare le [decisioni Bootstrap](../public-package/skills/agentic-system/bootstrap-agentic-system/contracts/discovery-and-decisions.md) e un record fittizio: capability necessaria → binding nativo o locale approvato → prerequisiti e prova. Aggiungere la scelta Vision tra modello esatto supportato e default della piattaforma approvato. Far leggere il contratto generato collegato alla scelta. Chiedere quale evidenza giustifica la scelta, cosa richiede conferma, quale assunzione va verificata nel repository target e quale record rende la generazione rivedibile.
+Mostrare le [decisioni Bootstrap](../public-package/skills/agentic-system/bootstrap-agentic-system/contracts/discovery-and-decisions.md) e un record fittizio: capability necessaria → binding nativo o locale approvato → prerequisiti e prova. Aggiungere la scelta Vision tra modello esatto supportato e default della piattaforma approvato. Aggiungere due ambienti target distinti dall’host: su un record fittizio mostrare client/versione, fonte ufficiale e stato per operazione. Separare confronto deterministico delle copie da prova di discovery, caricamento completo tramite adapter e tool nel client; non inventare un esito per quello inaccessibile. Far leggere il contratto generato collegato alla scelta. Chiedere quale evidenza giustifica la scelta, cosa richiede conferma, quale assunzione va verificata nel repository target e quale record rende la generazione rivedibile.
 
 [Torna alla lettura principale](README.md)

@@ -86,4 +86,10 @@ Un'operazione necessaria si lega a un tool nativo, una skill, un'integrazione co
 
 Per mantenere il sistema, confrontare baseline, nuova resa dalle answers e file corrente. Le answers specifiche di un ruolo si cercano con il percorso esatto del file generato: una entry assente richiede una decisione. Registrare la personalizzazione, evitando che il prossimo upgrade la tratti come una modifica sconosciuta.
 
+### Manutenzione Di Più Ambienti
+
+Separare delta canonical, cambiamenti della piattaforma e personalizzazioni del repository. Le [answers v2 e il contratto condiviso](../public-package/skills/agentic-system/bootstrap-agentic-system/contracts/platform-compatibility.md#maintenance) registrano ambienti, copie, adapter, fonti e stato delle prove. Migrare v1 conserva decisioni e baseline: non deduce ambienti dalle cartelle né promuove vecchi binding a verificati.
+
+Prima di rimuovere un file condiviso, verificare i consumatori e le collisioni di discovery. Un override fuori slot resta un conflitto visibile da risolvere esplicitamente: conservarlo non rende la copia conforme. Aggiornare baseline ed evidenza solo dopo la verifica del risultato approvato, mantenendo espliciti gli esiti bloccati o non verificati.
+
 [Torna alla lettura principale](README.md)

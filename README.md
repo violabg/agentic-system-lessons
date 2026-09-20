@@ -2,6 +2,8 @@
 
 Questo è il documento di lettura principale del corso.
 
+**Inizia da [Perché un sistema agentico](introduction.md):** il problema da risolvere, cosa imparare, limiti e trasferimento nel proprio progetto. Questa cartella è la fonte per preparare le lezioni, non un sistema da installare integralmente.
+
 Questo corso insegna a sviluppatori esperti come riconoscere, usare e adattare un sistema agentico enterprise. Agent, skill e custom instructions sono prerequisiti richiamati dal facilitatore fuori dalle sette lezioni.
 
 Il corso è principle-first. Il sistema canonical è una reference implementation, non una forma da copiare. Il Bootstrap public-safe produce un punto di partenza che va letto, verificato e adattato al repository target; non sostituisce il giudizio del team. Un repository dimostrativo può essere mostrato per pochi minuti come prova concreta di un principio, ma non è il centro della lezione.
@@ -18,10 +20,12 @@ Al termine, ogni partecipante sa:
 
 - spiegare perché un sistema agentico enterprise è un sistema operativo locale al repository, non una raccolta di prompt;
 - individuare controlli mancanti in un workflow non affidabile;
+- distinguere la variabilità del modello dalla verificabilità del lavoro, senza promettere determinismo;
 - distinguere ruoli, conoscenza, gate, artifact, validazione e ownership;
 - valutare se una personalizzazione preserva il principio che la giustifica;
 - preparare un Bootstrap decision record basato su evidenza del repository target;
 - ispezionare i contratti generati, verificare le loro assunzioni e individuare il lavoro manuale necessario per rendere il sistema adatto al repository.
+- affinare conoscenza, regole e verifiche a partire dagli errori osservati nel lavoro quotidiano.
 
 ## Percorso
 
@@ -39,6 +43,7 @@ Ogni lezione dura 45 minuti e termina con un esercizio breve. Le lezioni sono or
 
 ## Materiali
 
+- [introduction.md](introduction.md): motivazione, obiettivi, limiti e primo trasferimento al proprio progetto.
 - [principles.md](principles.md): fonte didattica per i sette principi.
 - [core-principles-baseline.md](core-principles-baseline.md): fonti canonical consentite e regole di allineamento.
 - [facilitator-guide.md](facilitator-guide.md): conduzione delle sette sessioni.

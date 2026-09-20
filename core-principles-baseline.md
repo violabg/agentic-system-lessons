@@ -50,9 +50,9 @@ Ogni lezione, slide, demo o esercizio deve indicare uno di questi principi e non
 | Composizione | Root instructions, agents, skills e instructions | `system-map.md`, Lezione 6 |
 | Bootstrap | Public-safe package, overlay e slot registry | `principles.md`, Lezione 7 |
 
-## Allineamento Al 17 Settembre 2026
+## Allineamento Al 20 Settembre 2026
 
-Riferimento pubblico: [changelog](../public-package/CHANGELOG.md), Bootstrap **4.1.0**, Maintainer **2.1.0**. Sono versioni delle fonti, non del corso né una prova dello stato di installazione dei repository dei partecipanti.
+Riferimento pubblico: [changelog](../public-package/CHANGELOG.md), Bootstrap **5.1.0**, Maintainer **3.0.0**. Sono versioni delle fonti, non del corso né una prova dello stato di installazione dei repository dei partecipanti.
 
 | Cambiamento verificato | Fonte | Impatto didattico primario |
 | --- | --- | --- |
@@ -63,5 +63,15 @@ Riferimento pubblico: [changelog](../public-package/CHANGELOG.md), Bootstrap **4
 | Risposte di manutenzione risolte per file generato, senza copiare tool da un altro ruolo | [Changelog Maintainer 2.1.0](../public-package/CHANGELOG.md) | Lezione 6: preservare ownership e personalizzazioni. |
 
 I sette principi restano invariati. Il nuovo agente è evidenza di un diverso confine di autorità, non un ottavo principio. Il catalogo contiene il suo template; la generazione resta subordinata al file plan approvato. I nomi dei modelli non diventano obiettivi mnemonici del corso.
+
+### Delta Verificati Dopo Il 17 Settembre
+
+| Cambiamento verificato | Fonte | Materiale proprietario |
+| --- | --- | --- |
+| Ambienti multipli, discovery per client/versione, copie complete e adapter, verifica di preservazione distinta da esecuzione | [Compatibilità](../public-package/skills/agentic-system/bootstrap-agentic-system/contracts/platform-compatibility.md) | Principio 7, slide 7, demo ed esercizio; manutenzione nella mappa del sistema. |
+| Answers v2, migrazione senza inventare verifiche, ownership condivisa e conflitti non-slot espliciti | [Compatibilità e manutenzione](../public-package/skills/agentic-system/bootstrap-agentic-system/contracts/platform-compatibility.md#maintenance) | Lezione 6, mappa del sistema; rinvio dalla lezione 7. |
+| Formato del piano, diff e coverage per ogni ramo di business distinto | [Schema del piano](../system/canonical/templates/plan-schema.md) | Lezione 4 e mappa Planner; distinzione fra scenari pianificati e prove eseguite nella lezione 5. |
+
+L'introduzione e il contratto `teach` riflettono già gli obiettivi del corso: problema iniziale, conoscenza pertinente, verifiche eseguibili e miglioramento dal lavoro quotidiano. La pubblicazione dei materiali è un processo editoriale, non un nuovo principio o gate del sistema insegnato.
 
 [Torna alla lettura principale](README.md)

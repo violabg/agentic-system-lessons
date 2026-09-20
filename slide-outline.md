@@ -30,7 +30,7 @@ Failure mode: implementazione prima di scope e approvazione verificabili. Eserci
 
 ## Lezione 4: Artifact
 
-Failure mode: una decisione vive solo nella memoria della chat. Esercizio: completare un handoff envelope. Takeaway: la provenienza rende il lavoro riprendibile. [Apri slide](slides/04-artifact.md).
+Failure mode: una decisione vive solo nella memoria della chat. Esercizio: completare un handoff e, per la variante con piano, controllare navigazione e coverage dei rami distinti senza scambiarla per test eseguiti. Takeaway: la provenienza rende il lavoro riprendibile. [Apri slide](slides/04-artifact.md).
 
 ## Lezione 5: Validazione
 
@@ -42,7 +42,7 @@ Failure mode: la stessa regola viene duplicata in tutte le superfici. Esercizio:
 
 ## Lezione 7: Bootstrap
 
-Failure mode: template installato senza evidenza, approvazione o lettura dei contratti generati. Esercizio: binding approvato senza MCP, scelta del modello Vision e verifica manuale del sistema generato. Takeaway: adattare non significa riscrivere arbitrariamente; generare non significa aver finito di progettare. [Apri slide](slides/07-bootstrap.md).
+Failure mode: template installato senza evidenza, approvazione o lettura dei contratti generati. Esercizio: due ambienti target, binding approvato senza MCP e scelta Vision; distinguere preservazione deterministica, caricamento completo e verifica runtime, lasciando esplicito il client non verificato. Takeaway: adattare non significa riscrivere arbitrariamente; generare non significa aver finito di progettare. [Apri slide](slides/07-bootstrap.md).
 
 Tutti gli esercizi possono usare il [caso condiviso con soluzioni attese](workshop-exercise.md). Collegare ogni decisione a una prova; i nomi dei ruoli servono a leggere il contratto, non a superare un quiz.
 

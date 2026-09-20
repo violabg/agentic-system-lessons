@@ -102,4 +102,12 @@ Domanda di trasferimento: quale scelta del sistema generato controlleresti per p
 5. Conserva il risultato e i rischi residui.
 6. Riesamina il sistema generato o mantenuto quando cambiano repository, strumenti o failure mode.
 
+### Evidenza Di Compatibilità Per Il Principio 7
+
+Nel [contratto di compatibilità](../public-package/skills/agentic-system/bootstrap-agentic-system/contracts/platform-compatibility.md), gli ambienti target si scelgono esplicitamente, anche multipli, separandoli dall'host di esecuzione. Copilot in VS Code, Claude Code, Codex, OpenCode, Cursor e Other sono suggerimenti, non certificazioni. Per i soli ambienti scelti servono documentazione ufficiale con URL, data e versione, più evidenza locale per ruolo e operazione; una versione ignota resta ignota.
+
+Ogni copia canonical resta completa: si riempiono soltanto slot dichiarati e approvati, preservando il resto del contenuto. Un adapter registra o carica integralmente il contratto nel formato nativo; non riscrive il workflow. Contenuti identici si condividono, binding diversi richiedono copie complete tracciate; le estensioni separate non possono sovrascrivere le regole. Un adattamento necessario fuori slot è una lacuna da segnalare alla fonte.
+
+Il confronto deterministico di tutte le copie con template e valori approvati prova la preservazione, non il caricamento nativo o l'accesso ai tool. Questi richiedono prove nel client target con fixture isolate. Registrare `verified-native`, `verified-fallback`, `blocked` o `unverified` per ambiente, ruolo e operazione. Un client inaccessibile lascia la verifica runtime aperta; un'operazione necessaria mancante blocca il workflow. Installazione e compatibilità verificata sono esiti distinti.
+
 [Torna alla lettura principale](README.md)
