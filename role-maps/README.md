@@ -9,7 +9,7 @@ Mappe didattiche di mandato, confine e handoff. Non prescrivono ruoli, nomi o to
 Ogni pagina contiene una lettura rapida e un flusso Mermaid dettagliato. Il flusso usa sempre la stessa catena:
 
 ```mermaid
-flowchart LR
+flowchart TD
 	Input[Input] --> Gate{Gate e criterio di uscita}
 	Gate -->|non soddisfatto| Stop[Stop, rifiuto o chiarimento]
 	Gate -->|soddisfatto| Artifact[Artifact o output]

@@ -1,6 +1,6 @@
 # Knowledge Builder
 
-[Indice mappe](../README.md) · [Contratto canonical](../../../system/canonical/agents/knowledge-builder.agent.md)
+[Indice mappe](../README.md) · [Contratto canonical](system/canonical/agents/knowledge-builder.agent.md)
 
 ## In 30 Secondi
 

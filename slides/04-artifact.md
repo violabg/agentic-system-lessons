@@ -7,7 +7,7 @@
 **Controllo:** conserva decisioni, fonti, approvazioni, rischi e handoff in un record con proprietario.
 
 ```mermaid
-flowchart LR
+flowchart TD
     Discover[Scoperta] --> Artifact[Artifact durevole]
     Artifact --> Decision[Requisiti e decisioni validate]
     Decision --> Report[Execution report]

@@ -1,6 +1,6 @@
 # Vision
 
-[Indice mappe](../README.md) · [Contratto canonical](../../../system/canonical/agents/vision.agent.md)
+[Indice mappe](../README.md) · [Contratto canonical](system/canonical/agents/vision.agent.md)
 
 ## In 30 Secondi
 
@@ -40,6 +40,6 @@ flowchart TD
 
 **Da ricordare:** il passaggio cruciale non e una descrizione estetica; e una codifica completa. Una parte visibile assente dallo SlimUI non puo essere ricostruita dal ruolo successivo.
 
-## Decisione Di Bootstrap
+## Decisione Sul Modello
 
-Quando Vision è selezionato, verificare il supporto della piattaforma e registrare il modello esatto approvato oppure l'omissione approvata del campo `model` per usare il default della piattaforma. Il default canonical è una raccomandazione da verificare, non una scelta universale. Questa decisione non cambia l'autorità dell'immagine né il formato dell'artifact. Fonte: [discovery e decisioni](../../../public-package/skills/agentic-system/bootstrap-agentic-system/contracts/discovery-and-decisions.md).
+Quando Vision è selezionato, verificare il supporto dell'ambiente e registrare il modello effettivamente usato. Un default canonical è una raccomandazione da verificare, non una scelta universale. Questa decisione non cambia l'autorità dell'immagine né il formato dell'artifact.

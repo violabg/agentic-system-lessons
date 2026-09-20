@@ -1,6 +1,6 @@
 # Ask
 
-[Indice mappe](../README.md) · [Contratto canonical](../../../system/canonical/agents/ask.agent.md)
+[Indice mappe](../README.md) · [Contratto canonical](system/canonical/agents/ask.agent.md)
 
 ## In 30 Secondi
 

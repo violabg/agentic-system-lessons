@@ -1,6 +1,6 @@
 # Slide Del Corso
 
-[Torna alla lettura principale](../README.md) · [Scaletta](../slide-outline.md) · [Mappe dei ruoli](../role-maps/README.md)
+[Torna alla lettura principale](../README.md) · [Mappe dei ruoli](../role-maps/README.md)
 
 Ogni file e una slide autosufficiente: problema, controllo, evidenza, esercizio e decisione.
 
@@ -10,6 +10,5 @@ Ogni file e una slide autosufficiente: problema, controllo, evidenza, esercizio 
 4. [Artifact](04-artifact.md)
 5. [Validazione](05-validazione.md)
 6. [Composizione](06-composizione.md)
-7. [Bootstrap](07-bootstrap.md)
 
-Le slide 1, 3, 4 e 5 includono il percorso Direct Implementor; le slide 6 e 7 collegano portabilità e manutenzione alle decisioni del team. Usare il [caso condiviso](../workshop-exercise.md) e il [confronto dei ruoli](../role-maps/README.md) per il debrief.
+Le slide 1, 3, 4 e 5 includono il percorso Direct Implementor. Usare il [caso condiviso](../workshop-exercise.md) e il [confronto dei ruoli](../role-maps/README.md) per il debrief.

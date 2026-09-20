@@ -1,6 +1,6 @@
 # Integration Tester
 
-[Indice mappe](../README.md) · [Contratto canonical](../../../system/canonical/agents/integration-tester.agent.md)
+[Indice mappe](../README.md) · [Contratto canonical](system/canonical/agents/integration-tester.agent.md)
 
 ## In 30 Secondi
 
@@ -48,6 +48,6 @@ flowchart TD
 
 **Da ricordare:** qui il gate di approvazione e prima della scrittura dei test, e il confine impedisce di trasformare una failure in una modifica di produzione.
 
-## Schema Nel Sistema Generato
+## Schema Del Piano Di Test
 
-Se Integration Tester è selezionato, Bootstrap verifica uno schema YAML di test già presente contro campi e lifecycle richiesti oppure propone il fallback locale distribuito. Un documento che descrive soltanto i gate non è uno schema compatibile. La disponibilità del binding di lettura va verificata prima del handoff. Fonte: [audit Bootstrap](../../../public-package/skills/agentic-system/bootstrap-agentic-system/contracts/audit-and-handoff.md).
+Il piano di test deve dichiarare i campi e il ciclo di vita che il workflow di integrazione richiede. Un documento che descrive soltanto i gate non è uno schema compatibile. La disponibilità delle fonti e dei binding di lettura va verificata prima dell'handoff.

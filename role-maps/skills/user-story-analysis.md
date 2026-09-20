@@ -1,6 +1,6 @@
 # User Story Analysis
 
-[Indice mappe](../README.md) · [Contratto canonical](../../../system/canonical/skills/user-story-analysis/SKILL.md)
+[Indice mappe](../README.md) · [Contratto canonical](system/canonical/skills/user-story-analysis/SKILL.md)
 
 ## In 30 Secondi
 

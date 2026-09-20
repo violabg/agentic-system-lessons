@@ -7,7 +7,7 @@
 **Controllo:** scegliere il contratto per autorità e output richiesti.
 
 ```mermaid
-flowchart LR
+flowchart TD
     Request[Richiesta] --> Choice{Output richiesto}
     Choice -->|piano approvabile| Planner[Planner]
     Planner --> Approval[Piano approvato]

@@ -7,7 +7,7 @@
 **Controllo:** seleziona poche fonti autorevoli prima dell'esplorazione del codice.
 
 ```mermaid
-flowchart LR
+flowchart TD
     Question[Domanda o task] --> Glossary[Context glossary]
     Glossary --> Index[Knowledge index]
     Index --> Sources[Fonti selezionate]

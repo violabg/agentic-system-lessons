@@ -1,8 +1,8 @@
 # Principi di Sviluppo Agentico
 
-[Torna alla lettura principale](README.md) · [Baseline dei principi](core-principles-baseline.md) · [Mappa del sistema](system-map.md)
+[Torna alla lettura principale](README.md) · [Mappa del sistema](system-map.md)
 
-Questa lettura insegna i controlli che rendono affidabile un sistema agentico in un repository. Il sistema canonical e il Bootstrap public-safe sono evidenza di questi controlli, non un modello di directory o di file da copiare.
+Questa lettura insegna i controlli che rendono affidabile un sistema agentico in un repository. Il sistema canonical è evidenza di questi controlli, non un modello di directory o di file da copiare.
 
 ## Il Modello di Evidenza
 
@@ -33,7 +33,7 @@ Domanda di trasferimento: quale passaggio nel tuo repository non deve poter esse
 
 **Obiettivo di controllo:** fare scegliere fonti autorevoli e proporzionate al task. Un context glossary stabilizza nomi, confini e fonti di verita'; un knowledge index instrada verso i pochi documenti da leggere. Non sono intercambiabili.
 
-L'evidenza canonical e' il glossario [system/canonical/CONTEXT.md](../system/canonical/CONTEXT.md) insieme al [knowledge guard](../system/canonical/instructions/knowledge-guard.instructions.md). Il controllo non chiede di caricare piu' contesto: chiede di registrare quale contesto basta e perche'.
+L'evidenza canonical e' il glossario [system/canonical/CONTEXT.md](system/canonical/CONTEXT.md) insieme al [knowledge guard](system/canonical/instructions/knowledge-guard.instructions.md). Il controllo non chiede di caricare piu' contesto: chiede di registrare quale contesto basta e perche'.
 
 Domanda di trasferimento: per un cambiamento ad alto rischio, quali due o tre fonti sono autorevoli e quali fonti plausibili devono restare escluse?
 
@@ -63,7 +63,7 @@ Domanda di trasferimento: quale record permetterebbe a una persona nuova di capi
 
 **Obiettivo di controllo:** scegliere la prova piu' piccola e rilevante per ogni handoff: controllo di schema, test mirato, lint, build, review o verifica manuale. Un comando verde e' evidenza del rischio che controlla, non una dichiarazione generale di qualita'.
 
-Il sistema canonical mantiene contratti di validazione e il Bootstrap richiede un contract audit prima dell'handoff. Per ogni decisione, distinguere sempre: quale rischio e' stato controllato, quale prova e' stata eseguita e quale rischio residuo rimane.
+Il sistema canonical mantiene contratti di validazione e richiede prove prima dell'handoff. Per ogni decisione, distinguere sempre: quale rischio e' stato controllato, quale prova e' stata eseguita e quale rischio residuo rimane.
 
 Direct Implementor esegue build e review ma non crea test: questa è una restrizione del ruolo, non una raccomandazione a rinunciare ai test. Il team deve rendere espliciti copertura mancante, rischio residuo e workflow responsabile delle prove ulteriori.
 
@@ -79,20 +79,6 @@ Il controllo di ciclo di vita e' altrettanto importante: chi puo' modificare la 
 
 Domanda di trasferimento: dove dovrebbe vivere una nuova regola di review nel tuo repository, e quale file derivato o workflow dovrebbe essere verificato dopo la modifica?
 
-## 7. Bootstrap e Adattamento Controllato
-
-**Failure mode:** un template viene installato come se conoscesse gia' linguaggio, rischi, validazioni, fonti di conoscenza, integrazioni e autorita' del repository target.
-
-**Obiettivo di controllo:** generare un sistema locale solo da evidenza del repository e da decisioni esplicite. Il Bootstrap public-safe esegue intake, discovery limitata, decision register, proposta e file plan approvati, generazione dai template, audit e maintenance handoff.
-
-Il risultato generato e' un punto di partenza verificabile, non una garanzia che il repository abbia il sistema perfetto. Chi lo adotta deve leggere manifest, answers, baseline e contratti generati; verificare che ruoli, gate, knowledge e comandi di validazione siano reali; poi correggere o completare con lavoro manuale quando l'evidenza del repository lo richiede.
-
-Una capability può essere soddisfatta da un tool nativo, una skill esistente, un’integrazione configurata o un fallback locale approvato. Bisogna provarne prerequisiti, input e output: un nome in una lista non basta. Senza un binding funzionante, l’operazione si blocca. Tool e risposte si risolvono per ruolo; il modello Vision si decide quando Vision è selezionato.
-
-Una decisione di Bootstrap e' valida solo quando registra: evidenza osservata, scelta proposta, cio' che e' inferito, cio' che richiede approvazione, file interessati e validazione prevista.
-
-Domanda di trasferimento: quale scelta del sistema generato controlleresti per prima, e quale evidenza del tuo repository confermerebbe o smentirebbe quella scelta?
-
 ## Ciclo di Progettazione
 
 1. Nomina il failure mode costoso.
@@ -100,14 +86,6 @@ Domanda di trasferimento: quale scelta del sistema generato controlleresti per p
 3. Scrivi la regola minima nella superficie proprietaria.
 4. Provala in un workflow reale.
 5. Conserva il risultato e i rischi residui.
-6. Riesamina il sistema generato o mantenuto quando cambiano repository, strumenti o failure mode.
-
-### Evidenza Di Compatibilità Per Il Principio 7
-
-Nel [contratto di compatibilità](../public-package/skills/agentic-system/bootstrap-agentic-system/contracts/platform-compatibility.md), gli ambienti target si scelgono esplicitamente, anche multipli, separandoli dall'host di esecuzione. Copilot in VS Code, Claude Code, Codex, OpenCode, Cursor e Other sono suggerimenti, non certificazioni. Per i soli ambienti scelti servono documentazione ufficiale con URL, data e versione, più evidenza locale per ruolo e operazione; una versione ignota resta ignota.
-
-Ogni copia canonical resta completa: si riempiono soltanto slot dichiarati e approvati, preservando il resto del contenuto. Un adapter registra o carica integralmente il contratto nel formato nativo; non riscrive il workflow. Contenuti identici si condividono, binding diversi richiedono copie complete tracciate; le estensioni separate non possono sovrascrivere le regole. Un adattamento necessario fuori slot è una lacuna da segnalare alla fonte.
-
-Il confronto deterministico di tutte le copie con template e valori approvati prova la preservazione, non il caricamento nativo o l'accesso ai tool. Questi richiedono prove nel client target con fixture isolate. Registrare `verified-native`, `verified-fallback`, `blocked` o `unverified` per ambiente, ruolo e operazione. Un client inaccessibile lascia la verifica runtime aperta; un'operazione necessaria mancante blocca il workflow. Installazione e compatibilità verificata sono esiti distinti.
+6. Riesamina il sistema mantenuto quando cambiano repository, strumenti o failure mode.
 
 [Torna alla lettura principale](README.md)

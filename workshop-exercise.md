@@ -1,10 +1,10 @@
 # Esercizio Trasversale: Una Richiesta, Due Percorsi
 
-[Torna al corso](README.md) · [Conduzione](facilitator-guide.md) · [Scelta dei ruoli](role-maps/README.md)
+[Torna al corso](README.md) · [Scelta dei ruoli](role-maps/README.md)
 
 **Caso fittizio:** un portale deve impedire la chiusura di una richiesta di assistenza senza motivazione. La knowledge assegna la regola al servizio di dominio. Una vecchia schermata controlla solo il browser. Lo screenshot mostra il campo, ma non definisce quando sia obbligatorio. Non serve un repository demo per svolgere l'esercizio.
 
-**Obiettivo:** spiegare chi può decidere, quale evidenza lo autorizza e quale prova rende il risultato controllabile. Riutilizzare il caso nelle sette lezioni; ogni gruppo aggiunge una riga al proprio record.
+**Obiettivo:** spiegare chi può decidere, quale evidenza lo autorizza e quale prova rende il risultato controllabile. Riutilizzare il caso nelle sei lezioni; ogni gruppo aggiunge una riga al proprio record.
 
 | Lezione | Consegna in 13 minuti | Ragionamento atteso per il facilitatore |
 | --- | --- | --- |
@@ -14,7 +14,6 @@
 | 4. Artifact | Compilare il record; nella variante A il codice rifiuta motivazioni vuote e accetta quelle valide: basta uno scenario happy path? | No: scenari distinti per i due rami, derivati dal codice; verificare link albero/dettagli e backlink secondo la mappa Planner. Sono scenari pianificati, non prove eseguite. Nella variante B persistono gli artifact previsti senza inventare un piano. |
 | 5. Validazione | La build è verde: si può dichiarare impossibile una chiusura senza motivazione? | No: servono prove del comportamento, inclusa una chiamata che evita la UI. Registrare cosa è stato davvero verificato e chi produce le prove mancanti; Direct Implementor non crea test. |
 | 6. Composizione | Collocare la regola di dominio e un nuovo limite del ruolo. | Regola nel documento di knowledge proprietario; limite nel contratto del ruolo. Le altre superfici instradano. Registrare le personalizzazioni per la manutenzione. |
-| 7. Bootstrap | Scegliere due ambienti target: uno senza subagent/MCP, l’altro inaccessibile per prove runtime. Vision è richiesto. Proporre binding, modello e verifiche. | Fonti ufficiali per client/versione, binding nativi o fallback approvati e prerequisiti; modello supportato o default approvato. Preservare copie complete e verificare adapter. Confronto statico verde non verifica il client inaccessibile: resta `unverified`; operazioni necessarie mancanti sono `blocked`. |
 
 Il record seguente è un esercizio didattico, non un nuovo artifact obbligatorio del runtime. Direct Implementor espone i requisiti del Gate 3 solo in chat e persiste regole, risposte e stato nei gate dedicati.
 
@@ -28,12 +27,6 @@ Il record seguente è un esercizio didattico, non un nuovo artifact obbligatorio
 - Artifact durevole e proprietario:
 - Verifica effettuata, risultato e cosa non dimostra:
 - Prova mancante, rischio residuo e prossimo responsabile:
-- Binding di capability, prerequisiti e scelta approvata:
-- Host di esecuzione e ambienti target scelti, client/versione:
-- Fonte ufficiale, URL/data/versione ed evidenza locale:
-- Copia completa, slot approvati, adapter e consumatori condivisi:
-- Preservazione verificata e prova runtime distinta, stato per ruolo/operazione:
-- Contratto generato da ispezionare e criterio di correzione:
 
 ## Valutazione E Trasferimento
 

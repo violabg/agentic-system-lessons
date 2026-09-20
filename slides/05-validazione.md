@@ -7,7 +7,7 @@
 **Controllo:** scegli la prova minima che falsifica l'errore piu probabile e registra il rischio residuo.
 
 ```mermaid
-flowchart LR
+flowchart TD
     Change[Modifica o piano] --> Risk[Rischio principale]
     Risk --> Test[Prova minima rilevante]
     Test --> Result{Esito}

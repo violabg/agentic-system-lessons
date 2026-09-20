@@ -1,6 +1,6 @@
 # Integration Test Knowledge Checklist
 
-[Indice mappe](../README.md) · [Contratto canonical](../../../system/canonical/skills/integration-test-knowledge-checklist/SKILL.md)
+[Indice mappe](../README.md) · [Contratto canonical](system/canonical/skills/integration-test-knowledge-checklist/SKILL.md)
 
 ## In 30 Secondi
 

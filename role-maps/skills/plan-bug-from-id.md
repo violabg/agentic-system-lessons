@@ -1,6 +1,6 @@
 # Plan Bug From Id
 
-[Indice mappe](../README.md) · [Contratto canonical](../../../system/canonical/skills/plan-bug-from-id/SKILL.md)
+[Indice mappe](../README.md) · [Contratto canonical](system/canonical/skills/plan-bug-from-id/SKILL.md)
 
 ## In 30 Secondi
 
@@ -40,6 +40,6 @@ flowchart TD
 
 **Da ricordare:** questo workflow non sceglie la correzione per l'utente. Trasforma la scelta in un artifact che restringe il piano alla causa radice.
 
-## Portabilità Del Sistema Generato
+## Evidenza Del Work Item
 
-La mappa sopra descrive il contratto canonical. Nel sistema generato, Bootstrap risolve la raccolta tramite delega quando supportata o esecuzione inline prevista dalla piattaforma, mantenendo evidenza e confini. Tracker e persistenza devono avere binding approvati e funzionanti; riprendere solo la sessione nota senza enumerare altre sessioni. Recuperare i riferimenti espliciti del work item corrente senza espansione ricorsiva. Fonte: [changelog Bootstrap 4.0.0 e precedenti](../../../public-package/CHANGELOG.md) e [decisioni](../../../public-package/skills/agentic-system/bootstrap-agentic-system/contracts/discovery-and-decisions.md).
+La mappa sopra descrive il contratto canonical. Tracker e persistenza devono avere fonti leggibili e binding verificati; riprendere solo la sessione nota senza enumerare altre sessioni. Recuperare i riferimenti espliciti del work item corrente senza espansione ricorsiva.
