@@ -12,13 +12,15 @@ Ogni pagina contiene una lettura rapida e un flusso Mermaid dettagliato. Il flus
 
 ```mermaid
 flowchart TD
-	Input[Input] --> Gate{Gate e criterio di uscita}
-	Gate -->|non soddisfatto| Stop[Stop, rifiuto o chiarimento]
-	Gate -->|soddisfatto| Artifact[Artifact o output]
+	Input[Input] --> Check{Gate o controllo<br/>e criterio di uscita}
+	Check -->|non soddisfatto| Stop[Stop, rifiuto o chiarimento]
+	Check -->|soddisfatto| Artifact[Artifact o output]
 	Artifact --> Handoff[Handoff al prossimo ruolo]
 ```
 
-La tabella sotto ogni diagramma spiega quattro domande: quale decisione protegge il gate, quale prova produce, chi riceve l'handoff e cosa accade se il criterio non e soddisfatto. Seguire le frecce non assegna autorita: il contratto canonical collegato resta la fonte di verita.
+La tabella sotto ogni diagramma spiega quattro domande: quale decisione protegge il passaggio, quale prova produce, chi riceve l'handoff e cosa accade se il criterio non e soddisfatto. Seguire le frecce non assegna autorita: il contratto canonical collegato resta la fonte di verita.
+
+I gate numerati riprendono quelli del contratto canonical. Nelle mappe prive di gate numerati, i controlli del diagramma sono passaggi didattici: non aggiungono stop, approvazioni o artifact al workflow originale. Un output in chat non diventa un artifact persistito solo perche compare nel diagramma.
 
 ## Agent
 

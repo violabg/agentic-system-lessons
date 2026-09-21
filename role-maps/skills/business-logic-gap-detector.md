@@ -14,12 +14,12 @@
 
 ```mermaid
 flowchart TD
-    Invocation[Input: sessione, classi e metodi] --> G0{Gate 0<br/>Payload valido e completo?}
+    Invocation[Input: sessione, classi<br/>e metodi facoltativi] --> G0{Gate 0<br/>Payload valido e completo?}
     G0 -->|no| Block[Output: blocked invalid invocation]
     G0 -->|si| G1[Gate 1<br/>Aggiorna knowledge di test]
-    G1 --> Knowledge[Artifact: convenzioni applicabili]
+    G1 --> Knowledge[Contesto: convenzioni applicabili]
     Knowledge --> G2[Gate 2<br/>Risolvi file test e dipendenze<br/>con discovery minima]
-    G2 --> Scope[Artifact: scope e mapping classe-test]
+    G2 --> Scope[Output: scope e mapping classe-test]
     Scope --> G3[Gate 3<br/>Scrivi test che rompono la logica]
     G3 --> Red{Ogni test fallisce<br/>prima della fix?}
     Red -->|no| Revise[Rivedi scenario non efficace]
@@ -33,7 +33,7 @@ flowchart TD
 
 | Gate | Decisione che protegge | Artifact o output | Handoff successivo |
 | --- | --- | --- | --- |
-| 0. Invocazione | Sessione, classe e metodi sono tutti presenti? | Blocco deterministico o scope valido | Gate 1 |
+| 0. Invocazione | Sono identificati sessione e almeno una classe? I metodi sono facoltativi. | Blocco deterministico o scope valido | Gate 1 |
 | 1. Knowledge | Quali convenzioni disciplinano i test? | Knowledge di test aggiornata | Gate 2 |
 | 2. Scope | Dove vivono test, helper e dipendenze necessarie? | Mapping produzione-test e target file | Gate 3 |
 | 3. Prova rossa | Il caso espone una debolezza reale e fallisce? | Test rossi e output della failure | Gate 4 |

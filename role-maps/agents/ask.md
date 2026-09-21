@@ -17,10 +17,10 @@ flowchart TD
     Request[Input: domanda utente] --> G0{Gate 0<br/>E Q&A tecnica?}
     G0 -->|no| Decline[Output: rifiuto breve<br/>Handoff: nessuno]
     G0 -->|si| G1[Gate 1<br/>Leggi catalogo knowledge]
-    G1 --> KArtifact[Artifact: knowledge selezionate<br/>e lette]
-    KArtifact --> G2{Gate 2<br/>Il codice serve a colmare<br/>un gap concreto?}
+    G1 --> KContext[Fonti nel contesto: knowledge<br/>selezionate e lette]
+    KContext --> G2{Gate 2<br/>Il codice serve a colmare<br/>un gap concreto?}
     G2 -->|si| Search[Cross-check mirato<br/>in una ricerca batched]
-    Search --> Evidence[Artifact: evidenza codice]
+    Search --> Evidence[Evidenza nel contesto:<br/>riscontro nel codice]
     G2 -->|no| G3
     Evidence --> G3{Gate 3<br/>Fonti coerenti e sufficienti?}
     G3 -->|no, gap| Clarify[Output: chiarimento minimo<br/>Handoff: utente]

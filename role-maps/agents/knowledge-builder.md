@@ -8,7 +8,7 @@
 
 **Non fa:** non modifica codice di produzione, non confonde nomi file con evidenza e non trasforma supposizioni in fatti.
 
-**Consegna:** topic e aspettative come artifact di sessione, quindi una knowledge pubblicata nell'indice con intent e contenuto applicabile.
+**Consegna:** topic e aspettative come artifact di sessione, quindi una knowledge salvata nella fonte approvata con intent e contenuto applicabile.
 
 ## Flusso, Gate E Artifact
 
@@ -26,7 +26,7 @@ flowchart TD
     Evidence --> Draft[Output: template o bozza<br/>di knowledge]
     Draft --> Approval{Approvazione utente?}
     Approval -->|no| Draft
-    Approval -->|si| Publish[Artifact finale: knowledge<br/>e voce nell'indice]
+    Approval -->|si| Publish[Artifact finale: knowledge<br/>salvata con intent]
     Publish --> Handoff[Handoff: agent che caricano<br/>la knowledge per il task]
 ```
 
@@ -39,6 +39,6 @@ flowchart TD
 | 1.2. Aspettative | Cosa deve sapere e come usera la knowledge il destinatario? | Artifact di intervista | Gate 2 |
 | 2. Ricognizione | Quali prove derivano da file realmente letti? | Evidenza, relazioni e esempi | Bozza |
 | Bozza e approvazione | La knowledge e utile, supportata e leggibile senza contesto? | Template o draft approvato | Pubblicazione |
-| Pubblicazione | Dove la trovera il prossimo agente? | Documento e indice aggiornato | Ruoli che consultano la knowledge |
+| Salvataggio | Dove la trovera il prossimo agente? | Documento salvato nella fonte knowledge approvata, con intent | Ruoli che consultano la knowledge |
 
-**Da ricordare:** un artifact di ricerca non e ancora knowledge. Diventa riusabile soltanto dopo bozza, approvazione e pubblicazione nell'indice.
+**Da ricordare:** un artifact di ricerca non e ancora knowledge. Diventa riusabile soltanto dopo bozza, approvazione e salvataggio nella fonte knowledge approvata.

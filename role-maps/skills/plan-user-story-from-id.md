@@ -10,16 +10,16 @@
 
 **Consegna:** artifact di sessione con descrizione, acceptance criteria, commenti, immagini e relazioni, pronto per il gate di pianificazione.
 
-## Flusso, Gate E Artifact
+## Flusso, Controlli E Artifact
 
 ```mermaid
 flowchart TD
     StoryId[Input: user story ID] --> G0{ID presente?}
     G0 -->|no| Ask[Output: chiedi work item ID]
-    G0 -->|si| Delegate[Gate: delega raccolta<br/>al subagent]
+    G0 -->|si| Delegate[Passo: delega raccolta<br/>al subagent]
     Delegate --> Retrieve[Recupera descrizione, criteri,<br/>commenti, immagini e relazioni]
     Retrieve --> Artifact[Artifact: work item in Markdown<br/>con contenuto preservato]
-    Artifact --> G1{Gate evidenza<br/>tutti i campi richiesti?}
+    Artifact --> G1{Controllo didattico<br/>campi richiesti raccolti?}
     G1 -->|no| Delegate
     G1 -->|si| Handoff[Handoff: Planner legge artifact<br/>e avvia il proprio Gate 0]
     Handoff --> Plan[Artifact successivo: piano<br/>solo dopo workflow Planner]
@@ -27,10 +27,10 @@ flowchart TD
 
 ## Lettura Del Diagramma
 
-| Gate | Decisione che protegge | Artifact o output | Handoff successivo |
+| Passaggio o controllo | Decisione che protegge | Artifact o output | Handoff successivo |
 | --- | --- | --- | --- |
 | ID | Esiste un work item da recuperare? | ID valido o richiesta all'utente | Raccolta |
-| Raccolta delegata | L'evidenza viene recuperata senza progettare? | Descrizione, commenti, criteri, immagini e relazioni | Gate evidenza |
+| Raccolta delegata | L'evidenza viene recuperata senza progettare? | Descrizione, commenti, criteri, immagini e relazioni | Controllo dei campi richiesti |
 | Evidenza | Tutti i campi richiesti sono disponibili e leggibili? | Artifact work item completo | Planner |
 | Handoff | Chi puo trasformare prova in design? | Artifact di sessione | Planner, poi Implementor dopo approvazione |
 

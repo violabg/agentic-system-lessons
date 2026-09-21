@@ -20,7 +20,7 @@ flowchart TD
     Gather --> BugArtifact[Artifact: titolo, descrizione,<br/>commenti e immagini]
     BugArtifact --> Knowledge[Gate: carica knowledge rilevanti]
     Knowledge --> Investigate[Gate: causa da narrow a wide]
-    Investigate --> Causes[Artifact: fino a tre cause<br/>e fattori con evidenza]
+    Investigate --> Causes[Output: fino a tre cause<br/>e fattori con evidenza]
     Causes --> Select{Gate: utente sceglie<br/>una causa?}
     Select -->|no| AskCause[Output: richiesta di selezione]
     Select -->|si| Record[Artifact: bug_<id>_cause_analysis]

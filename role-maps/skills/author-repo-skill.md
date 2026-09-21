@@ -10,31 +10,31 @@
 
 **Consegna:** una skill approvata e validata, con artifact finale deterministico e chiamanti compatibili.
 
-## Flusso, Gate E Artifact
+## Flusso, Controlli E Output
 
 ```mermaid
 flowchart TD
-    Procedure[Input: procedura proposta] --> G0{Gate: e ripetibile,<br/>deliberata e con output?}
+    Procedure[Input: procedura proposta] --> G0{Controllo: e ripetibile,<br/>deliberata e con output?}
     G0 -->|no| Home[Output: prompt, istruzione<br/>o contratto agent corretto]
-    G0 -->|si| G1[Gate: cerca skill esistente]
+    G0 -->|si| G1[Passo: cerca skill esistente]
     G1 --> Duplicate{Esiste un duplicato<br/>o estensione adatta?}
-    Duplicate -->|si| Evolve[Artifact: caller e impatto<br/>di evoluzione]
-    Duplicate -->|no| Gather[Gate: raccogli fatti repository]
+    Duplicate -->|si| Evolve[Analisi: caller e impatto<br/>di evoluzione]
+    Duplicate -->|no| Gather[Passo: raccogli fatti repository]
     Evolve --> Gather
-    Gather --> Facts[Artifact: fonti, ruoli, convenzioni<br/>ed esempio reale]
-    Facts --> Shape[Gate: definisci trigger, passi,<br/>output e failure mode]
-    Shape --> Proposal[Artifact: file plan della skill]
+    Gather --> Facts[Fonti: ruoli, convenzioni<br/>ed esempio reale]
+    Facts --> Shape[Passo: definisci trigger, passi,<br/>output e failure mode]
+    Shape --> Proposal[Proposta: file plan della skill]
     Proposal --> Approval{Approvazione esplicita?}
     Approval -->|no| Shape
     Approval -->|si| Write[Scrivi o aggiorna skill]
-    Write --> Validate[Gate: frontmatter, riferimenti,<br/>contratti e validazione]
+    Write --> Validate[Controllo: frontmatter, riferimenti,<br/>contratti e validazione]
     Validate --> Skill[Artifact: skill completa<br/>e report di validazione]
     Skill --> Handoff[Handoff: agent e caller autorizzati]
 ```
 
 ## Lettura Del Diagramma
 
-| Gate | Decisione che protegge | Artifact o output | Handoff successivo |
+| Passaggio o controllo | Decisione che protegge | Artifact o output | Handoff successivo |
 | --- | --- | --- | --- |
 | Casa giusta | La procedura e davvero una skill? | Redirect a prompt, istruzione o agent contract | Proprietario corretto |
 | Duplicazione | Si estende un contratto esistente? | Analisi di caller e compatibilita | Raccolta fatti |

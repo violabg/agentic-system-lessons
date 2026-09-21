@@ -20,9 +20,9 @@ flowchart TD
     G1 --> Preconditions{Piano o componenti<br/>sono validi?}
     Preconditions -->|no| Block[Output: blocco<br/>Handoff: utente]
     Preconditions -->|si| G3[Gate 3<br/>Knowledge obbligatoria]
-    G3 --> Knowledge[Artifact: knowledge caricate]
+    G3 --> Knowledge[Contesto: knowledge caricate]
     Knowledge --> G4[Gate 4<br/>Mappa classi e confine integrazione]
-    G4 --> Scope[Artifact: scope one-to-one]
+    G4 --> Scope[Output: scope one-to-one]
     Scope --> G5[Gate 5<br/>Bozza test plan]
     G5 --> Draft[Artifact: test plan]
     Draft --> G6{Gate 6<br/>Utente approva?}

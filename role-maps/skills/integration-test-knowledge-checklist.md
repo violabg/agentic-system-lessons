@@ -10,19 +10,19 @@
 
 **Consegna:** una knowledge indicizzata con metadata, stack, setup, seeding, mocking, assertion, failure interpretation e checklist verde.
 
-## Flusso, Gate E Artifact
+## Flusso, Controlli E Output
 
 ```mermaid
 flowchart TD
-    Boundary[Input: confine reale<br/>di integrazione] --> G1{Gate scope<br/>Famiglia test e fuori scope chiari?}
+    Boundary[Input: confine reale<br/>di integrazione] --> G1{Controllo scope<br/>Famiglia test e fuori scope chiari?}
     G1 -->|no| Refine[Completa il confine]
     Refine --> G1
-    G1 -->|si| Stack[Gate: stack, fixture e metadata]
-    Stack --> Setup[Gate: flow, setup e seeding]
-    Setup --> Shape[Gate: struttura, mocking<br/>e assertion]
-    Shape --> Failures[Gate: negative case<br/>e failure interpretation]
+    G1 -->|si| Stack[Passo: stack, fixture e metadata]
+    Stack --> Setup[Passo: flow, setup e seeding]
+    Setup --> Shape[Passo: struttura, mocking<br/>e assertion]
+    Shape --> Failures[Passo: negative case<br/>e failure interpretation]
     Failures --> Draft[Artifact: bozza knowledge<br/>con template pratico]
-    Draft --> G2{Gate completezza<br/>Un nuovo test e diagnosticabile?}
+    Draft --> G2{Controllo completezza<br/>Un nuovo test e diagnosticabile?}
     G2 -->|no| Refine
     G2 -->|si| Green[Artifact: knowledge pubblicabile<br/>e checklist verde]
     Green --> Handoff[Handoff: Integration Tester<br/>carica la knowledge]
@@ -30,7 +30,7 @@ flowchart TD
 
 ## Lettura Del Diagramma
 
-| Gate | Decisione che protegge | Artifact o output | Handoff successivo |
+| Passaggio o controllo | Decisione che protegge | Artifact o output | Handoff successivo |
 | --- | --- | --- | --- |
 | Scope | Quale famiglia test e quale confine reale copre? | Scope e fuori scope espliciti | Stack |
 | Stack e setup | Quali fixture, dipendenze, dati e seeding sono necessari? | Regole di stack, setup e seeding | Struttura |

@@ -9,6 +9,8 @@ Apri una fonte quando vuoi approfondire una domanda emersa in aula. Nessuna pagi
 | Come si collegano i sei principi? | [Principi](../principles.md) |
 | Come collaborano controlli e manutenzione? | [Mappa del sistema](../system-map.md) |
 | Come si traducono i confini in contratti concreti? | [Mappe di agent e skill](../role-maps/README.md) |
+| Quando si usa ciascun agent o skill? | [Riferimento rapido](../slides/reference-roster.md) |
+| Come scorrono tutti i gate del percorso principale? | [Flusso Planner → Implementor](../slides/reference-flow.md) |
 | Che cosa significano i termini? | [Glossario canonical](../system/canonical/CONTEXT.md) |
 | Come si governa la conoscenza? | [Knowledge guard](../system/canonical/instructions/knowledge-guard.instructions.md) |
 | Come si conservano decisioni e stato? | [Planning sessions](../system/canonical/instructions/planning-sessions.instructions.md) |

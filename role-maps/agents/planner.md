@@ -19,14 +19,14 @@ flowchart TD
     G0 -->|si| G1[Gate 1-2<br/>Sessione e artifact richiesta]
     G1 --> Intake[Artifact: sessione, requisito,<br/>tracker e immagini se presenti]
     Intake --> G3[Gate 3<br/>Decomponi requisito senza inventare]
-    G3 --> Requirement[Artifact: capacita, AC,<br/>scenari e gap]
+    G3 --> Requirement[Output in chat: capacita, AC,<br/>scenari e gap]
     Requirement --> G4[Gate 4<br/>Catalogo e regole knowledge]
     G4 --> Rules[Artifact: inventory regole]
     Rules --> G5G6[Gate 5-6<br/>Comprensione e ricognizione]
-    G5G6 --> Evidence[Artifact: evidenza codice]
+    G5G6 --> Evidence[Evidenza: riferimenti al codice]
     Evidence --> G7[Gate 7<br/>Intervista per gap bloccanti]
     G7 --> G8[Gate 8-9<br/>Valida risposta e allinea design]
-    G8 --> Design[Artifact: decisioni validate]
+    G8 --> Design[Decisioni: risposte validate<br/>e design allineato]
     Design --> G10[Gate 10<br/>Bozza piano e coverage]
     G10 --> Draft[Artifact: implementation plan]
     Draft --> G11{Gate 11<br/>Utente approva?}
@@ -41,7 +41,7 @@ flowchart TD
 | Gate | Decisione che protegge | Artifact o output | Handoff successivo |
 | --- | --- | --- | --- |
 | 0-2. Scope e sessione | La richiesta merita un piano, e in quale sessione? | Sessione scelta, requisito e artifact di intake | Gate 3 |
-| 3. Requisito | Cosa chiede il dominio senza aggiungere assunzioni? | Capacita, acceptance criteria, scenari e gap | Gate 4 |
+| 3. Requisito | Cosa chiede il dominio senza aggiungere assunzioni? | Capacita, acceptance criteria, scenari e gap esposti in chat, senza artifact | Gate 4 |
 | 4. Knowledge | Quali regole governano il design? | Catalogo, knowledge lette e inventory normativo | Gate 5 |
 | 5-9. Evidenza e allineamento | Evidenza, regole e chiarimenti sostengono il design? | Ricognizione, chiarimenti e decisioni validate | Gate 10 |
 | 10. Piano | File, dettagli e coverage sono eseguibili? | Bozza di implementation plan | Gate 11 |

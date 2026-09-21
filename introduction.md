@@ -1,19 +1,11 @@
-# Perché un sistema agentico
+# Perché studiare questo sistema
 
-[Corso](README.md) · [Inizia dalla lezione 1](lesson-01-introduzione.md)
+[Corso](README.md) · [Lezione 1](lesson-01-introduzione.md) · [Principi](principles.md)
 
-Un agente può scrivere una modifica plausibile ignorando una regola del dominio. Può copiare un pattern vecchio, interpretare una richiesta ambigua o dichiarare successo dopo una build che non verifica il comportamento richiesto.
+Il sistema canonical rende le decisioni dell'agente ispezionabili e correggibili. Un ruolo ha un mandato limitato; una knowledge si legge quando il task la richiede; un gate blocca il passaggio finché esistono evidenza e autorità sufficienti; una sessione conserva ciò che il prossimo ruolo deve sapere; una verifica delimita ciò che si può dichiarare riuscito. I [sei principi](principles.md) descrivono perché questi controlli esistono.
 
-Quando regole e decisioni restano implicite, ogni chat ricomincia da capo. Un sistema agentico locale al repository rende più chiari il mandato, le fonti da consultare, i controlli e le informazioni necessarie per riprendere il lavoro.
+Il corso comincia con l'inventario breve di agent e skill e mostra il percorso Planner → Implementor. Poi torna sui passaggi per spiegare la loro logica. Il [caso guida](workshop-exercise.md) è fittizio e serve soltanto a rendere visibili decisioni e prove. Ogni meccanismo canonical citato rimanda al suo contratto.
 
-Non rende deterministico il modello. Permette al team di chiedere: **chi può decidere, su quale evidenza, con quale verifica?**
+La qualità della richiesta è il primo vincolo. Una story ambigua può produrre un piano dettagliato ma fondato su una scelta che nessuno ha autorizzato. La [skill di analisi della user story](role-maps/skills/user-story-analysis.md) rende espliciti gap e domande; il [Planner](role-maps/agents/planner.md) non deve colmarli inventando requisiti.
 
-## Un esempio
-
-Il portale deve impedire la chiusura di una richiesta senza motivazione. Il browser segnala il campo vuoto e la build passa. Basta per accettare la modifica? Non sappiamo ancora che cosa accade se un altro programma chiama il servizio direttamente.
-
-Nelle cinque lezioni seguiremo questo caso, aggiungendo fonti, decisioni e prove. Alla fine ogni partecipante sceglierà un errore reale del proprio progetto e una modifica minima al workflow da sperimentare.
-
-I sei principi sono leve da adattare, non sei strumenti da installare. Per un task piccolo può bastare un percorso leggero; le regole di un workflow già adottato continuano comunque a valere.
-
-[Approfondimenti facoltativi](reference/README.md)
+Il percorso non richiede di installare o comprendere il bootstrap skill. Chi lo usa per iniziare il proprio Agentic System applica poi gli stessi principi per migliorarlo; chi costruisce un sistema proprio può fare lo stesso.

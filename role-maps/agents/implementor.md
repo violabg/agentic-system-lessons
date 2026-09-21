@@ -14,11 +14,13 @@
 
 ```mermaid
 flowchart TD
-    Request[Input: richiesta e sessione] --> G0[Gate 0-1<br/>Processa richiesta speciale<br/>e gap logic, se invocato]
-    G0 --> G2{Gate 2<br/>Piano approvato e leggibile?}
+    Request[Input: richiesta e sessione] --> Special{Detector di business logic<br/>invocato?}
+    Special -->|si| G0[Gate 0-1<br/>Triage, test rossi<br/>e riparazione stretta]
+    G0 --> SpecialResult[Esito del percorso speciale<br/>senza piano richiesto]
+    Special -->|no| G2{Gate 2<br/>Piano approvato selezionato<br/>e leggibile?}
     G2 -->|no| Block[Output: blocco<br/>Handoff: utente]
     G2 -->|si| G3[Gate 3<br/>Leggi artifact e piano]
-    G3 --> Intake[Artifact: piano selezionato,<br/>scope e test opzionali]
+    G3 --> Intake[Contesto: piano selezionato,<br/>scope e test opzionali]
     Intake --> G4[Gate 4<br/>Implementa file NEW o MODIFIED]
     G4 --> Changes[Artifact: modifiche di produzione<br/>e report aggiornato]
     Changes --> G5{Gate 5<br/>Build passa?}
@@ -38,8 +40,8 @@ flowchart TD
 
 | Gate | Decisione che protegge | Artifact o output | Handoff successivo |
 | --- | --- | --- | --- |
-| 0-1. Richiesta speciale | E stato invocato il detector di business logic? | Triage e, se applicabile, test rossi e riparazione stretta | Gate 2 |
-| 2. Piano | Esiste un solo piano approvato e leggibile? | Piano risolto o blocco | Gate 3, oppure utente |
+| 0-1. Richiesta speciale | E stato invocato il detector di business logic? | Triage, test rossi e riparazione stretta; questo percorso non richiede un piano | Riepilogo del percorso speciale |
+| 2. Piano | Quale piano approvato va caricato? Se ce ne sono piu di uno, l'utente sceglie. | Piano risolto e leggibile, oppure blocco | Gate 3, oppure utente |
 | 3-4. Intake e implementazione | Quali file e quali limiti definisce il piano? | Modifiche previste, execution report, log e memory | Gate 5 |
 | 5-7. Build, comandi, review | Build e operazioni richieste provano la modifica? | Evidenza di build, comandi e review | Gate 8 |
 | 8-11. Test opzionali | L'utente ha autorizzato i test descritti nel piano? | Richiesta esplicita, test e risultato | Gate 12 |

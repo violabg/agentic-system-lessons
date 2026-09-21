@@ -1,15 +1,20 @@
-# Slide per le cinque lezioni
+# Slide del corso
 
-[Corso](../README.md)
+[Corso](../README.md) · [Principi](../principles.md)
 
-Ogni file contiene una sequenza di sette schermate Markdown separate da `---`, non un file PowerPoint. Una schermata presenta una sola idea o domanda. Gli esempi completi si aprono durante l’attività, senza proiettare tutta la scheda.
+I deck principali sostengono la spiegazione dei principi. Il caso fittizio compare solo dove rende visibile una decisione. Ogni riferimento canonical citato ha un link; i contratti completi restano nella biblioteca.
 
-1. [Perché un sistema agentico](lesson-01-introduzione.md)
-2. [Autorità e conoscenza](lesson-02-autorita-e-conoscenza.md)
-3. [Gate e decisioni durevoli](lesson-03-gate-e-artifact.md)
-4. [Validazione come evidenza](lesson-04-validazione.md)
-5. [Composizione e manutenzione](lesson-05-composizione-e-ciclo-di-vita.md)
+1. [Orientarsi nel sistema](lesson-01-introduzione.md)
+2. [Dalla richiesta al piano](lesson-02-richiesta-e-planner.md)
+3. [Conoscenza selettiva](lesson-03-conoscenza.md)
+4. [Gate, piano e handoff](lesson-04-gate-e-handoff.md)
+5. [Implementazione e prove](lesson-05-implementazione-e-prove.md)
+6. [Migliorare il proprio sistema](lesson-06-migliorare-il-sistema.md)
 
-[Materiali del caso](../workshop-exercise.md) · [Letture facoltative dopo la lezione](../reference/README.md)
+## Approfondimenti
 
-Le mappe complete e i contratti non fanno parte della sequenza da proiettare.
+- [Riferimento rapido: tutti gli agent e le skill](reference-roster.md)
+- [Flusso Planner → Implementor e tutti i gate](reference-flow.md)
+- [Mappe dettagliate dei ruoli e delle skill](../role-maps/README.md)
+
+Questi file sono sorgenti Markdown per slide, non presentazioni PowerPoint. Le mappe sono riferimenti apribili durante una domanda specifica.

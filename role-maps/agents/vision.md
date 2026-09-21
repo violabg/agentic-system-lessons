@@ -10,16 +10,16 @@
 
 **Consegna:** un artifact di sessione SlimUI, oppure un file `.slimui` quando la persistenza di sessione non e disponibile.
 
-## Flusso, Gate E Artifact
+## Flusso, Controlli E Artifact
 
 ```mermaid
 flowchart TD
     Input[Input: session id e una immagine<br/>path, URL o base64] --> G0{Precondizione<br/>input completo e unico?}
     G0 -->|no| Stop[Output: impossibile procedere]
     G0 -->|si| Inspect[Ispeziona tutto cio che e visibile]
-    Inspect --> Map[Artifact interno: elementi, gerarchia,<br/>coordinate e proprieta visive]
+    Inspect --> Map[Mappa nel contesto: elementi, gerarchia,<br/>coordinate e proprieta visive]
     Map --> Encode[Codifica SlimUI valido<br/>una riga per elemento]
-    Encode --> G1{Gate output<br/>Nessuna spiegazione o dettaglio omesso?}
+    Encode --> G1{Controllo output<br/>Nessuna spiegazione o dettaglio omesso?}
     G1 -->|no| Inspect
     G1 -->|si| Persist{Session artifact<br/>disponibile?}
     Persist -->|si| SessionArtifact[Artifact: <image>.slimui<br/>nella sessione]
@@ -34,8 +34,8 @@ flowchart TD
 | --- | --- | --- | --- |
 | Input | Esistono sessione e una sola immagine valida? | Input accettato o stop | Ispezione |
 | Ispezione | Quali elementi sono effettivamente visibili? | Mappa completa di gerarchia e proprieta | Codifica |
-| Codifica | Lo SlimUI conserva posizione, dimensioni e proprieta non predefinite? | Specifica SlimUI | Gate output |
-| Gate output | L'artifact e completo e senza prosa aggiuntiva? | SlimUI valido | Persistenza |
+| Codifica | Lo SlimUI conserva posizione, dimensioni e proprieta non predefinite? | Specifica SlimUI | Controllo output |
+| Controllo output | L'artifact e completo e senza prosa aggiuntiva? | SlimUI valido | Persistenza |
 | Persistenza | Esiste la persistenza di sessione? | Artifact di sessione o file `.slimui` | Ruolo consumatore |
 
 **Da ricordare:** il passaggio cruciale non e una descrizione estetica; e una codifica completa. Una parte visibile assente dallo SlimUI non puo essere ricostruita dal ruolo successivo.
