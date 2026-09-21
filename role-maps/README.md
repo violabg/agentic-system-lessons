@@ -1,5 +1,7 @@
 # Mappe Visuali Dei Ruoli
 
+> Approfondimento facoltativo: [biblioteca](../reference/README.md). I contratti di questa implementazione non sono prerequisiti del corso.
+
 [Torna alla lettura principale](../README.md) · [Slide](../slides/README.md) · [Principi](../principles.md)
 
 Mappe didattiche di mandato, confine e handoff. Non prescrivono ruoli, nomi o tool per un repository target.
@@ -46,4 +48,4 @@ La tabella sotto ogni diagramma spiega quattro domande: quale decisione protegge
 | Implementare dai requisiti senza documento di piano | [Direct Implementor](agents/direct-implementor.md) | Requisiti, regole e decisioni di design validate nei gate. |
 | Produrre prove di integrazione | [Integration Tester](agents/integration-tester.md) | Intake e piano di test propri del ruolo; nessun handoff automatico che salti i suoi gate. |
 
-La scelta dipende da autorità e output richiesti, non soltanto dalla dimensione del task. Direct Implementor è disponibile nel catalogo dei template; la sua presenza non significa che ogni installazione lo generi o che sostituisca il Core System.
+La scelta dipende da autorità e output richiesti, non soltanto dalla dimensione del task. Questi percorsi descrivono la reference implementation; non prescrivono il numero di ruoli del repository target.

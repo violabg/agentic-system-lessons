@@ -1,5 +1,7 @@
 # Principi di Sviluppo Agentico
 
+> Approfondimento facoltativo: [biblioteca](reference/README.md). I contratti di questa implementazione non sono prerequisiti del corso.
+
 [Torna alla lettura principale](README.md) · [Mappa del sistema](system-map.md)
 
 Questa lettura insegna i controlli che rendono affidabile un sistema agentico in un repository. Il sistema canonical è evidenza di questi controlli, non un modello di directory o di file da copiare.

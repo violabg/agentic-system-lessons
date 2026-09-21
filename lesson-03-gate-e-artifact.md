@@ -1,33 +1,31 @@
-# Lezione 3: Gate, Controllo Umano E Artifact
+# Lezione 3: Gate e decisioni durevoli
 
-[Torna al corso](README.md) · [Lezione 2](lesson-02-autorita-e-conoscenza.md) · [Principi](principles.md)
+[Corso](README.md) · [Slide da usare in aula](slides/lesson-03-gate-e-artifact.md)
 
-## Obiettivo
+**Domanda:** Quando fermarsi e che cosa deve restare dopo la chat?
 
-Rendere controllabili le transizioni rischiose e conservare le decisioni necessarie per riprendere il lavoro fuori dalla chat.
+**Obiettivo:** Riconoscere una decisione bloccante e conservarne il contesto.
 
-## Failure Mode
+## Idea da ricordare
 
-Una modifica parte prima che scope, rischio, approvazione o definizione di pronto siano verificabili. In seguito nessuno sa quali fonti siano state usate, chi abbia approvato, cosa sia ancora aperto o quale handoff sia stato completato.
+Un “va bene” senza contesto non permette a un collega di riprendere il lavoro.
 
-## Controlli
+## Il caso
 
-Un **gate** e' un checkpoint che blocca una transizione finche' non sono soddisfatte condizioni osservabili. Un gate utile risponde a tre domande: cosa blocca il passaggio, quale evidenza lo sblocca e chi ha l'autorita' di accettarla? Non ogni passaggio richiede approvazione umana, ma i gate prescritti da un contratto esistente restano obbligatori e ordinati.
+Le richieste si chiudono anche automaticamente. La richiesta iniziale non dice se in quel caso serva una motivazione: scegliere da soli cambierebbe il requisito.
 
-Un **artifact** e' un record durevole di requisiti, fonti, decisioni, approvazioni, rischi, stato, validazioni o handoff. Deve avere un proprietario e una ragione per esistere. La chat puo' contenere una decisione, ma l'artifact ne conserva il contesto e rende possibile l'ispezione successiva.
+## Il controllo
 
-Il piano non e' l'unico artifact possibile. Un percorso diretto puo' conservare requisiti, risposte, regole e report nei propri gate. Il controllo richiesto dipende dal workflow, non dal nome del file.
+Un gate blocca una transizione finché le condizioni sono soddisfatte. Può richiedere una prova automatica o una decisione umana. Un artifact conserva decisione, fonte, responsabile e stato. Nei workflow esistenti restano validi tutti i gate prescritti e il loro ordine.
 
-## Evidenza Nel Sistema
+## Attività e risultato
 
-Le [planning-session instructions](system/canonical/instructions/planning-sessions.instructions.md) mostrano come rendere riprendibile un lavoro. La [mappa del percorso](system-map.md) collega gate, artifact e handoff. Il [confronto dei percorsi](role-maps/README.md) mostra che senza piano intermedio non scompare l'obbligo di conservare evidenza.
+Apri soltanto la [tappa 3 del caso condiviso](workshop-exercise.md#tappa-3). Usa C1 per formulare la domanda bloccante. Dopo la risposta C2, scrivi un record che un altro gruppo possa usare senza chiederti spiegazioni.
 
-## Esercizio
+**Da consegnare:** Un record breve di decisione e handoff, con una condizione di blocco.
 
-Trasforma un'approvazione verbale del [caso condiviso](workshop-exercise.md) in un record: richiesta, decisione, fonte, responsabile, gate superato, stato, prova richiesta e rischio residuo. Aggiungi una condizione che dovrebbe bloccare l'handoff.
+**Domanda finale:** Il destinatario può distinguere una decisione approvata da una verifica ancora da eseguire?
 
-## Domanda Di Trasferimento
+## Dopo la lezione, facoltativo
 
-Quale record permetterebbe a una persona nuova di capire perche' una modifica e' stata approvata e cosa resta da verificare? Chi possiede quel record?
-
-[Prossima: validazione](lesson-04-validazione.md)
+[Approfondimento](principles.md) · [Riferimenti e contratti](reference/README.md). Non è necessaria la lettura prima della prossima lezione.

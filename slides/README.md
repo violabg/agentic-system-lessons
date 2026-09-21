@@ -1,12 +1,15 @@
-# Slide Del Corso
+# Slide per le cinque lezioni
 
-[Torna alla lettura principale](../README.md) · [Mappe dei ruoli](../role-maps/README.md)
+[Corso](../README.md)
 
-Ogni file è una slide autosufficiente: problema, controllo, evidenza, esercizio e decisione. Le sei slide supportano cinque lezioni: alcune lezioni usano due principi collegati.
+Ogni file contiene una sequenza di sette schermate Markdown separate da `---`, non un file PowerPoint. Una schermata presenta una sola idea o domanda. Gli esempi completi si aprono durante l’attività, senza proiettare tutta la scheda.
 
-1. Lezione 2: [Ruoli e autorità](01-ruoli-e-autorita.md) e [conoscenza](02-conoscenza.md)
-2. Lezione 3: [Gate](03-gate.md) e [artifact](04-artifact.md)
-3. Lezione 4: [Validazione](05-validazione.md)
-4. Lezione 5: [Composizione](06-composizione.md)
+1. [Perché un sistema agentico](lesson-01-introduzione.md)
+2. [Autorità e conoscenza](lesson-02-autorita-e-conoscenza.md)
+3. [Gate e decisioni durevoli](lesson-03-gate-e-artifact.md)
+4. [Validazione come evidenza](lesson-04-validazione.md)
+5. [Composizione e manutenzione](lesson-05-composizione-e-ciclo-di-vita.md)
 
-Le slide 1, 3, 4 e 5 includono il percorso Direct Implementor. Usare il [caso condiviso](../workshop-exercise.md) e il [confronto dei ruoli](../role-maps/README.md) per il debrief.
+[Materiali del caso](../workshop-exercise.md) · [Letture facoltative dopo la lezione](../reference/README.md)
+
+Le mappe complete e i contratti non fanno parte della sequenza da proiettare.

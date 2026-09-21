@@ -1,37 +1,31 @@
-# Lezione 5: Composizione, Ownership E Ciclo Di Vita
+# Lezione 5: Composizione e manutenzione
 
-[Torna al corso](README.md) · [Lezione 4](lesson-04-validazione.md) · [Principi](principles.md)
+[Corso](README.md) · [Slide da usare in aula](slides/lesson-05-composizione-e-ciclo-di-vita.md)
 
-## Obiettivo
+**Domanda:** Dove correggere il sistema perché il prossimo task migliori?
 
-Decidere dove vive una regola, come le superfici collaborano senza duplicarla e come il sistema migliora dopo un errore osservato.
+**Obiettivo:** Proporre una modifica minima alla fonte proprietaria e verificarne l’utilità.
 
-## Failure Mode
+## Idea da ricordare
 
-La stessa regola viene copiata nelle istruzioni root, negli agent, nelle skill e nella documentazione. Una correzione aggiorna solo una copia; nel frattempo il sistema produce comportamenti diversi e nessuno sa quale versione possieda davvero la regola.
+Correggere una copia non corregge tutte le altre.
 
-## Controlli
+## Il caso
 
-La **composizione** assegna ogni responsabilita' alla superficie che la possiede. Le istruzioni root instradano le regole sempre attive; gli agent definiscono ruoli e autorita'; le skill organizzano workflow ripetibili; la knowledge documenta fatti o indica fonti selettive. Le altre superfici devono collegare o applicare la regola, non riscriverla senza ownership.
+Un secondo task riutilizza una nota vecchia: “basta il controllo nel browser”. Aggiungere la regola in ogni prompt crea altre copie da mantenere.
 
-Il **ciclo di vita** parte da un failure mode osservato: identificare se manca conoscenza, autorita' o verifica; modificare la superficie proprietaria; provare il caso reale; conservare il risultato e il rischio residuo; mantenere, correggere o rimuovere la modifica. Ogni cambiamento deve rendere chiaro quale output derivato o controllo deve essere riallineato.
+## Il controllo
 
-La struttura canonical e' una reference implementation di questa separazione, non una directory obbligatoria per il tuo repository.
+La conoscenza documenta fatti e fonti; il ruolo delimita autorità; una skill organizza una procedura ripetibile; le istruzioni instradano e dichiarano regole trasversali. Ogni regola ha un proprietario. Dopo un errore: individua la causa, correggi la fonte, riprova e mantieni o rivedi il controllo in base all’esito.
 
-## Evidenza Nel Sistema
+## Attività e risultato
 
-La [mappa del sistema](system-map.md) mostra router, ruoli, knowledge, gate, artifact e validazione. Il [vocabolario canonical](system/canonical/CONTEXT.md) stabilisce i confini dei termini. Le [istruzioni AGENTS](system/canonical/instructions/AGENTS.md) mostrano una superficie di instradamento; le [planning-session instructions](system/canonical/instructions/planning-sessions.instructions.md) mostrano una superficie di workflow.
+Apri soltanto la [tappa 5 del caso condiviso](workshop-exercise.md#tappa-5). Confronta E1–E3 e scegli una correzione motivata. Poi applica lo stesso ragionamento a un errore del tuo repository.
 
-## Esercizio
+**Da consegnare:** Una proposta di miglioramento con proprietario, verifica e criterio per mantenerla o rivederla.
 
-Classifica nel [caso condiviso](workshop-exercise.md) una nuova regola di dominio, un limite di autorita' e una verifica. Per ciascuna indica la superficie proprietaria, quale file o workflow deve solo instradare e quale prova segnalerebbe drift.
+**Domanda finale:** Quale risultato del prossimo task mostrerebbe che la tua correzione non basta?
 
-## Domanda Di Trasferimento
+## Dopo la lezione, facoltativo
 
-Qual e' la modifica minima che il tuo repository dovrebbe provare dopo il prossimo errore osservato? Quale risultato ti farebbe mantenerla, rivederla o rimuoverla?
-
-## Chiusura
-
-Il corso torna alla domanda iniziale: **chi puo' decidere, su quale evidenza, con quale verifica?** Adattare il controllo al rischio reale del repository, non copiare il numero di ruoli o di documenti del sistema canonical.
-
-[Torna alla lezione introduttiva](lesson-01-introduzione.md) · [Torna al corso](README.md)
+[Approfondimento](system-map.md) · [Riferimenti e contratti](reference/README.md). Non è necessaria la lettura prima della prossima lezione.

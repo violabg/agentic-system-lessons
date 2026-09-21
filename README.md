@@ -1,58 +1,36 @@
 # Corso: Sistemi Agentici Enterprise
 
-Questo è il documento di lettura principale del corso.
+**Cinque lezioni di 45 minuti per sviluppatori che hanno già usato un coding agent.** Basta conoscere il significato di agent, skill e istruzioni; non serve conoscere il sistema canonical o installarlo.
 
-**Inizia da [Perché un sistema agentico](introduction.md) e dalla [Lezione 1](lesson-01-introduzione.md):** il problema da risolvere, cosa imparare, limiti e trasferimento nel proprio progetto. Questa cartella è la fonte per preparare le lezioni, non un sistema da installare integralmente.
+Il corso insegna a riconoscere un risultato non verificato, scegliere fonti e confini, conservare decisioni e migliorare il workflow del proprio repository. Non promette modelli deterministici.
 
-Questo corso insegna a sviluppatori esperti come riconoscere, usare e adattare i principi di un sistema agentico enterprise. Agent, skill e custom instructions sono esempi dei contratti che compongono il sistema.
+La domanda guida è: **chi può decidere, su quale evidenza, con quale verifica?**
 
-Il corso è principle-first. Il sistema canonical è una reference implementation, non una forma da copiare. Un repository dimostrativo può essere mostrato per pochi minuti come prova concreta di un principio, ma non è il centro della lezione.
+## Percorso essenziale
 
-## Idea Da Portare Al Team
+In aula usa le slide e apri solo la tappa corrente del caso. Le pagine di lezione sono brevi letture di accompagnamento.
 
-Per ogni modifica devono essere ricostruibili tre risposte: **chi può decidere, su quale evidenza, con quale verifica**. I sei principi sviluppano queste tre domande. Un piano è uno degli artifact possibili; il controllo non scompare quando il percorso non lo prevede.
-
-Usare l'[esercizio trasversale](workshop-exercise.md) per collegare le lezioni allo stesso caso. Il [confronto dei percorsi](role-maps/README.md) distingue Planner → Implementor da Direct Implementor.
-
-## Risultati Attesi
-
-Al termine, ogni partecipante sa:
-
-- spiegare perché un sistema agentico enterprise è un sistema operativo locale al repository, non una raccolta di prompt;
-- individuare controlli mancanti in un workflow non affidabile;
-- distinguere la variabilità del modello dalla verificabilità del lavoro, senza promettere determinismo;
-- distinguere ruoli, conoscenza, gate, artifact, validazione e ownership;
-- valutare se una personalizzazione preserva il principio che la giustifica;
-- trasferire i principi a un repository target senza copiare meccanicamente una struttura;
-- affinare conoscenza, regole e verifiche a partire dagli errori osservati nel lavoro quotidiano.
-
-## Percorso
-
-| Lezione | Principio | Decisione che gli studenti imparano a prendere |
+| Lezione | Domanda | Risultato concreto |
 | --- | --- | --- |
-| 1 | Introduzione: il problema e le sei leve | Quali controlli rendono il vibe coding osservabile e trasferibile? |
-| 2 | Autorità delimitata e conoscenza selettiva | Chi può decidere e quali fonti governano questo task? |
-| 3 | Gate, controllo umano e artifact durevoli | Quale evidenza consente il passaggio e quale record deve sopravvivere? |
-| 4 | Validazione come evidenza | Quale prova può smentire il risultato e quale rischio resta aperto? |
-| 5 | Composizione, ownership e ciclo di vita | Dove vive la regola e come si corregge il drift? |
+| [1. Perché un sistema agentico](lesson-01-introduzione.md) | Perché una modifica plausibile può essere sbagliata? | Un errore spiegato in tre righe, con il controllo che avrebbe aiutato a rilevarlo. |
+| [2. Autorità e conoscenza](lesson-02-autorita-e-conoscenza.md) | Che cosa può decidere l’agente e che cosa deve sapere? | Un breve mandato con output, limite di autorità e fonti motivate. |
+| [3. Gate e decisioni durevoli](lesson-03-gate-e-artifact.md) | Quando fermarsi e che cosa deve restare dopo la chat? | Un record breve di decisione e handoff, con una condizione di blocco. |
+| [4. Validazione come evidenza](lesson-04-validazione.md) | Quale prova rivelerebbe che la modifica è sbagliata? | Una verifica con prerequisiti, risultato atteso, risultato osservato e limite. |
+| [5. Composizione e manutenzione](lesson-05-composizione-e-ciclo-di-vita.md) | Dove correggere il sistema perché il prossimo task migliori? | Una proposta di miglioramento con proprietario, verifica e criterio per mantenerla o rivederla. |
 
-Ogni lezione dura 45 minuti e termina con un esercizio breve. Le lezioni sono ordinate per costruire il modello, ma ogni principio resta trasferibile a un repository diverso.
+[Slide delle cinque lezioni](slides/README.md) · [Scheda dello studente](workshop-exercise.md)
 
-## Materiali
+Le cinque lezioni sviluppano sei principi: autorità, conoscenza, gate, artifact, validazione e composizione. Non serve memorizzare nomi di agent o numeri di gate.
 
-- [introduction.md](introduction.md): motivazione, obiettivi, limiti e primo trasferimento al proprio progetto.
-- [lesson-01-introduzione.md](lesson-01-introduzione.md): quadro introduttivo e modello del corso.
-- [lesson-02-autorita-e-conoscenza.md](lesson-02-autorita-e-conoscenza.md): ruoli e conoscenza selettiva.
-- [lesson-03-gate-e-artifact.md](lesson-03-gate-e-artifact.md): gate, controllo umano e artifact.
-- [lesson-04-validazione.md](lesson-04-validazione.md): prove, limiti e rischio residuo.
-- [lesson-05-composizione-e-ciclo-di-vita.md](lesson-05-composizione-e-ciclo-di-vita.md): ownership e manutenzione.
-- [principles.md](principles.md): riferimento sintetico per i sei principi.
-- [slides/README.md](slides/README.md): materiali visuali di supporto alle cinque lezioni.
-- [role-maps/README.md](role-maps/README.md): mappe visuali di agent e skill canonical.
-- [system-map.md](system-map.md): mappe Mermaid del modello e delle sue superfici.
+## Letture facoltative
 
-## Confini
+- [Perché un sistema agentico](introduction.md): motivazione iniziale.
+- [Biblioteca di approfondimento](reference/README.md): principi, mappe e contratti della reference implementation.
 
-Il corso non modifica codice applicativo e non insegna workflow privati come verita' universali. Per contenuti nuovi o modificati, usare i riferimenti canonical pubblicati accanto a questo corso come evidenza. Il sistema del repository target resta soggetto a lettura, verifica e manutenzione del team.
+Questi riferimenti servono dopo la spiegazione o per una domanda specifica. Non sono prerequisiti né una lista di file da copiare nel proprio progetto.
 
-_Navigazione: sei nella lettura principale._
+## Come lavoriamo
+
+Il caso è fittizio e non richiede un repository eseguibile. Le tracce sono materiale didattico dichiarato, non risultati prodotti durante il corso. Prima si decide, poi si confronta la decisione con nuove evidenze. Alla fine si propone un piccolo esperimento nel proprio repository.
+
+Il corso non modifica codice applicativo e non insegna generazione o installazione del sistema.

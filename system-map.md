@@ -1,5 +1,7 @@
 # Mappa del Sistema Agentico Enterprise
 
+> Approfondimento facoltativo: [biblioteca](reference/README.md). I contratti di questa implementazione non sono prerequisiti del corso.
+
 [Torna alla lettura principale](README.md) · [Principi](principles.md)
 
 Questa mappa mostra relazioni didattiche. Non prescrive nomi di file, agent o directory per il repository target.
