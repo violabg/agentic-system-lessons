@@ -16,7 +16,6 @@ Un Agentic System è un insieme locale al repository di istruzioni, agent, skill
 | Ask | Rispondere a domande tecniche usando knowledge e riscontro mirato | [Contratto Ask](system/canonical/agents/ask.agent.md) |
 | Integration Tester | Pianificare e realizzare prove di integrazione nel proprio mandato | [Contratto Integration Tester](system/canonical/agents/integration-tester.agent.md) |
 | Knowledge Builder | Ricavare e salvare knowledge supportata da evidenza del repository | [Contratto Knowledge Builder](system/canonical/agents/knowledge-builder.agent.md) |
-| Vision | Convertire un'immagine in un artifact leggibile dai ruoli successivi | [Contratto Vision](system/canonical/agents/vision.agent.md) |
 
 ## Skill disponibili
 

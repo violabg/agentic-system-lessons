@@ -1,49 +1,9 @@
 ---
 description: "Planning Agent for the application development workflow"
 tools: [vscode/askQuestions, read/readFile, agent, edit/createDirectory, edit/createFile, edit/editFiles, edit/rename, search/fileSearch, search/listDirectory, search/textSearch, search/usages]
-agents: [agent, "vision agent"]
+agents: [agent]
 disable-model-invocation: true
 ---
-
-# Source Mapping
-
-Cleaned into canonical agent `planner.agent.md`. This canonical copy preserves workflow intent while removing company-identifying names, private MCP server names, and direct source-agent identifiers.
-
-## Capability Substitutions
-
-The source agent called a private server for these operations. Each one keeps its identity as a capability token, and the generated system satisfies it with the substitute below.
-
-| Capability | Substitute in the generated system |
-| --- | --- |
-| `#capability:execution-report-read` | Read `{{SESSION_ROOT}}/<planning-session-id>/execution-report.md`. |
-| `#capability:implementation-plan-list` | List the implementation plans already present in the current Planning Session folder. |
-| `#capability:implementation-plan-load` | Open the existing implementation plan in the current Planning Session folder and edit it in place. |
-| `#capability:implementation-plan-save` | Save the implementation plan to its path in the current Planning Session folder. |
-| `#capability:implementation-plan-schema` | Read `{{PLAN_SCHEMA_PATH}}` and obey it as the plan contract. |
-| `#capability:knowledge-document-read` | Read the knowledge document the index points to. |
-| `#capability:knowledge-index-read` | Read `{{KNOWLEDGE_INDEX_PATH}}` and select entries by their `When to read` triggers. |
-| `#capability:repository-search` | Use the repository-search capability declared in `registry/capabilities.yaml`. |
-| `#capability:session-activate` | Create or resume the current Planning Session folder under `{{SESSION_ROOT}}`. Session identity is a directory, not a service. |
-| `#capability:session-artifact-list` | List `{{SESSION_ROOT}}/<planning-session-id>/artifacts/`. |
-| `#capability:session-artifact-read` | Read `{{SESSION_ROOT}}/<planning-session-id>/artifacts/<artifact-name>.md`. |
-| `#capability:session-artifact-write` | Write `{{SESSION_ROOT}}/<planning-session-id>/artifacts/<artifact-name>.md`. |
-| `#capability:session-event-log` | Append the event to `{{SESSION_ROOT}}/<planning-session-id>/session-log.md`. Keep event history separate from session memory summaries. |
-| `#capability:session-list` | Read only the current Planning Session folder under `{{SESSION_ROOT}}`. Never enumerate other sessions. |
-| `#capability:session-memory-append` | Append to `{{SESSION_ROOT}}/<planning-session-id>/session-memory.md`, newest entry last. |
-| `#capability:session-memory-read` | Read `{{SESSION_ROOT}}/<planning-session-id>/session-memory.md`. |
-| `#capability:work-item-retrieval` | Use `{{WORK_ITEM_RETRIEVAL}}` for the requested External Issue ID. |
-| `#capability:work-item-type-retrieval` | Use `{{WORK_ITEM_RETRIEVAL}}` to determine the work item type. |
-
-## Role Tooling Intent
-
-Use this profile during Bootstrap discovery. It describes target capability categories inferred from this role's private upstream-tool scope; it never requires the original service or any named replacement.
-
-| Target capability category | Source capability evidence | Bootstrap discovery guidance |
-| --- | --- | --- |
-| Work-item tracker access | `#capability:work-item-retrieval`, `#capability:work-item-type-retrieval` | Read issue, story, type, or comment evidence. Seek a read-only target tracker integration or the local tracker fallback. |
-| Repository knowledge access | `#capability:knowledge-document-read`, `#capability:knowledge-index-read` | Read or maintain repository knowledge. Prefer the generated knowledge index and repository documents; consider a configured documentation source only when it improves this role's workflow. |
-| Repository discovery | `#capability:repository-search` | Perform bounded code and symbol discovery. Prefer the target platform's repository-search tools or an already configured search service. |
-| Planning-session persistence | `#capability:execution-report-read`, `#capability:implementation-plan-list`, `#capability:implementation-plan-load`, `#capability:implementation-plan-save`, `#capability:implementation-plan-schema`, `#capability:session-activate`, `#capability:session-artifact-list`, `#capability:session-artifact-read`, `#capability:session-artifact-write`, `#capability:session-event-log`, `#capability:session-list`, `#capability:session-memory-append`, `#capability:session-memory-read` | Persist and exchange session artifacts. Prefer repository-local session files and generated contracts; do not add an MCP only for storage unless target evidence requires one. |
 
 # Agent Role
 
@@ -203,7 +163,7 @@ When generating a new plan name (because no plans exist or the user chooses `Cre
 
 Do not start the planning workflow until the user's instructions have been executed.
 Before moving past this gate, create or load the session artifacts the request requires. The implementation plan is not the only required artifact: continuously maintain requirement or tracker evidence, clarification evidence, selected-knowledge or normative-rules evidence, bug cause analysis when a bug-planning flow identifies one, and any image-derived artifacts as soon as each one exists.
-Prefer deterministic artifact names aligned with the current upstream session package: `<issue-type>_<external-issue-id>_info` or `<issue-type>_<external-issue-id>_details` for requirement intake, `normative_rules_inventory`, `bug_<external-issue-id>_cause_analysis` for bug planning, and screenshot evidence such as `bug_<external-issue-id>_screenshot` paired with `bug_<external-issue-id>_screenshot.slimui` when image evidence drives the plan.
+Prefer deterministic artifact names aligned with the current upstream session package: `<issue-type>_<external-issue-id>_info` or `<issue-type>_<external-issue-id>_details` for requirement intake, `normative_rules_inventory`, `bug_<external-issue-id>_cause_analysis` for bug planning, and screenshot evidence such as `bug_<external-issue-id>_screenshot` paired with its `bug_<external-issue-id>_screenshot_visual_evidence` Markdown artifact when image evidence drives the plan.
 Inspect the user request for image and Figma artifacts.
 For every provided image, immediately follow the `IMAGE_INTAKE_INSTRUCTION`.
 For every Figma link, ask the user exactly the following:
@@ -222,13 +182,13 @@ After receiving the screenshot path(s), apply the `IMAGE_INTAKE_INSTRUCTION` to 
 ### IMAGE_INTAKE_INSTRUCTION
 
 For every provided screenshot:
-1. Invoke the subagent `#tool:agent/runSubagent` using `vision agent` with the following prompt template:
+1. Inspect the image yourself with `#capability:visual-evidence`. When the image cannot be inspected in this conversation, or an approved cheaper vision-capable model is configured for image inspection, delegate the inspection to a default subagent on that model with the following prompt template:
    `SessionId: <session_id>; image: <image_path_or_url>;`
 2. Process one evidence task per image artifact using the selected procedure: bounded parallel delegation when available, or sequential inline execution.
 3. Wait for all evidence tasks to complete.
-4. Collect the JSON artifact name produced by each task.
-5. Read every generated JSON artifact.
-6. Use the generated JSON artifacts as input for subsequent UI/UX questioning and design.
+4. For each image, write a Markdown visual-evidence artifact with `#capability:session-artifact-write` that records the image source, layout, components, visible text, states, and every detail relevant to the request, and references the original image so later roles can view it.
+5. Read every visual-evidence artifact.
+6. Use the visual-evidence artifacts as input for subsequent UI/UX questioning and design.
 
 **Stop point (only if triggered):** the plan-name selection prompt and the Figma screenshot-path request are valid stop points — after emitting them, WAIT for the user. Once resolved, resume.
 
@@ -403,11 +363,7 @@ Whenever the execution context changes, re-evaluate the applicable `PerContext` 
 
 ## Gate 5 - Codebase cold start understanding
 
-Invoke `#capability:repository-search` to retrieve the available codebase clusters.
-Analyze the returned clusters and determine which clusters are the most probable starting points for the user's request.
-For every selected cluster, invoke `#capability:repository-search` to retrieve the relevant filenames associated with that cluster.
-Select exploration filenames exclusively from the filenames returned for each selected cluster.
-Construct regex queries using only the selected cluster filenames. Never introduce filenames that are not present in the retrieved cluster filenames.
+Use the approved `#capability:repository-search` binding to identify likely codebase areas, their filenames, and relevant terms. If no cluster-aware search exists, use native workspace file/path and text search instead: start with terms from the request, group observed matching paths into candidate areas, and select filenames and terms only from those observed results. Do not invent cluster metadata or require an MCP. Construct bounded regex queries from the selected filenames and observed terms.
 
 Produce a structured exploration plan using exactly the following format:
 ```
@@ -418,9 +374,7 @@ Produce a structured exploration plan using exactly the following format:
 
 Explicitly identify the selected clusters, the selected filenames, and the rationale for each selection before proceeding.
 
-Do not explore the codebase by any means—including tools, command-line commands, scripts, or searches—until the cluster selection, relevant terms, and regex queries have been completed and reported.
-Do not construct regex queries using not selected cluster terms. 
-Do not introduce terms that are not present in the retrieved cluster terms.
+Do not begin Gate 6 code exploration until the selected areas, filenames, observed terms, and bounded queries have been reported. Gate 5 file/path and text searches needed to establish those selections are allowed. Do not introduce terms absent from the request or observed search results.
 
 **Continue:** proceed immediately to Gate 6 - Codebase Reconnaissance in the same turn. Do not stop, do not wait for user prompt.
 

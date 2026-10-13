@@ -5,45 +5,6 @@ agents: [agent]
 disable-model-invocation: true
 ---
 
-# Source Mapping
-
-Cleaned into canonical agent `integration-tester.agent.md`. This canonical copy preserves workflow intent while removing company-identifying names, private MCP server names, and direct source-agent identifiers.
-
-## Capability Substitutions
-
-The source agent called a private server for these operations. Each one keeps its identity as a capability token, and the generated system satisfies it with the substitute below.
-
-| Capability | Substitute in the generated system |
-| --- | --- |
-| `#capability:execution-report-read` | Read `{{SESSION_ROOT}}/<planning-session-id>/execution-report.md`. |
-| `#capability:execution-report-write` | Write `{{SESSION_ROOT}}/<planning-session-id>/execution-report.md`. |
-| `#capability:implementation-plan-list` | List the implementation plans already present in the current Planning Session folder. |
-| `#capability:implementation-plan-load` | Open the existing implementation plan in the current Planning Session folder and edit it in place. |
-| `#capability:knowledge-document-read` | Read the knowledge document the index points to. |
-| `#capability:knowledge-index-read` | Read `{{KNOWLEDGE_INDEX_PATH}}` and select entries by their `When to read` triggers. |
-| `#capability:repository-search` | Use the repository-search capability declared in `registry/capabilities.yaml`. |
-| `#capability:session-activate` | Create or resume the current Planning Session folder under `{{SESSION_ROOT}}`. Session identity is a directory, not a service. |
-| `#capability:session-artifact-list` | List `{{SESSION_ROOT}}/<planning-session-id>/artifacts/`. |
-| `#capability:session-artifact-read` | Read `{{SESSION_ROOT}}/<planning-session-id>/artifacts/<artifact-name>.md`. |
-| `#capability:session-event-log` | Append the event to `{{SESSION_ROOT}}/<planning-session-id>/session-log.md`. Keep event history separate from session memory summaries. |
-| `#capability:session-list` | Read only the current Planning Session folder under `{{SESSION_ROOT}}`. Never enumerate other sessions. |
-| `#capability:session-memory-append` | Append to `{{SESSION_ROOT}}/<planning-session-id>/session-memory.md`, newest entry last. |
-| `#capability:session-memory-read` | Read `{{SESSION_ROOT}}/<planning-session-id>/session-memory.md`. |
-| `#capability:test-plan-list` | List the test plans already present in the current Planning Session folder. |
-| `#capability:test-plan-load` | Open the existing test plan in the current Planning Session folder and edit it in place. |
-| `#capability:test-plan-save` | Save the test plan to its path in the current Planning Session folder. |
-| `#capability:test-plan-schema` | Read the approved test-plan schema at `{{TEST_PLAN_SCHEMA_PATH}}` before drafting YAML. |
-
-## Role Tooling Intent
-
-Use this profile during Bootstrap discovery. It describes target capability categories inferred from this role's private upstream-tool scope; it never requires the original service or any named replacement.
-
-| Target capability category | Source capability evidence | Bootstrap discovery guidance |
-| --- | --- | --- |
-| Repository knowledge access | `#capability:knowledge-document-read`, `#capability:knowledge-index-read` | Read or maintain repository knowledge. Prefer the generated knowledge index and repository documents; consider a configured documentation source only when it improves this role's workflow. |
-| Repository discovery | `#capability:repository-search` | Perform bounded code and symbol discovery. Prefer the target platform's repository-search tools or an already configured search service. |
-| Planning-session persistence | `#capability:execution-report-read`, `#capability:execution-report-write`, `#capability:implementation-plan-list`, `#capability:implementation-plan-load`, `#capability:session-activate`, `#capability:session-artifact-list`, `#capability:session-artifact-read`, `#capability:session-event-log`, `#capability:session-list`, `#capability:session-memory-append`, `#capability:session-memory-read`, `#capability:test-plan-list`, `#capability:test-plan-load`, `#capability:test-plan-save`, `#capability:test-plan-schema` | Persist and exchange session artifacts. Prefer repository-local session files and generated contracts; do not add an MCP only for storage unless target evidence requires one. |
-
 # Agent Role
 
 | Focus       | Mandatory Requirement                                                                                            |

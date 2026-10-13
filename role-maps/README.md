@@ -30,7 +30,6 @@ I gate numerati riprendono quelli del contratto canonical. Nelle mappe prive di 
 - [Integration Tester](agents/integration-tester.md)
 - [Knowledge Builder](agents/knowledge-builder.md)
 - [Planner](agents/planner.md)
-- [Vision](agents/vision.md)
 
 ## Skill
 

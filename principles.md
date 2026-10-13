@@ -23,7 +23,7 @@ La domanda per ogni passaggio e': quale evidenza permette al prossimo ruolo o al
 
 **Obiettivo di controllo:** assegnare un ruolo quando cambiano autorita', contesto, strumenti, output o responsabilita' di approvazione. Un ruolo non e' un titolo prestigioso: e' un contratto che limita cosa puo' decidere e cosa deve consegnare.
 
-Nel sistema canonical, i contratti di Planner, Implementor, Direct Implementor, Integration Tester, Knowledge Builder, Ask e Vision dimostrano confini diversi. Il repository target puo' usare altri nomi o un numero minore di ruoli, ma non deve lasciare implicito un cambio di autorita' rischioso.
+Nel sistema canonical, i contratti di Planner, Implementor, Direct Implementor, Integration Tester, Knowledge Builder e Ask dimostrano confini diversi. Il repository target puo' usare altri nomi o un numero minore di ruoli, ma non deve lasciare implicito un cambio di autorita' rischioso.
 
 Il [confronto dei percorsi](role-maps/README.md) rende esplicita una distinzione: Planner → Implementor usa un piano approvato; Direct Implementor valida requisiti e design senza produrre quel piano. Entrambi conservano confini osservabili. Un unico ruolo può analizzare e implementare se il suo contratto lo autorizza; non può attribuirsi autorità di approvazione illimitata.
 

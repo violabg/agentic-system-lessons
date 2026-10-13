@@ -46,7 +46,7 @@ flowchart TD
 
 | Gate | Decisione protetta | Evidenza e destinatario |
 | --- | --- | --- |
-| 0-2 | Il mandato è implementare e la sessione è quella indicata? | Scope, stato e artifact; eventuale evidenza Vision per il ruolo consumatore. Nessuna enumerazione di altre sessioni. |
+| 0-2 | Il mandato è implementare e la sessione è quella indicata? | Scope, stato e artifact; eventuale evidenza visiva per il ruolo consumatore. Nessuna enumerazione di altre sessioni. |
 | 3-6 | Cosa deve funzionare e quali regole governano il design? | Requisiti e criteri in chat, inventario normativo persistito e riferimenti al codice per l'intervista. |
 | 7-9 | Ambiguità e decisioni sono risolte contro evidenza e risposte umane? | Risposte validate e design conforme per l'implementazione. |
 | 10-12 | Modifiche, build e review soddisfano i requisiti? | Report aggiornato con prove effettive o blocchi per l'utente. Una build verde non prova la copertura funzionale. |

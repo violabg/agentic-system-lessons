@@ -14,7 +14,6 @@ Questa è una mappa di scelta, non un elenco di elementi obbligatori per ogni re
 | Ask | Occorre una risposta tecnica senza modifiche | [Mappa](../role-maps/agents/ask.md) · [Contratto](../system/canonical/agents/ask.agent.md) |
 | Integration Tester | Servono prove di integrazione nel suo scope | [Mappa](../role-maps/agents/integration-tester.md) · [Contratto](../system/canonical/agents/integration-tester.agent.md) |
 | Knowledge Builder | Una regola di progetto va ricavata e salvata come knowledge | [Mappa](../role-maps/agents/knowledge-builder.md) · [Contratto](../system/canonical/agents/knowledge-builder.agent.md) |
-| Vision | Una immagine va trasformata in evidenza strutturata | [Mappa](../role-maps/agents/vision.md) · [Contratto](../system/canonical/agents/vision.agent.md) |
 
 ## Skill
 

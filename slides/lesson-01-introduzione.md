@@ -24,7 +24,7 @@ Chi decide? Che cosa legge? Quale prova permette di continuare? Che cosa resta p
 
 [Ask](../system/canonical/agents/ask.agent.md): Q&A tecnico. [Integration Tester](../system/canonical/agents/integration-tester.agent.md): prove di integrazione.
 
-[Knowledge Builder](../system/canonical/agents/knowledge-builder.agent.md): knowledge del repository. [Vision](../system/canonical/agents/vision.agent.md): evidenza visiva strutturata.
+[Knowledge Builder](../system/canonical/agents/knowledge-builder.agent.md): knowledge del repository.
 
 [Elenco completo con quando usarli](reference-roster.md).
 
