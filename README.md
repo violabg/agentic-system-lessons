@@ -1,30 +1,46 @@
-# Corso: capire e migliorare un Agentic System
+# Capire un Agentic System
 
-Questo corso in italiano è per sviluppatori che hanno già usato un coding agent. Presenta il sistema canonical come una soluzione concreta al problema di rendere il lavoro degli agenti **ispezionabile e correggibile**. Gli studenti possono poi usare il bootstrap skill o costruire un sistema proprio; il corso non insegna il funzionamento interno del bootstrap.
+Un corso in italiano per sviluppatori che usano già un coding agent.
 
-La domanda guida è: **chi può decidere, con quale conoscenza, quale prova e quale record per il ruolo successivo?**
+Un agente può scrivere codice plausibile e sbagliato. Il corso spiega i principi che rendono il suo lavoro **verificabile e correggibile**: chi può decidere, con quali informazioni, quale prova serve per andare avanti e quale traccia resta a chi lavora dopo.
 
-## Percorso
+Gli esempi vengono da un sistema di riferimento, il sistema *canonical*. Servono a mostrare i principi in un caso concreto: non devi impararne i file né copiarne la struttura. Puoi applicare gli stessi principi a qualsiasi sistema, anche uno costruito da te.
 
-| Lezione | Domanda centrale | Principio visibile |
-| --- | --- | --- |
-| [1. Orientarsi nel sistema](lesson-01-introduzione.md) | Quali agent e skill abbiamo, quando servono e come scorre il lavoro? | Sistema e flusso Planner → Implementor |
-| [2. Dalla story al piano](lesson-02-richiesta-e-planner.md) | Perché la qualità della richiesta e il mandato del Planner contano? | Autorità delimitata e chiarimento |
-| [3. Conoscenza selettiva](lesson-03-conoscenza.md) | Quale conoscenza leggere, quando e come mantenerla? | MustHave, PerContext, PerComponent |
-| [4. Gate e handoff](lesson-04-gate-e-handoff.md) | Che cosa autorizza il passaggio dal piano all'implementazione? | Gate, artifact, sessione e contesto pulito |
-| [5. Implementazione e prove](lesson-05-implementazione-e-prove.md) | Quali prove sostengono il risultato? | Build, review, unit test e rischio residuo |
-| [6. Migliorare il proprio sistema](lesson-06-migliorare-il-sistema.md) | Come correggere un limite emerso nel lavoro reale? | Composizione, ownership e ciclo di vita |
+## Il percorso
 
-[Slide](slides/README.md) · [Caso guida breve](workshop-exercise.md) · [Principi](principles.md) · [Biblioteca canonical](reference/README.md)
+Leggi le pagine in ordine. Ognuna termina con il link alla successiva.
 
-## Come si usa il materiale
+0. [I sei principi in breve](principi/README.md)
+1. [Autorità delimitata](principi/01-autorita-delimitata.md)
+2. [Gate e controllo umano](principi/02-gate-e-controllo-umano.md)
+3. [Validazione come prova](principi/03-validazione-come-prova.md)
+4. [Artifact durevoli](principi/04-artifact-durevoli.md)
+5. [Conoscenza selettiva](principi/05-conoscenza-selettiva.md)
+6. [Composizione e ciclo di vita](principi/06-composizione-e-ciclo-di-vita.md)
 
-La prima lezione mostra l'intero percorso prima dei dettagli. Le lezioni successive spiegano il failure mode, il principio, la scelta canonical e una domanda di trasferimento. Un unico caso fittizio offre esempi brevi; non è un'esecuzione reale né un esercizio lungo. Le domande in aula richiedono solo interventi brevi.
+## Materiale di supporto
 
-Quando una lezione nomina un contratto canonical, ne offre il link. Le [mappe di agent e skill](role-maps/README.md) restano riferimenti consultabili, con diagrammi e collegamenti alle fonti. La [mappa approfondita del flusso](slides/reference-flow.md) riassume ogni gate del percorso principale; il contratto collegato resta la fonte normativa.
+- [Caso guida](caso-guida.md): un esempio inventato, ripreso in tutte le pagine.
+- [Slide](slides/README.md): un deck breve per ogni principio.
+- [Mappe di agent e skill](role-maps/README.md): per ogni ruolo, un diagramma del flusso e una descrizione breve, con il link al file sorgente.
+- [Approfondimenti](reference/README.md): letture facoltative per chi vuole andare oltre.
 
-Il percorso principale segue Planner → Implementor. [Direct Implementor](role-maps/agents/direct-implementor.md) è un percorso canonical diverso, senza piano intermedio; viene presentato come alternativa di ruolo, senza confonderne i gate con quelli del percorso principale.
+## Parole che useremo
 
-## Risultato atteso
+Alcuni termini restano in inglese perché sono quelli che troverai nei file del sistema.
 
-Lo studente sa spiegare perché il sistema canonical usa ruoli delimitati, conoscenza selettiva, gate, artifact e prove. Davanti a un errore del proprio agente sa individuare il controllo da migliorare, modificarne la superficie proprietaria e verificare se il cambiamento aiuta. La sequenza temporale con cui userà il bootstrap skill resta libera.
+| Termine | Significato |
+| --- | --- |
+| Agent | Un ruolo con un mandato scritto: cosa può fare, cosa non può fare, cosa consegna. |
+| Skill | Una procedura ripetibile che un agente o una persona può richiamare. |
+| Gate | Un punto di controllo: il lavoro non prosegue finché la condizione non è soddisfatta. |
+| Artifact | Un file che conserva decisioni, prove o stato oltre la conversazione. |
+| Handoff | Il passaggio di lavoro da un ruolo al successivo. |
+| Knowledge | Documenti con le regole del progetto, da leggere solo quando servono. |
+| Sessione di pianificazione | La cartella di lavoro che raccoglie gli artifact di un'attività. |
+
+Le definizioni complete sono nel [glossario del sistema canonical](system/canonical/CONTEXT.md).
+
+---
+
+[Inizia: i sei principi in breve →](principi/README.md)

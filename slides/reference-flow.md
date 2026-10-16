@@ -1,8 +1,10 @@
-# Riferimento: Planner → Implementor
+[Corso](../README.md) › [Slide](README.md) › **Flusso Planner → Implementor**
 
-[Indice slide](README.md) · [Mappa Planner](../role-maps/agents/planner.md) · [Mappa Implementor](../role-maps/agents/implementor.md)
+# Flusso Planner → Implementor
 
-Questa pagina serve quando si vuole seguire **ogni gate**. Il [Planner canonical](../system/canonical/agents/planner.agent.md) e l'[Implementor canonical](../system/canonical/agents/implementor.agent.md) restano i contratti normativi. La sequenza seguente riassume il percorso ordinario con piano approvato. I gate numerati non si fondono o saltano durante l'esecuzione.
+Mappe dei ruoli: [Planner](../role-maps/agents/planner.md) · [Implementor](../role-maps/agents/implementor.md)
+
+Questa pagina serve quando vuoi seguire **ogni gate**. Il [contratto del Planner](../system/canonical/agents/planner.agent.md) e il [contratto dell'Implementor](../system/canonical/agents/implementor.agent.md) restano la fonte normativa. La sequenza riassume il percorso ordinario con piano approvato. Durante l'esecuzione i gate numerati non si uniscono e non si saltano.
 
 ```mermaid
 flowchart TD
@@ -10,21 +12,21 @@ flowchart TD
     Intake --> Planner[Planner<br/>sessione e gate 0-10]
     Planner --> Approval{Gate 11-12<br/>Piano approvato?}
     Approval -->|no| Planner
-    Approval -->|si| Record[Planning session<br/>piano, evidenza e approvazione]
+    Approval -->|sì| Record[Sessione di pianificazione<br/>piano, prove e approvazione]
     Record --> Fresh[Nuova conversazione<br/>contesto pulito, stessa sessione]
     Fresh --> Implementor[Implementor<br/>recupera il piano, gate 2-7]
     Implementor --> Tests{Gate 8<br/>Test unitari autorizzati?}
-    Tests -->|si| TestRun[Gate 9-11<br/>knowledge, test e verifica]
+    Tests -->|sì| TestRun[Gate 9-11<br/>knowledge, test e verifica]
     Tests -->|no| Report[Gate 12<br/>report finale]
     TestRun --> Report
     Report --> Handoff[Handoff ispezionabile]
 ```
 
-L'intake della user story può usare [Plan User Story From Id](../system/canonical/skills/plan-user-story-from-id/SKILL.md); quello del bug [Plan Bug From Id](../system/canonical/skills/plan-bug-from-id/SKILL.md). Il [contratto delle planning session](../system/canonical/instructions/planning-sessions.instructions.md) definisce l'evidenza che passa fra conversazioni. Il [Direct Implementor](../system/canonical/agents/direct-implementor.agent.md) è un percorso diverso, senza piano intermedio; vedi la sua [mappa](../role-maps/agents/direct-implementor.md).
+L'intake di una user story può usare [Plan User Story From Id](../role-maps/skills/plan-user-story-from-id.md); quello di un bug [Plan Bug From Id](../role-maps/skills/plan-bug-from-id.md). Le [regole delle sessioni di pianificazione](../system/canonical/instructions/planning-sessions.instructions.md) definiscono che cosa passa da una conversazione all'altra. Il [Direct Implementor](../role-maps/agents/direct-implementor.md) segue un percorso diverso, senza piano intermedio.
 
 ## Gate del Planner
 
-| Gate | Scopo in una frase | Evidenza o decisione |
+| Gate | Scopo in una frase | Prova o decisione |
 | --- | --- | --- |
 | 0. Request Scope | Verificare che la richiesta sia pianificabile | Scope valido o rifiuto |
 | 1. Session Activation | Creare o riprendere la sessione nota | ID e stato di sessione |
@@ -41,11 +43,11 @@ L'intake della user story può usare [Plan User Story From Id](../system/canonic
 | 12. Decision Processing | Registrare approvazione o richiesta di modifica | Stato di approvazione e piano salvato |
 | 13. Final Handoff | Consegnare solo il piano approvato | Sessione pronta per Implementor |
 
-Fonte: [contratto Planner](../system/canonical/agents/planner.agent.md) · [schema del piano](../system/canonical/templates/plan-schema.md). I gate 1, 2, 7 e 11 hanno stop point solo nelle condizioni definite dal contratto; gli altri avanzano secondo il suo modello di esecuzione.
+Fonte: [contratto Planner](../system/canonical/agents/planner.agent.md) · [schema del piano](../system/canonical/templates/plan-schema.md). I gate 1, 2, 7 e 11 attendono l'utente solo nelle condizioni definite dal contratto; gli altri avanzano da soli.
 
 ## Gate dell'Implementor
 
-| Gate | Scopo in una frase | Evidenza o decisione |
+| Gate | Scopo in una frase | Prova o decisione |
 | --- | --- | --- |
 | 0. Process user request | Valutare la richiesta speciale Business Logic Gap Detector, se invocata | Scope della richiesta speciale |
 | 1. Business logic gap triage and repair | Gestire test rossi e correzione stretta nel percorso speciale | Esiti e report |
@@ -62,4 +64,8 @@ Fonte: [contratto Planner](../system/canonical/agents/planner.agent.md) · [sche
 | 12. Final summary | Distinguere modifiche, prove e rischio residuo | Handoff all'utente |
 | 13. Refinements | Gestire eventuale ulteriore richiesta nel mandato | Nuova decisione o chiusura |
 
-Fonte: [contratto Implementor](../system/canonical/agents/implementor.agent.md) · [Business Logic Gap Detector](../system/canonical/skills/business-logic-gap-detector/SKILL.md). I gate 0–1 sono condizionali alla richiesta speciale; i gate 8–11 dipendono dagli scenari di coverage e dall'approvazione richiesta dal contratto. La tabella non modifica l'ordine o le condizioni runtime.
+Fonte: [contratto Implementor](../system/canonical/agents/implementor.agent.md) · [Business Logic Gap Detector](../role-maps/skills/business-logic-gap-detector.md). I gate 0–1 sono condizionali alla richiesta speciale; i gate 8–11 dipendono dagli scenari di coverage e dall'approvazione richiesta dal contratto. La tabella non modifica l'ordine o le condizioni runtime.
+
+---
+
+[← Precedente: riferimento rapido](reference-roster.md) · [↑ Slide](README.md) · [Torna al corso →](../README.md)

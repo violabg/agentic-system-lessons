@@ -1,20 +1,23 @@
-# Slide del corso
+[Corso](../README.md) › **Slide**
 
-[Corso](../README.md) · [Principi](../principles.md)
+# Slide
 
-I deck principali sostengono la spiegazione dei principi. Il caso fittizio compare solo dove rende visibile una decisione. Ogni riferimento canonical citato ha un link; i contratti completi restano nella biblioteca.
+Un deck breve per ogni principio, nello stesso ordine del corso. Ogni deck rimanda alla pagina completa del principio.
 
-1. [Orientarsi nel sistema](lesson-01-introduzione.md)
-2. [Dalla richiesta al piano](lesson-02-richiesta-e-planner.md)
-3. [Conoscenza selettiva](lesson-03-conoscenza.md)
-4. [Gate, piano e handoff](lesson-04-gate-e-handoff.md)
-5. [Implementazione e prove](lesson-05-implementazione-e-prove.md)
-6. [Migliorare il proprio sistema](lesson-06-migliorare-il-sistema.md)
+1. [Autorità delimitata](01-autorita-delimitata.md)
+2. [Gate e controllo umano](02-gate-e-controllo-umano.md)
+3. [Validazione come prova](03-validazione-come-prova.md)
+4. [Artifact durevoli](04-artifact-durevoli.md)
+5. [Conoscenza selettiva](05-conoscenza-selettiva.md)
+6. [Composizione e ciclo di vita](06-composizione-e-ciclo-di-vita.md)
 
-## Approfondimenti
+## Slide di approfondimento
 
 - [Riferimento rapido: tutti gli agent e le skill](reference-roster.md)
-- [Flusso Planner → Implementor e tutti i gate](reference-flow.md)
-- [Mappe dettagliate dei ruoli e delle skill](../role-maps/README.md)
+- [Flusso Planner → Implementor, gate per gate](reference-flow.md)
 
-Questi file sono sorgenti Markdown per slide, non presentazioni PowerPoint. Le mappe sono riferimenti apribili durante una domanda specifica.
+I file sono sorgenti Markdown per le slide, non presentazioni PowerPoint. Ogni `---` separa una slide.
+
+---
+
+[↑ Torna al corso](../README.md) · [Inizia: 1. Autorità delimitata →](01-autorita-delimitata.md)

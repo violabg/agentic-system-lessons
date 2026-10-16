@@ -8,6 +8,8 @@ Route the current request through this file, then load only what that request ne
 
 Full role contracts live in `{{AGENT_ROOT}}`. Do not restate them here.
 
+Once a role contract is loaded, its operations replace the client's built-in equivalents: session memory and the session log are the files under `{{SESSION_ROOT}}/<planning-session-id>/`, never the client's own memory feature. A delegated or inline evidence task that returns its result is never a stop point.
+
 ## Skills
 
 Repository skills live in `{{SKILL_ROOT}}`. Read a skill's `SKILL.md` before running its workflow.

@@ -1,22 +1,26 @@
-# Approfondimenti facoltativi
+[Corso](../README.md) › **Approfondimenti**
 
-[Torna al corso](../README.md)
+# Approfondimenti
 
-Apri una fonte quando vuoi approfondire una domanda emersa in aula. Nessuna pagina di questa biblioteca è una lettura preliminare obbligatoria.
+Letture facoltative: aprile quando vuoi approfondire una domanda. Nessuna è necessaria per seguire il corso.
 
-| Domanda | Lettura |
+| Domanda | Dove leggere |
 | --- | --- |
-| Come si collegano i sei principi? | [Principi](../principles.md) |
-| Come collaborano controlli e manutenzione? | [Mappa del sistema](../system-map.md) |
-| Come si traducono i confini in contratti concreti? | [Mappe di agent e skill](../role-maps/README.md) |
+| Come si collegano gli elementi del sistema? | [Mappa del sistema](mappa-del-sistema.md) |
+| Che cosa fa ciascun agent e ciascuna skill? | [Mappe di agent e skill](../role-maps/README.md) |
 | Quando si usa ciascun agent o skill? | [Riferimento rapido](../slides/reference-roster.md) |
-| Come scorrono tutti i gate del percorso principale? | [Flusso Planner → Implementor](../slides/reference-flow.md) |
+| Quali sono tutti i gate del percorso principale? | [Flusso Planner → Implementor](../slides/reference-flow.md) |
 | Che cosa significano i termini? | [Glossario canonical](../system/canonical/CONTEXT.md) |
-| Come si governa la conoscenza? | [Knowledge guard](../system/canonical/instructions/knowledge-guard.instructions.md) |
-| Come si conservano decisioni e stato? | [Planning sessions](../system/canonical/instructions/planning-sessions.instructions.md) |
+| Come si governa la knowledge? | [Regole sulla knowledge](../system/canonical/instructions/knowledge-guard.instructions.md) |
+| Come si conservano decisioni e stato? | [Regole delle sessioni di pianificazione](../system/canonical/instructions/planning-sessions.instructions.md) |
+| Com'è fatto un piano? | [Schema del piano](../system/canonical/templates/plan-schema.md) |
 
 ## Principio e implementazione
 
-Il principio è trasferibile; il contratto descrive questa reference implementation. Per esempio, Direct Implementor non crea test unitari o di integrazione. Questo limite non significa che si debba rinunciare ai test: la prova mancante va assegnata a un workflow autorizzato.
+Il principio si trasferisce a qualsiasi repository; il contratto descrive soltanto il sistema di riferimento. Per esempio, il [Direct Implementor](../role-maps/agents/direct-implementor.md) non crea test. Questo limite non significa che si debba rinunciare ai test: la prova mancante va assegnata a un workflow autorizzato.
 
-Numeri dei gate, formato del piano, persistenza e restrizioni dei singoli ruoli si consultano nelle mappe e nei contratti collegati. Le sintesi didattiche non autorizzano a saltare gate, fonti obbligatorie, approvazioni, validazioni o prerequisiti.
+Numeri dei gate, formato del piano, salvataggi e limiti dei singoli ruoli si trovano nelle mappe e nei contratti collegati. Le sintesi del corso non autorizzano a saltare gate, fonti obbligatorie, approvazioni o verifiche.
+
+---
+
+[↑ Torna al corso](../README.md)

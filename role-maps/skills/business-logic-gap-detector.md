@@ -1,22 +1,24 @@
+[Corso](../../README.md) › [Mappe di agent e skill](../README.md) › **Business Logic Gap Detector**
+
 # Business Logic Gap Detector
 
-[Indice mappe](../README.md) · [Contratto canonical](../../system/canonical/skills/business-logic-gap-detector/SKILL.md)
+**File sorgente:** [skills/business-logic-gap-detector/SKILL.md](../../system/canonical/skills/business-logic-gap-detector/SKILL.md)
 
-## In 30 Secondi
+## In 30 secondi
 
 **Fa:** crea test unitari che dimostrano una debolezza praticabile della logica di produzione e verifica che ogni nuovo test fallisca prima della correzione.
 
 **Non fa:** non modifica la produzione, non inventa scenari impossibili e non accetta un test verde come prova di un gap.
 
-**Consegna:** test rossi, finding ordinati per severita e una nota precisa per il ruolo che dovra correggere la produzione.
+**Consegna:** test rossi, finding ordinati per severità e una nota precisa per il ruolo che dovrà correggere la produzione.
 
-## Flusso, Gate E Artifact
+## Flusso, gate e artifact
 
 ```mermaid
 flowchart TD
     Invocation[Input: sessione, classi<br/>e metodi facoltativi] --> G0{Gate 0<br/>Payload valido e completo?}
     G0 -->|no| Block[Output: blocked invalid invocation]
-    G0 -->|si| G1[Gate 1<br/>Aggiorna knowledge di test]
+    G0 -->|sì| G1[Gate 1<br/>Aggiorna knowledge di test]
     G1 --> Knowledge[Contesto: convenzioni applicabili]
     Knowledge --> G2[Gate 2<br/>Risolvi file test e dipendenze<br/>con discovery minima]
     G2 --> Scope[Output: scope e mapping classe-test]
@@ -24,12 +26,12 @@ flowchart TD
     G3 --> Red{Ogni test fallisce<br/>prima della fix?}
     Red -->|no| Revise[Rivedi scenario non efficace]
     Revise --> G3
-    Red -->|si| Proof[Artifact: test rossi e output]
+    Red -->|sì| Proof[Artifact: test rossi e output]
     Proof --> G4[Gate 4<br/>Summary per fix agent]
     G4 --> Handoff[Handoff: finding, test e<br/>area di produzione da correggere]
 ```
 
-## Lettura Del Diagramma
+## Lettura del diagramma
 
 | Gate | Decisione che protegge | Artifact o output | Handoff successivo |
 | --- | --- | --- | --- |
@@ -39,4 +41,10 @@ flowchart TD
 | 3. Prova rossa | Il caso espone una debolezza reale e fallisce? | Test rossi e output della failure | Gate 4 |
 | 4. Handoff | Cosa deve correggere il prossimo ruolo? | Finding ordinati e area di produzione | Fix agent |
 
-**Da ricordare:** il gate decisivo e la prova rossa. Un test che passa non dimostra un business logic gap e deve essere rielaborato, non consegnato.
+**Da ricordare:** il gate decisivo è la prova rossa. Un test che passa non dimostra un business logic gap e deve essere rielaborato, non consegnato.
+
+---
+
+**Nei principi:** [3. Validazione come prova](../../principi/03-validazione-come-prova.md)
+
+[← Precedente: User Story Analysis](user-story-analysis.md) · [↑ Mappe di agent e skill](../README.md) · [Successivo: Integration Test Knowledge Checklist →](integration-test-knowledge-checklist.md)

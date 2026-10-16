@@ -1,8 +1,10 @@
+[Corso](../../README.md) › [Mappe di agent e skill](../README.md) › **Direct Implementor**
+
 # Direct Implementor
 
-[Indice mappe](../README.md) · [Contratto canonical](../../system/canonical/agents/direct-implementor.agent.md) · [Confronto con Implementor](implementor.md)
+**File sorgente:** [agents/direct-implementor.agent.md](../../system/canonical/agents/direct-implementor.agent.md) · Confronto: [Implementor](implementor.md)
 
-## In 30 Secondi
+## In 30 secondi
 
 **Fa:** analizza una richiesta di implementazione, valida requisiti e design contro la conoscenza, modifica la produzione e registra build e review.
 
@@ -14,7 +16,7 @@ La scomposizione dei requisiti al Gate 3 è solo in chat: quel gate vieta file, 
 
 **Autorità:** le decisioni architetturali e di design restano sotto controllo umano esplicito nell'intervista. “Diretto” elimina il documento di piano intermedio; non elimina chiarimenti, gate o prove.
 
-## Flusso, Gate E Artifact
+## Flusso, gate e artifact
 
 I gruppi nel diagramma servono alla lettura: ogni gate del contratto va eseguito singolarmente, in ordine.
 
@@ -22,7 +24,7 @@ I gruppi nel diagramma servono alla lettura: ogni gate del contratto va eseguito
 flowchart TD
     Input[Richiesta di implementazione] --> G0{0: scope valido?}
     G0 -->|no| Stop[Rifiuto o chiarimento con utente]
-    G0 -->|si| G1[1: attiva o riprendi la sessione nota]
+    G0 -->|sì| G1[1: attiva o riprendi la sessione nota]
     G1 --> G2[2: intake artifact e immagini]
     G2 --> G3[3: scomponi requisiti e criteri di accettazione]
     G3 --> G4[4: knowledge e inventario regole]
@@ -34,15 +36,15 @@ flowchart TD
     G11 -->|errore recuperabile| Fix[Correzione secondo compiler recovery policy]
     Fix --> G11
     G11 -->|blocco non risolvibile| Stop
-    G11 -->|si| G12[12: review requisiti e regole]
+    G11 -->|sì| G12[12: review requisiti e regole]
     G12 -->|blocco non risolvibile| Stop
     G12 -->|verifica completata| G13[13: riepilogo e handoff all'utente]
     G13 --> G14{14: richiesta di refinement?}
-    G14 -->|si| G0
+    G14 -->|sì| G0
     G14 -->|no| End[Fine]
 ```
 
-## Lettura Del Diagramma
+## Lettura del diagramma
 
 | Gate | Decisione protetta | Evidenza e destinatario |
 | --- | --- | --- |
@@ -55,3 +57,9 @@ flowchart TD
 Un requisito molto diverso richiede prima la decisione esplicita dell'utente se proseguire nella stessa chat. Nel restart, i riferimenti al codice si riverificano; l'intervista si ripete quando nuove ambiguità o gap lo richiedono, altrimenti si registra la conferma. Un binding necessario indisponibile blocca l'operazione.
 
 **Da ricordare:** scegliere questo ruolo non autorizza a saltare gate né a dichiarare test mai eseguiti. Se servono nuovi test, assegnarli a un workflow autorizzato; non estendere silenziosamente questo contratto.
+
+---
+
+**Nei principi:** [1. Autorità delimitata](../../principi/01-autorita-delimitata.md) · [3. Validazione come prova](../../principi/03-validazione-come-prova.md) · [4. Artifact durevoli](../../principi/04-artifact-durevoli.md)
+
+[← Precedente: Implementor](implementor.md) · [↑ Mappe di agent e skill](../README.md) · [Successivo: Ask →](ask.md)
