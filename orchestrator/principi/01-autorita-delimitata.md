@@ -26,7 +26,7 @@ Il sistema separa chi **dirige** il lavoro da chi lo **esegue** e da chi lo **gi
 
 | Ruolo | Può | Non può |
 | --- | --- | --- |
-| [Orchestrator](../role-maps/agents/orchestrator.md) | Seguire il workflow scelto dallo sviluppatore, scrivere requisito e design nella sessione, avviare i delegate e agire sui loro verdict | Scrivere codice di produzione, scegliere il workflow, tagliare lo scope del requisito |
+| [Orchestrator](../role-maps/agents/orchestrator.md) | Seguire il workflow scelto dallo sviluppatore, scrivere le obbligazioni del requisito e il design nella sessione, avviare i delegate e agire sui loro verdict | Scrivere codice di produzione, scegliere il workflow, tagliare lo scope del requisito |
 | [Code Implementor](../role-maps/agents/code-implementor.md) | Modificare i file, compilare, scrivere ed eseguire i test unitari | Cambiare la specifica che riceve |
 | [Design Verifier](../role-maps/agents/design-verifier.md) | Leggere requisito, design e knowledge e dare un verdict | Progettare, correggere o scrivere codice: non ha strumenti sui file, solo le operazioni del runtime |
 | [Implementation Verifier](../role-maps/agents/implementation-verifier.md) | Leggere il codice prodotto e dare un verdict | Correggere: non ha strumenti di scrittura |
@@ -63,7 +63,7 @@ Il tuo repository può usare altri nomi o meno ruoli. Conta una cosa sola: un ca
 
 ## Nel caso guida
 
-La story non dice se una motivazione di soli spazi è valida. L'orchestrator non lo chiede a metà lavoro e non lo nasconde: sceglie una risposta, scrive tre alternative e segna la decisione come bloccante per la review. Che il vincolo valga anche per l'API, invece, non si sceglie: la story dice “solo dopo” per ogni chiusura, e l'obbligazione lo rende esplicito. [Leggi la traccia](../caso-guida.md#traccia-1-workflow-requisito-e-decisioni).
+La story non dice se una motivazione di soli spazi è valida. L'orchestrator non lo chiede a metà lavoro e non lo nasconde: sceglie una risposta, scrive tre alternative e segna la decisione come `highlight`, quella su cui vuole il giudizio dello sviluppatore alla review. Che il vincolo valga anche per l'API, invece, non si sceglie: la story dice “solo dopo” per ogni chiusura, e l'obbligazione lo rende esplicito. [Leggi la traccia](../caso-guida.md#traccia-1-workflow-requisito-e-decisioni).
 
 ## Nel tuo repository
 

@@ -6,7 +6,7 @@
 
 ## In 30 secondi
 
-**Fa:** attiva la sessione indicata dallo sviluppatore, avvia il job del workflow che lo sviluppatore ha scelto e ne segue le istruzioni alla lettera, una alla volta. Scrive requisito, design e memoria attraverso il runtime, avvia i delegate e agisce sui loro verdict.
+**Fa:** attiva la sessione indicata dallo sviluppatore, avvia il job del workflow che lo sviluppatore ha scelto e ne segue le istruzioni alla lettera, una alla volta. Scrive le obbligazioni del requisito, il design e la memoria attraverso il runtime, avvia i delegate e agisce sui loro verdict.
 
 **Non fa:** non scrive codice di produzione, non sceglie né deduce il workflow, non attiva una sessione senza richiesta esplicita, non taglia lo scope del requisito e non approva il design al posto dello sviluppatore. Se il runtime non è disponibile, si ferma.
 

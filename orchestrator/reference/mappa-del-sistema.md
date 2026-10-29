@@ -29,7 +29,7 @@ flowchart TD
 | Workflow e runtime | Impongono l'ordine dei passaggi | [2. Gate e controllo umano](../principi/02-gate-e-controllo-umano.md) |
 | Gate e halt point | Controllano il passaggio | [2. Gate e controllo umano](../principi/02-gate-e-controllo-umano.md) |
 | Delegate e verificatori | Separano chi produce da chi giudica | [3. Validazione come prova](../principi/03-validazione-come-prova.md) |
-| Sessione e design | Conservano requisito, decisioni, prove e stato | [4. Artifact durevoli](../principi/04-artifact-durevoli.md) |
+| Sessione e design | Conservano le obbligazioni (il requisito), le decisioni, le prove e lo stato | [4. Artifact durevoli](../principi/04-artifact-durevoli.md) |
 | Glossario e catalogo | Stabilizzano i termini e selezionano le fonti | [5. Conoscenza selettiva](../principi/05-conoscenza-selettiva.md) |
 
 ## Tre workflow, un orchestrator
@@ -73,4 +73,4 @@ Ogni regola resta nella superficie che la possiede; le altre superfici rimandano
 
 ---
 
-[← Precedente: Approfondimenti](README.md) · [↑ Approfondimenti](README.md)
+[← Precedente: Approfondimenti](README.md) · [↑ Approfondimenti](README.md) · [Successivo: Il documento di design →](documento-di-design.md)

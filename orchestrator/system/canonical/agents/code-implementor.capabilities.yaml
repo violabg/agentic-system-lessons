@@ -5,7 +5,19 @@ role: code-implementor
 invocation: delegate
 operations: [read, write, terminal, runtime]
 capabilities:
-  - token: design-snapshot
+  - token: codebase-cluster-files
+    kind: runtime
+    evidence: [tools, body]
+  - token: codebase-clusters
+    kind: runtime
+    evidence: [tools, body]
+  - token: design-implementation-context
+    kind: runtime
+    evidence: [tools]
+  - token: design-implementation-operation
+    kind: runtime
+    evidence: [tools]
+  - token: design-implementation-operation-close
     kind: runtime
     evidence: [tools]
   - token: knowledge-catalog

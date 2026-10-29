@@ -14,9 +14,3 @@ capabilities:
   - token: knowledge-read
     kind: runtime
     evidence: [tools, body]
-  - token: session-artifact-list
-    kind: runtime
-    evidence: [tools]
-  - token: session-artifact-read
-    kind: runtime
-    evidence: [tools, body]

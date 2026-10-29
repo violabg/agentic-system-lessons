@@ -33,13 +33,13 @@ Nel workflow `DESIGN` i passaggi che contano sono questi:
 | Avvio | Sessione o workflow non indicati | Sessione e workflow scelti esplicitamente | Sviluppatore |
 | Presentazione del design | Errori dei controlli meccanici, verdict diverso da `PASS` | Nessun errore e `VERDICT: PASS` | Runtime e [Design Verifier](../role-maps/agents/design-verifier.md) |
 | Approvazione | Design non approvato | Risposta “1. Approva” dello sviluppatore | Sviluppatore; il runtime rifiuta l'approvazione finché un controllo fallisce |
-| Fine implementazione | Verdict diverso da `PASS` | `VERDICT: PASS` dell'[Implementation Verifier](../role-maps/agents/implementation-verifier.md) | Verificatore; dopo quattro round falliti, lo sviluppatore |
+| Fine implementazione | Verdict diverso da `PASS` | `VERDICT: PASS` dell'[Implementation Verifier](../role-maps/agents/implementation-verifier.md) | Verificatore; dopo quattro round falliti il blocco è registrato nell'iterazione e riportato nello handoff |
 
 L'approvazione la dà solo lo sviluppatore: [l'orchestrator](../role-maps/agents/orchestrator.md) la registra con un'operazione del runtime, che la rifiuta finché il design ha errori. Approvare un design che lo sviluppatore non ha approvato è un difetto.
 
-**I cicli di correzione hanno un limite.** Verifica del design e verifica dell'implementazione fanno al massimo quattro round. Se il problema persiste e la causa non è dell'orchestrator (un'ambiguità del requisito, una decisione dello sviluppatore), il workflow si ferma e porta il report allo sviluppatore invece di indebolire il design per far passare la verifica.
+**I cicli di correzione hanno un limite.** Verifica del design e verifica dell'implementazione fanno al massimo quattro round. Se il problema persiste e la causa non è dell'orchestrator (un'ambiguità del requisito, una decisione dello sviluppatore), il design non viene indebolito per far passare la verifica: la verifica del design si ferma e porta il report allo sviluppatore; un blocco dell'implementazione viene registrato nell'iterazione e arriva allo sviluppatore con l'handoff.
 
-**Non ogni lavoro merita lo stesso gate.** `FAST_IMPLEMENTATION` non ha design né approvazione: il requisito è l'unica autorità, e la verifica dell'implementazione resta. Scegliere quel workflow è una decisione dello sviluppatore sul rischio, non una scorciatoia che l'agente può prendere da solo. Il [riferimento dei workflow](../slides/reference-flow.md) elenca tutte le istruzioni e i loro halt point.
+**Non ogni lavoro merita lo stesso gate.** `FAST_IMPLEMENTATION` non ha un documento di design né un'approvazione: le obbligazioni del job design sono il requisito, e la verifica dell'implementazione resta. Scegliere quel workflow è una decisione dello sviluppatore sul rischio, non una scorciatoia che l'agente può prendere da solo. Il [riferimento dei workflow](../slides/reference-flow.md) elenca tutte le istruzioni e i loro halt point.
 
 **Lo sviluppatore può cambiare il processo, non le garanzie.** Nel primo step di ogni workflow le richieste particolari dello sviluppatore (saltare l'intervista, partire da un certo punto, aggiungere un controllo) diventano effetti vincolanti. Uno skip che toglierebbe un gate o un artifact richiesto dal requisito o dalla knowledge è un conflitto: il workflow si ferma e chiede.
 

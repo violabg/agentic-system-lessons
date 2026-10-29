@@ -33,7 +33,7 @@ Scegli fonti autorevoli e proporzionate al task, e registra quali bastano e perc
 
 **Leggere il codice è selettivo quanto leggere le regole.** La ricognizione del codice costruisce un panorama dei soli componenti coinvolti e delle lacune rispetto al requisito. Legge dichiarazioni e firme prima dei corpi, non segue catene di dipendenze e non sceglie un file perché “sembra simile”: la somiglianza non è pertinenza.
 
-**La stessa knowledge per chi scrive e per chi giudica.** L'orchestrator unisce le regole lette in un *knowledge bundle* e lo passa invariato al [Code Implementor](../role-maps/agents/code-implementor.md) e all'[Implementation Verifier](../role-maps/agents/implementation-verifier.md). Il verificatore giudica il codice con le stesse regole che lo hanno governato.
+**La stessa knowledge per chi scrive e per chi giudica.** In `FAST_IMPLEMENTATION` l'orchestrator unisce le regole lette in un *knowledge bundle* e lo passa invariato al [Code Implementor](../role-maps/agents/code-implementor.md) e all'[Implementation Verifier](../role-maps/agents/implementation-verifier.md). Nel workflow `DESIGN` l'implementor riceve i riferimenti alla knowledge di ogni operazione servita, mentre il verificatore riceve il bundle. In entrambi i casi il verificatore giudica il codice con le stesse regole che lo hanno governato.
 
 **Si legge solo il delta.** Quando serve una regola nuova, l'agente legge solo i documenti che non ha ancora letto e annota quali ha ricordato e quali ha letto adesso. Una decisione presa su una knowledge non letta non è una decisione.
 

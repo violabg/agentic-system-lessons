@@ -22,7 +22,7 @@ Principio: [1. Autorità delimitata](principi/01-autorita-delimitata.md)
 
 - Lo sviluppatore apre una sessione nuova, `richieste_chiusura`, e chiede all'[orchestrator](role-maps/agents/orchestrator.md) di lavorare sulla story con il workflow `DESIGN`. Il nome del workflow lo dà lui: l'orchestrator non lo deduce dalla richiesta.
 - La skill [Plan User Story From Id](role-maps/skills/plan-user-story-from-id.md) fa recuperare il ticket da un delegate e lo salva come artifact della sessione.
-- L'orchestrator salva la story parola per parola nel `requirement_R_lock` e la scompone in obbligazioni verificabili. Estratto preparato:
+- L'orchestrator scompone la story in obbligazioni verificabili; ogni obbligazione cita la frase da cui deriva con `sourceRef` e `sourceSpan`. Estratto preparato:
 
   ```text
   O1 | Una richiesta passa a "Chiusa" solo se la chiusura porta una motivazione,
@@ -31,7 +31,7 @@ Principio: [1. Autorità delimitata](principi/01-autorita-delimitata.md)
      |           O1.3 (effect) senza motivazione lo stato non cambia
   ```
 
-- Gli aspetti che la story non fissa diventano decisioni. Per “soli spazi” l'orchestrator **sceglie** una risposta (una motivazione deve contenere almeno un carattere che non sia uno spazio) e scrive accanto tre alternative complete. Segna la decisione come `blocking`: è quella su cui vuole il giudizio dello sviluppatore alla review.
+- Gli aspetti che la story non fissa diventano decisioni. Per “soli spazi” l'orchestrator **sceglie** una risposta (una motivazione deve contenere almeno un carattere che non sia uno spazio) e scrive accanto tre alternative complete. Segna la decisione come `highlight`: è quella su cui vuole il giudizio dello sviluppatore alla review.
 
 **Domanda breve:** perché l'orchestrator può scegliere come trattare gli spazi, ma non può decidere che il vincolo valga solo per l'interfaccia?
 
@@ -48,8 +48,8 @@ Il catalogo contiene una regola `MustHave` sul changelog, una regola `PerContext
 Principi: [2. Gate e controllo umano](principi/02-gate-e-controllo-umano.md) · [3. Validazione come prova](principi/03-validazione-come-prova.md)
 
 - L'orchestrator scrive contratti, file e operazioni del design. Il primo controllo meccanico segnala `operation-without-failures`: l'operazione che realizza la guardia non dice che cosa succede quando la motivazione manca. L'orchestrator aggiunge il ramo negativo e ripete il controllo finché non restano errori.
-- Il [design verifier](role-maps/agents/design-verifier.md) riceve solo l'id della sessione e l'id del job. Il primo report inizia con `VERDICT: FAIL`: `O1` non è coperta, perché il controller API chiama il servizio senza passare la motivazione. L'orchestrator corregge il design; il secondo round restituisce `VERDICT: PASS`.
-- L'orchestrator apre la review con il documento del design e la decisione bloccante sugli spazi. Lo sviluppatore chiede una modifica: una richiesta già chiusa non si modifica. Diventa un'obbligazione con origine `Developer`, che prevale sul requisito; l'orchestrator la realizza, ripete controlli e verifica e ripresenta il design.
+- Il [design verifier](role-maps/agents/design-verifier.md) riceve solo l'id della sessione e l'id del job; quando lo stesso verificatore riprende dopo un `FAIL`, il prompt aggiunge solo l'elenco delle correzioni fatte. Il primo report inizia con `VERDICT: FAIL`: `O1` non è coperta, perché il controller API chiama il servizio senza passare la motivazione. L'orchestrator corregge il design; il secondo round restituisce `VERDICT: PASS`.
+- L'orchestrator apre la review con il [documento del design](reference/documento-di-design.md) e la decisione `highlight` sugli spazi. Lo sviluppatore chiede una modifica: una richiesta già chiusa non si modifica. Diventa un'obbligazione con origine `Developer`, che prevale sul requisito; l'orchestrator la realizza, ripete controlli e verifica e ripresenta il design.
 - Lo sviluppatore approva. Il runtime registra l'approvazione con il nome `chiusura_con_motivazione`.
 
 **Domanda breve:** che cosa dice il controllo meccanico verde, e che cosa dice il `PASS` del design verifier?
@@ -59,7 +59,7 @@ Principi: [2. Gate e controllo umano](principi/02-gate-e-controllo-umano.md) · 
 Principi: [3. Validazione come prova](principi/03-validazione-come-prova.md) · [4. Artifact durevoli](principi/04-artifact-durevoli.md)
 
 - L'orchestrator apre l'iterazione `IT1`, segna le operazioni di codice `InProgress` e avvia il [code implementor](role-maps/agents/code-implementor.md). Il prompt contiene identificatori e knowledge, non il testo del design: il delegate legge il design dalla sessione.
-- Il code implementor scrive il codice, poi i test unitari, compila ed esegue: quattro scenari passano (motivazione valida, motivazione vuota, soli spazi, richiesta già chiusa).
+- Il code implementor realizza le operazioni servite: scrive il codice e, nell'operazione di test unitari autorizzata, i test; compila ed esegue: quattro scenari passano (motivazione valida, motivazione vuota, soli spazi, richiesta già chiusa).
 - L'[implementation verifier](role-maps/agents/implementation-verifier.md) risponde `VERDICT: FAIL`: la risposta di errore dell'API non nomina il campo mancante, come chiede la regola API. L'orchestrator riprende lo **stesso** code implementor con il report del verifier; il secondo round è `VERDICT: PASS`.
 - Le operazioni passano a `Completed` e l'iterazione si chiude: l'elenco dei file cambiati lo calcola il runtime confrontando il workspace con lo stato all'apertura.
 - Il messaggio finale mostra file, test, verdict e blocchi. Non dichiara provati i client esterni dell'API, che nessuno ha eseguito.

@@ -14,7 +14,7 @@ Le mappe sono materiale didattico. Non prescrivono ruoli, nomi o strumenti per i
 
 ## Delegate avviati dall'orchestrator
 
-4. [Code Implementor](agents/code-implementor.md): scrive il codice, poi i test unitari, e li esegue.
+4. [Code Implementor](agents/code-implementor.md): scrive il codice e, quando la specifica lo chiede, i test unitari, e li esegue.
 5. [Design Verifier](agents/design-verifier.md): giudica se il design realizza il requisito.
 6. [Implementation Verifier](agents/implementation-verifier.md): giudica se il codice realizza la specifica e applica la knowledge.
 7. [Documentation Reviewer](agents/documentation-reviewer.md): rilegge una guida come un lettore nuovo e la corregge.

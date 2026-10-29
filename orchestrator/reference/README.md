@@ -13,6 +13,7 @@ Letture facoltative: aprile quando vuoi approfondire una domanda. Nessuna è nec
 | Che cosa significano i termini? | [Glossario canonical](../system/canonical/CONTEXT.md) |
 | Come il runtime serve le istruzioni? | [Ciclo del workflow](../system/canonical/contracts/workflow-loop.md) |
 | Come si conservano memoria, eventi e artifact? | [Session store](../system/canonical/contracts/session-store.md) e [regole delle sessioni](../system/canonical/instructions/sessions.instructions.md) |
+| Come si legge il documento di design prima di approvarlo? | [Il documento di design](documento-di-design.md) |
 | Com'è fatto un design? | [Modello del design](../system/canonical/contracts/design-model.md) |
 | Che cosa controllano i controlli meccanici? | [Controlli del design](../system/canonical/contracts/design-checks.md) |
 | Che cosa vedono il verificatore e lo sviluppatore? | [Viste del design](../system/canonical/contracts/projections.md) |

@@ -52,7 +52,7 @@ Poi il report va allo sviluppatore, senza indebolire il design.
 
 ## Gate proporzionati
 
-`FAST_IMPLEMENTATION`: niente design né approvazione, ma la verifica resta.
+`FAST_IMPLEMENTATION`: niente documento di design né approvazione; le obbligazioni sono il requisito, la verifica resta.
 
 La scelta è dello sviluppatore. [Tutti i workflow](reference-flow.md).
 

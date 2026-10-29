@@ -27,7 +27,7 @@ Il workflow `DESIGN` usa prove diverse, ognuna con il suo limite:
 | Prova | Che cosa controlla | Che cosa non controlla |
 | --- | --- | --- |
 | [Controlli meccanici del design](../system/canonical/contracts/design-checks.md) | Che ogni elemento del requisito abbia un'operazione, che ogni decisione sia realizzata, che il piano sia eseguibile in ordine | Se il design realizza davvero il requisito |
-| [Design Verifier](../role-maps/agents/design-verifier.md) | Se ogni obbligazione è realizzata da un meccanismo concreto, se una regola del requisito è rimasta senza obbligazione, se il design contraddice la knowledge | Il codice, che ancora non esiste |
+| [Design Verifier](../role-maps/agents/design-verifier.md) | Se ogni obbligazione è realizzata da un meccanismo concreto e se il design contraddice una regola citabile della knowledge grounding | Il codice, che ancora non esiste |
 | Build e test del [Code Implementor](../role-maps/agents/code-implementor.md) | Compilazione e scenari di comportamento del codice prodotto | Ciò che i test non rappresentano |
 | [Implementation Verifier](../role-maps/agents/implementation-verifier.md) | Se il codice realizza la specifica e applica la knowledge, toccando solo i file previsti | Il comportamento a runtime oltre il codice letto |
 
@@ -35,9 +35,9 @@ Il workflow `DESIGN` usa prove diverse, ognuna con il suo limite:
 
 **Il verdict è meccanico.** Il report di un verificatore inizia con `VERDICT: PASS` o `VERDICT: FAIL`. Qualunque altra prima riga vale come `FAIL`. Se il dubbio è reale, il verificatore sceglie “non coperto” e nomina l'elemento irrisolto.
 
-**Il verificatore non va condizionato.** Il design verifier riceve solo l'id della sessione e del job, sempre con lo stesso prompt: niente riassunto del design, niente elenco delle correzioni, niente verdict suggerito. Legge il requisito e il design da solo. La verifica può chiedere solo *più* design, mai meno: un design che passa perdendo scope ha fallito.
+**Il verificatore non va condizionato.** Alla prima invocazione il design verifier riceve solo l'id della sessione e del job: niente riassunto del design, niente verdict suggerito. Legge le obbligazioni e il design dalla vista di verifica, da solo. Quando riprende dopo un `FAIL`, il prompt aggiunge solo l'elenco delle correzioni fatte: descrive ciò che è cambiato, non chiede un verdict. La verifica può chiedere solo *più* design, mai meno: un design che passa perdendo scope ha fallito.
 
-**I test devono poter fallire.** Il code implementor scrive prima il codice e poi i test, ricavando un inventario completo dei comportamenti: percorsi felici, condizioni, input non validi, errori. I test tautologici sono vietati: un test che non può fallire, perché asserisce una costante o verifica solo che un mock è stato chiamato, non osserva il codice.
+**I test devono poter fallire.** Quando la specifica del lavoro include i test, il code implementor li scrive dopo il codice, ricavando un inventario completo dei comportamenti: percorsi felici, condizioni, input non validi, errori. Nel workflow `DESIGN` l'operazione di test unitari è autorizzata dallo sviluppatore; in `FAST_IMPLEMENTATION` i test fanno parte del lavoro di implementazione. I test tautologici sono vietati: un test che non può fallire, perché asserisce una costante o verifica solo che un mock è stato chiamato, non osserva il codice.
 
 **Il messaggio finale non dichiara più di quello che è successo.** Al termine l'orchestrator mostra file toccati, test eseguiti con il loro esito, verdict del verificatore e blocchi aperti. Se resta un blocco, il messaggio lo dice; non presenta come successo ciò che non è passato.
 

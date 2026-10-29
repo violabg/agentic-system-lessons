@@ -26,9 +26,9 @@ La memoria tiene puntatori, non copie. [Session store](../system/canonical/contr
 
 ---
 
-## Il requisito si congela
+## Il requisito diventa obbligazioni
 
-`requirement_R_lock`: il requisito parola per parola.
+Ogni obbligazione cita la frase da cui deriva (`sourceRef`, `sourceSpan`).
 
 Si rilegge da lì, non dal ricordo della chat.
 

@@ -30,12 +30,24 @@ capabilities:
   - token: design-file-references
     kind: runtime
     evidence: [workflow]
+  - token: design-implementation-context
+    kind: runtime
+    evidence: [tools, workflow]
+  - token: design-implementation-operation
+    kind: runtime
+    evidence: [workflow]
+  - token: design-implementation-operation-close
+    kind: runtime
+    evidence: [workflow]
   - token: design-iteration-close
     kind: runtime
     evidence: [workflow]
   - token: design-iteration-open
     kind: runtime
     evidence: [workflow]
+  - token: design-knowledge-references
+    kind: runtime
+    evidence: [tools, workflow]
   - token: design-obligations
     kind: runtime
     evidence: [tools, workflow]

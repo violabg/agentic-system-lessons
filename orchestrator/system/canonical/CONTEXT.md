@@ -19,7 +19,7 @@ _Avoid_: server, MCP, tool server
 _Avoid_: tool name, MCP tool, integration
 
 **Operation**
-One of the abstract abilities a role is granted in its frontmatter: `read`, `search`, `write`, `terminal`, `question`, `runtime`, and delegation through its `delegates` list. Bootstrap maps operations to each client's tools. `runtime` grants the runtime commands and nothing else.
+One of the abstract abilities a role is granted in its frontmatter: `read`, `search`, `write`, `terminal`, `question`, `runtime`, and delegation through its `delegates` list. Bootstrap maps operations to each client's tools. `runtime` grants the runtime commands and nothing else. A role body names an operation as `#operation:<op>` (for example `#operation:question`, the role's question tool); it runs through the client's own tools and is never a runtime command.
 _Avoid_: tool, permission map
 
 **Fallback**
@@ -37,7 +37,7 @@ The user role that drives the workflow the developer chooses. It follows the ser
 _Avoid_: planner, main agent, router
 
 **Delegate**
-A role the orchestrator starts in a fresh context with a fixed prompt that carries identifiers only (session, job, operation ids, knowledge bundle, image artifact names). The delegate reads its specification itself, reports back in the same conversation, and can be resumed by its delegate id; without resume the same role is started again with a complete correction prompt. The delegates are `code-implementor`, `design-verifier`, `implementation-verifier` and `documentation-reviewer`.
+A role the orchestrator starts in a fresh context with a fixed prompt that carries identifiers only (session, job, operation ids, image artifact names, and for a verifier the knowledge bundle). The delegate reads its specification itself, reports back in the same conversation, and can be resumed by its delegate id; without resume the same role is started again with a complete correction prompt. The delegates are `code-implementor`, `design-verifier`, `implementation-verifier` and `documentation-reviewer`.
 _Avoid_: subagent handoff, second conversation, helper agent
 
 **Verdict**
@@ -47,19 +47,23 @@ _Avoid_: approval, score, status
 ## Workflow
 
 **Workflow**
-An ordered set of instructions the runtime serves for one workflow type: `DESIGN` (9 instructions), `FAST_IMPLEMENTATION` (7) or `DOCUMENTATION` (8). The developer always chooses the type explicitly.
+An ordered set of instructions the runtime serves for one workflow type: `DESIGN` (9 instructions), `FAST_IMPLEMENTATION` (8) or `DOCUMENTATION` (8). The developer always chooses the type explicitly.
 _Avoid_: plan, pipeline, mode
 
 **Instruction**
 One served step of a workflow, headed `Instruction N/M.`. It names the operations the step may use. The orchestrator never sees a future instruction.
 _Avoid_: gate, prompt, phase
 
+**Part**
+One slice of a long runtime answer (an instruction, knowledge, the snapshot or the verification view), at most 24,000 characters and starting at a whole unit. It ends by naming the call that returns the next part, run as a shell command of its own; every part is read before acting.
+_Avoid_: page, chunk, truncated output
+
 **Halt Point**
 An explicit stop inside an instruction (a review awaiting approval, an interview question, a required decision) where the orchestrator presents what is required and waits for the developer before requesting the next instruction.
 _Avoid_: checkpoint, pause, confirmation
 
 **Job**
-One run of a workflow inside a session, identified by a job id. A DESIGN job owns or reuses a design.
+One run of a workflow inside a session, identified by a job id. A DESIGN job owns or reuses a design; a FAST_IMPLEMENTATION job owns a job design that holds its obligations.
 _Avoid_: task, ticket, run
 
 **Session**
@@ -70,19 +74,15 @@ _Avoid_: planning session, conversation, chat history
 The session artifact `user_instruction_register_<jobId>`: the developer's particular requests from the first prompt, recorded verbatim with their effects as conditions. The runtime appends it to every instruction after the first.
 _Avoid_: preferences, prompt notes
 
-**R-Lock**
-The session artifact `requirement_R_lock`: the functional requirement R, byte-for-byte. R is read from it, never from conversation recall.
-_Avoid_: requirement summary, story copy
-
 ## Design
 
 **Design**
-The structured artifact a DESIGN job builds and the developer approves: obligations, open points, overview, file references, decisions and the path (contracts, APIs, filesystem, operations), plus the iteration history. Rendered as a review document.
+The structured artifact a DESIGN job builds and the developer approves (a FAST_IMPLEMENTATION job keeps only its obligations, open points and knowledge references in one, with no approval): obligations, open points, overview, file references, decisions and the path (contracts, APIs, filesystem, operations), plus the iteration history. Rendered as a review document.
 _Avoid_: implementation plan, plan file, spec document
 
 **Obligation**
-`O#` — one atomic, independently falsifiable behavior R imposes (or the developer decided, origin `Developer`), with its necessary elements `O#.k`.
-_Avoid_: requirement line, acceptance criterion, task
+`O#` — one atomic, independently falsifiable behavior R imposes (or the developer decided, origin `Developer`), with its necessary elements `O#.k`. The obligations are the requirement of the job: every later step and every verifier reads R from them, never from a separate copy of R.
+_Avoid_: requirement line, acceptance criterion, task, requirement lock
 
 **Element**
 `O#.k` — a necessary condition of an obligation that demands a distinct realization: `Direction`, `Conjunct`, `Quantifier`, `Guard`, `Effect`, `StateSemantics` or `Exception`.
@@ -93,12 +93,20 @@ _Avoid_: sub-requirement, bullet
 _Avoid_: question for the user, blocker
 
 **Decision**
-`D#` — a settled answer to an open point: the chosen option first plus comparable alternatives. A blocking decision is highlighted for the developer's judgment at the review.
+`D#` — a settled answer to an open point: the chosen option first plus comparable alternatives. A highlighted decision (`highlight`, formerly `blocking`) is where the developer's judgment is most needed: it is read first at the review, and one about the situation is not realized by code.
 _Avoid_: choice log, ADR
 
 **Operation (design)**
 `IM#` — one ordered unit of implementation work in the design path, with its kind, instructions that name every element it carries out as `{{O#.k}}`, and its failure arms (branches, negatives, exceptions).
 _Avoid_: step, task, ticket
+
+**Weight Class**
+The class an operation is served in, from its kind: `authoring` (Code, Wiring, Documentation, Changelog), `external-execution` (Generator, Migration, Procedure), `unit-test` (UnitTest, at most one per plan), `integration-test` (IntegrationTest), `verification`, in that order. Only `authoring` runs without the developer's authorisation; a declared dependency always prevails over the order.
+_Avoid_: priority, phase, batch
+
+**Work Unit**
+What one implementor delegation realizes: the operations the runtime serves it one at a time (the automatic batch, or one operation the developer authorised), ending at a terminator — `batch-complete` or `complete` — and verified as one unit. An operation is `Implemented` when the implementor closes it and `Completed` once the work unit's verification passes.
+_Avoid_: sprint, task list, whole plan
 
 **Iteration**
 `IT#` — one implementation round recorded in the design history: the request, the files changed (computed by the runtime), the verifications, the blocks and the notes.
@@ -114,6 +122,18 @@ _Avoid_: sign-off by the agent, auto-approval
 The tiered list of project knowledge documents (`MustHave`, `PerContext`, `PerComponent`) with file ids valid for the current index. Every `MustHave` document is read in full.
 _Avoid_: glossary, documentation index, bulk-load list
 
+**Knowledge Grounding**
+The knowledge a design is judged against: every `MustHave` document, every document read in the design's session and every document the design names. The verification view lists it, with the `knowledge-read` call that reads it, so the verifier reads it.
+_Avoid_: cited knowledge, references
+
+**Knowledge Reference**
+`kid` — one prescription of a project knowledge document the design applies: the document's file id, the inclusive line range that carries it, and a scope (`Production` or `Test`). Every knowledge read in a job with a design is followed by registering its applicable prescriptions, which also bind the design's own sections; an operation lists the kids it needs, and the runtime serves their text with the operation.
+_Avoid_: citation, whole-file reference, knowledge link
+
+**Scope**
+Whether a knowledge reference or a file reference governs the production code (`Production`, the default) or the tests (`Test`).
+_Avoid_: tier, category
+
 **Knowledge Bundle**
-The merged rules the orchestrator passes, unchanged, to the implementor and the verifier of the same step.
+The merged rules the orchestrator passes, unchanged, to the delegates of the same step: the implementor and the verifier in FAST_IMPLEMENTATION, only the verifier in the DESIGN Implementation step, where the implementor receives the knowledge references of each served operation instead.
 _Avoid_: knowledge dump, summary

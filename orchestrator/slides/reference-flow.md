@@ -34,7 +34,7 @@ Per requisiti complessi, con una persona che giudica le decisioni prima del codi
 | --- | --- | --- | --- |
 | 1 | [User Instruction Space](../system/canonical/workflows/shared/01-user-instruction-space.md) | Registro delle richieste particolari, eseguite o vincolanti | Se serve: richiesta ambigua o in conflitto |
 | 2 | [Image intake](../system/canonical/workflows/design/02-image-intake.md) | Immagini osservate e allegate alla sessione | Se serve: screenshot di un link Figma |
-| 3 | [Requirement decomposition](../system/canonical/workflows/design/03-requirement-decomposition.md) | `requirement_R_lock`, obbligazioni con i loro elementi, punti aperti | No |
+| 3 | [Requirement decomposition](../system/canonical/workflows/design/03-requirement-decomposition.md) | Obbligazioni con i loro elementi e punti aperti, con `sourceRef` e `sourceSpan` | No |
 | 4 | [Knowledge enrichment](../system/canonical/workflows/design/04-knowledge-enrichment.md) | Knowledge letta; obbligazioni funzionali aggiunte dalla knowledge, con la fonte | No |
 | 5 | [Codebase cold start](../system/canonical/workflows/design/05-codebase-cold-start.md) | Panorama del codice e lacune ancorate agli elementi, riferimenti ai file, nuovi punti aperti | No |
 | 6 | [Decision consolidation](../system/canonical/workflows/design/06-decision-consolidation.md) | Una decisione per punto aperto valido: risposta scelta e alternative | No: lo sviluppatore le vede alla review |
@@ -61,17 +61,18 @@ flowchart TD
 
 ## FAST_IMPLEMENTATION
 
-Per requisiti semplici o compiti meccanici. Non c'è design né approvazione: il requisito è l'unica autorità.
+Per requisiti semplici o compiti meccanici. Non c'è un documento di design né un'approvazione: le obbligazioni del job design sono il requisito.
 
-| N/7 | Istruzione | Che cosa produce | Halt point |
+| N/8 | Istruzione | Che cosa produce | Halt point |
 | --- | --- | --- | --- |
 | 1 | [User Instruction Space](../system/canonical/workflows/shared/01-user-instruction-space.md) | Registro delle richieste particolari | Se serve |
-| 2 | [Intake](../system/canonical/workflows/fast-implementation/02-intake.md) | `requirement_R_lock` e immagini allegate | Se serve: screenshot Figma |
-| 3 | [Knowledge](../system/canonical/workflows/fast-implementation/03-knowledge.md) | Knowledge bundle per chi scrive e chi verifica | No; un conflitto con il requisito è un blocco |
-| 4 | [Codebase cold start](../system/canonical/workflows/fast-implementation/04-codebase-cold-start.md) | Panorama e lacune nella memoria della sessione | No |
-| 5 | [Implementation](../system/canonical/workflows/fast-implementation/05-implementation.md) | Codice e test dal code implementor | Solo su blocco |
-| 6 | [Validation](../system/canonical/workflows/fast-implementation/06-validation.md) | Verdict dell'implementation verifier, al massimo quattro round di correzione | No |
-| 7 | [Terminal handoff](../system/canonical/workflows/fast-implementation/07-terminal-handoff.md) | Messaggio con file, verdict e blocchi | **Sì**: fine; le richieste successive raffinano il requisito nello stesso job |
+| 2 | [Intake](../system/canonical/workflows/fast-implementation/02-intake.md) | Triage del requisito e immagini allegate | Se serve: screenshot Figma |
+| 3 | [Requirement decomposition](../system/canonical/workflows/fast-implementation/03-requirement-decomposition.md) | Obbligazioni con i loro elementi e punti aperti nel job design | No |
+| 4 | [Knowledge](../system/canonical/workflows/fast-implementation/04-knowledge.md) | Knowledge bundle per chi scrive e chi verifica | No; un conflitto con il requisito è un blocco |
+| 5 | [Codebase cold start](../system/canonical/workflows/fast-implementation/05-codebase-cold-start.md) | Panorama e lacune nella memoria della sessione | No |
+| 6 | [Implementation](../system/canonical/workflows/fast-implementation/06-implementation.md) | Codice e test dal code implementor | Solo su blocco |
+| 7 | [Validation](../system/canonical/workflows/fast-implementation/07-validation.md) | Verdict dell'implementation verifier, al massimo quattro round di correzione | No |
+| 8 | [Terminal handoff](../system/canonical/workflows/fast-implementation/08-terminal-handoff.md) | Messaggio con file, verdict e blocchi | **Sì**: fine; le richieste successive raffinano il requisito nello stesso job |
 
 ## DOCUMENTATION
 
@@ -85,7 +86,7 @@ Per scrivere documentazione tecnica da un template.
 | 4 | [Codebase exploration](../system/canonical/workflows/documentation/04-codebase-exploration.md) | Evidenza dal codice per ogni segnaposto | No |
 | 5 | [Authoring](../system/canonical/workflows/documentation/05-authoring.md) | Documento compilato, senza riferimenti a file | No |
 | 6 | [Coverage check](../system/canonical/workflows/documentation/06-coverage-check.md) | Segnaposti risolti e residui | No |
-| 7 | [Review](../system/canonical/workflows/documentation/07-review.md) | Documento corretto dal documentation reviewer | No: il reviewer non fa domande |
+| 7 | [Review](../system/canonical/workflows/documentation/07-review.md) | Documento corretto dal documentation reviewer | No: il reviewer non fa domande; se dopo tre round resta una sezione che blocca la guida, il workflow si ferma |
 | 8 | [Wrap-up](../system/canonical/workflows/documentation/08-wrap-up.md) | Documento salvato come artifact della sessione | **Sì**: fine; lo sviluppatore lo rivede |
 
 ---

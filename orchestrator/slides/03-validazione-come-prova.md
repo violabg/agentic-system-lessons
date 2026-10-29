@@ -44,13 +44,15 @@ Qualsiasi altra prima riga vale `FAIL`.
 
 ## Non condizionare chi giudica
 
-Il verificatore riceve solo identificatori. Nessun riassunto, nessun verdict suggerito.
+Alla prima invocazione solo identificatori. Nessun riassunto, nessun verdict suggerito.
+
+Alla ripresa dopo un `FAIL`, in più solo l'elenco delle correzioni fatte.
 
 ---
 
 ## Test che possono fallire
 
-Il [Code Implementor](../role-maps/agents/code-implementor.md) scrive prima il codice, poi i test.
+Quando la specifica lo chiede, il [Code Implementor](../role-maps/agents/code-implementor.md) scrive prima il codice, poi i test.
 
 Test tautologici vietati.
 
