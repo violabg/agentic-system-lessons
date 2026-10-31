@@ -58,10 +58,11 @@ Principi: [2. Gate e controllo umano](principi/02-gate-e-controllo-umano.md) · 
 
 Principi: [3. Validazione come prova](principi/03-validazione-come-prova.md) · [4. Artifact durevoli](principi/04-artifact-durevoli.md)
 
-- L'orchestrator apre l'iterazione `IT1`, segna le operazioni di codice `InProgress` e avvia il [code implementor](role-maps/agents/code-implementor.md). Il prompt contiene identificatori e knowledge, non il testo del design: il delegate legge il design dalla sessione.
-- Il code implementor realizza le operazioni servite: scrive il codice e, nell'operazione di test unitari autorizzata, i test; compila ed esegue: quattro scenari passano (motivazione valida, motivazione vuota, soli spazi, richiesta già chiusa).
+- L'orchestrator apre l'iterazione `IT1` e avvia il [code implementor](role-maps/agents/code-implementor.md). Il prompt contiene identificatori e il ciclo di lavoro, non il testo del design né la knowledge: il delegate chiede al runtime un'operazione alla volta.
+- Il runtime gli serve il batch automatico: le operazioni di codice e poi l'unica operazione `Build`, che passa. Risponde `batch-complete` e il delegate restituisce il controllo. Le operazioni di test restano fuori dal batch.
 - L'[implementation verifier](role-maps/agents/implementation-verifier.md) risponde `VERDICT: FAIL`: la risposta di errore dell'API non nomina il campo mancante, come chiede la regola API. L'orchestrator riprende lo **stesso** code implementor con il report del verifier; il secondo round è `VERDICT: PASS`.
-- Le operazioni passano a `Completed` e l'iterazione si chiude: l'elenco dei file cambiati lo calcola il runtime confrontando il workspace con lo stato all'apertura.
+- Le operazioni passano a `Completed` e `IT1` si chiude: l'elenco dei file cambiati lo calcola il runtime confrontando il workspace con lo stato all'apertura.
+- L'orchestrator elenca allo sviluppatore le operazioni che mancano. Lo sviluppatore seleziona quella `Testing` di tipo `Unit`: l'orchestrator apre `IT2` e lo stesso delegate scrive ed esegue i test. Quattro scenari passano (motivazione valida, motivazione vuota, soli spazi, richiesta già chiusa). Questa operazione non apre una verifica: il suo report è l'esito.
 - Il messaggio finale mostra file, test, verdict e blocchi. Non dichiara provati i client esterni dell'API, che nessuno ha eseguito.
 
 **Domanda breve:** se domani una persona nuova riapre la sessione, dove trova il motivo per cui “solo spazi” non è una motivazione valida?

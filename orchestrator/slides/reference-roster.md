@@ -22,7 +22,7 @@ Ognuno parte in un contesto pulito e riferisce nella stessa conversazione. Non s
 | --- | --- | --- |
 | [Code Implementor](../role-maps/agents/code-implementor.md) | Per scrivere codice e test, in `DESIGN` e in `FAST_IMPLEMENTATION` | [code-implementor.agent.md](../system/canonical/agents/code-implementor.agent.md) |
 | [Design Verifier](../role-maps/agents/design-verifier.md) | Prima di presentare il design per l'approvazione | [design-verifier.agent.md](../system/canonical/agents/design-verifier.agent.md) |
-| [Implementation Verifier](../role-maps/agents/implementation-verifier.md) | Dopo ogni round di implementazione | [implementation-verifier.agent.md](../system/canonical/agents/implementation-verifier.agent.md) |
+| [Implementation Verifier](../role-maps/agents/implementation-verifier.md) | Dopo ogni unità di lavoro che scrive codice di produzione | [implementation-verifier.agent.md](../system/canonical/agents/implementation-verifier.agent.md) |
 | [Documentation Reviewer](../role-maps/agents/documentation-reviewer.md) | Dopo la stesura di un documento in `DOCUMENTATION` | [documentation-reviewer.agent.md](../system/canonical/agents/documentation-reviewer.agent.md) |
 
 ## Skill

@@ -48,7 +48,7 @@ Un conflitto con il requisito non si risolve in silenzio.
 
 In `FAST_IMPLEMENTATION` chi scrive e chi giudica ricevono lo stesso bundle.
 
-Nel `DESIGN` l'implementor riceve la knowledge delle operazioni servite; il verificatore il bundle.
+Nel `DESIGN` l'implementor riceve la knowledge con ogni operazione servita; il verificatore quella raccolta nel job.
 
 ---
 

@@ -39,7 +39,9 @@ flowchart TD
 | Parte 2 | Il codice applica la knowledge alla lettera e resta nei confini della specifica? | Violazioni con file e regola | Verdict |
 | Verdict | L'implementazione può chiudersi? | `PASS` solo se tutto è coperto e non ci sono violazioni | Orchestrator |
 
-Riceve lo stesso knowledge bundle che ha guidato il [Code Implementor](code-implementor.md). Con un dubbio reale sceglie “non coperto”. Codice morto, guardie mai impostate e rami irraggiungibili non contano come realizzazione.
+Giudica con le stesse regole che hanno guidato il [Code Implementor](code-implementor.md): in `FAST_IMPLEMENTATION` riceve lo stesso knowledge bundle; in `DESIGN` riceve la knowledge raccolta nel job, mentre l'implementor riceve quella di ogni operazione servita. In `DESIGN` interviene per ogni unità di lavoro che scrive codice di produzione: le operazioni `Build`, `Commands` e `Testing` non aprono una verifica, perché il loro report è l'esito. Con un dubbio reale sceglie “non coperto”. Codice morto, guardie mai impostate e rami irraggiungibili non contano come realizzazione.
+
+Quali strumenti chiama, istruzione per istruzione: [DESIGN](../../reference/strumenti-design.md#implementation-verifier) · [FAST_IMPLEMENTATION](../../reference/strumenti-fast-implementation.md#implementation-verifier).
 
 **Da ricordare:** dopo un `FAIL`, l'orchestrator riprende lo stesso code implementor con questo report, poi lo stesso verificatore. Al massimo quattro round; poi il blocco va allo sviluppatore.
 

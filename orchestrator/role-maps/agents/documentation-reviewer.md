@@ -40,6 +40,8 @@ Nel workflow, l'orchestrator rilegge il file corretto e, se restano sezioni non 
 
 **Da ricordare:** il reviewer parte dal presupposto che una sezione sia poco chiara finché il testo non dimostra il contrario. Il suo compito è rendere la guida efficace, non lodarla.
 
+Come lavora nel flusso: [Strumenti di DOCUMENTATION](../../reference/strumenti-documentation.md#documentation-reviewer).
+
 ---
 
 **Nei principi:** [1. Autorità delimitata](../../principi/01-autorita-delimitata.md) · [3. Validazione come prova](../../principi/03-validazione-come-prova.md)

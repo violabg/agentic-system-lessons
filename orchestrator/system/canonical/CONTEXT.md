@@ -55,7 +55,7 @@ One served step of a workflow, headed `Instruction N/M.`. It names the operation
 _Avoid_: gate, prompt, phase
 
 **Part**
-One slice of a long runtime answer (an instruction, knowledge, the snapshot or the verification view), at most 24,000 characters and starting at a whole unit. It ends by naming the call that returns the next part, run as a shell command of its own; every part is read before acting.
+One slice of a long runtime answer (an instruction, knowledge, the snapshot or the verification view), no larger than the client's limit and starting at a whole unit where one fits. It ends by naming the call that returns the next part, run as a shell command of its own; every part is read before acting.
 _Avoid_: page, chunk, truncated output
 
 **Halt Point**
@@ -100,8 +100,12 @@ _Avoid_: choice log, ADR
 `IM#` — one ordered unit of implementation work in the design path, with its kind, instructions that name every element it carries out as `{{O#.k}}`, and its failure arms (branches, negatives, exceptions).
 _Avoid_: step, task, ticket
 
+**Build Operation**
+The one operation of a plan that runs the build, the compiler-error checks, the linter and the static verifications. It comes after every Code and NotCode operation and before every Commands and Testing operation; no other operation builds.
+_Avoid_: compile step, verification operation
+
 **Weight Class**
-The class an operation is served in, from its kind: `authoring` (Code, Wiring, Documentation, Changelog), `external-execution` (Generator, Migration, Procedure), `unit-test` (UnitTest, at most one per plan), `integration-test` (IntegrationTest), `verification`, in that order. Only `authoring` runs without the developer's authorisation; a declared dependency always prevails over the order.
+The class of an operation, from its kind: `authoring` (Code, NotCode), `commands` (Commands), `testing` (Testing, at most one per test type), `build` (Build, exactly one per plan). It is metadata: the plan keeps the order it was declared in, and `dependsOn` is the only precedence constraint. `authoring` and `build` form the automatic batch; `commands` and `testing` need the developer's authorisation.
 _Avoid_: priority, phase, batch
 
 **Work Unit**

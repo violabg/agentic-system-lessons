@@ -39,12 +39,12 @@ Per requisiti complessi, con una persona che giudica le decisioni prima del codi
 | 5 | [Codebase cold start](../system/canonical/workflows/design/05-codebase-cold-start.md) | Panorama del codice e lacune ancorate agli elementi, riferimenti ai file, nuovi punti aperti | No |
 | 6 | [Decision consolidation](../system/canonical/workflows/design/06-decision-consolidation.md) | Una decisione per punto aperto valido: risposta scelta e alternative | No: lo sviluppatore le vede alla review |
 | 7 | [Design walkthrough](../system/canonical/workflows/design/07-design-walkthrough.md) | Contratti, API, file, operazioni; controlli meccanici puliti; `VERDICT: PASS` del design verifier; documento di review | **Sì**: review e approvazione; escalation dopo quattro round |
-| 8 | [Implementation](../system/canonical/workflows/design/08-implementation.md) | Iterazione aperta, codice e test dal code implementor, verdict dell'implementation verifier, iterazione chiusa | Solo su blocco |
+| 8 | [Implementation](../system/canonical/workflows/design/08-implementation.md) | Un'iterazione per unità di lavoro: il batch automatico (`Code`, `NotCode`, `Build`) dal code implementor, il verdict dell'implementation verifier se c'è codice di produzione, poi `Commands` e `Testing` scelti dallo sviluppatore | **Sì**: dopo ogni unità di lavoro chiede quali operazioni eseguire; anche su blocco |
 | 9 | [Terminal handoff](../system/canonical/workflows/design/09-terminal-handoff.md) | Messaggio con documento, file, verifiche e blocchi | **Sì**: fine del workflow; le modifiche successive restano nello scope del design |
 
 ```mermaid
 flowchart TD
-    D1[1-2 Richieste particolari e immagini] --> D3[3 Requisito congelato<br/>e obbligazioni]
+    D1[1-2 Richieste particolari e immagini] --> D3[3 Obbligazioni<br/>e punti aperti]
     D3 --> D4[4 Knowledge]
     D4 --> D5[5 Panorama del codice]
     D5 --> D6[6 Decisioni scelte<br/>con alternative]
@@ -53,11 +53,17 @@ flowchart TD
     Checks -->|no, max 4 round| D7
     Checks -->|sì| Review{Sviluppatore:<br/>approva?}
     Review -->|cambia| D7
-    Review -->|approva| D8[8 Code implementor]
+    Review -->|approva| D8[8 Code implementor:<br/>batch automatico fino alla Build]
     D8 --> Verify{Implementation verifier<br/>PASS?}
     Verify -->|no, max 4 round| D8
-    Verify -->|sì o blocco| D9[9 Handoff con le prove]
+    Verify -->|sì| Consult{Operazioni mancanti?}
+    Verify -->|blocco| D9
+    Consult -->|sì| Select[Sviluppatore: sceglie<br/>comandi, test o altro]
+    Select --> D8
+    Consult -->|no| D9[9 Handoff con le prove]
 ```
+
+Chi chiama quali strumenti in queste istruzioni: [Strumenti di DESIGN](../reference/strumenti-design.md).
 
 ## FAST_IMPLEMENTATION
 
@@ -74,6 +80,8 @@ Per requisiti semplici o compiti meccanici. Non c'è un documento di design né 
 | 7 | [Validation](../system/canonical/workflows/fast-implementation/07-validation.md) | Verdict dell'implementation verifier, al massimo quattro round di correzione | No |
 | 8 | [Terminal handoff](../system/canonical/workflows/fast-implementation/08-terminal-handoff.md) | Messaggio con file, verdict e blocchi | **Sì**: fine; le richieste successive raffinano il requisito nello stesso job |
 
+Chi chiama quali strumenti in queste istruzioni: [Strumenti di FAST_IMPLEMENTATION](../reference/strumenti-fast-implementation.md).
+
 ## DOCUMENTATION
 
 Per scrivere documentazione tecnica da un template.
@@ -88,6 +96,8 @@ Per scrivere documentazione tecnica da un template.
 | 6 | [Coverage check](../system/canonical/workflows/documentation/06-coverage-check.md) | Segnaposti risolti e residui | No |
 | 7 | [Review](../system/canonical/workflows/documentation/07-review.md) | Documento corretto dal documentation reviewer | No: il reviewer non fa domande; se dopo tre round resta una sezione che blocca la guida, il workflow si ferma |
 | 8 | [Wrap-up](../system/canonical/workflows/documentation/08-wrap-up.md) | Documento salvato come artifact della sessione | **Sì**: fine; lo sviluppatore lo rivede |
+
+Chi chiama quali strumenti in queste istruzioni: [Strumenti di DOCUMENTATION](../reference/strumenti-documentation.md).
 
 ---
 

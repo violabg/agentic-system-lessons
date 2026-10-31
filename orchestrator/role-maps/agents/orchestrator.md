@@ -55,9 +55,10 @@ flowchart TD
 - una decisione dello sviluppatore registrata come obbligazione con origine `Developer` prevale sul requisito;
 - lo scope lo fissa solo il requisito: “il resto è analogo” o “e così via” sono omissioni, non design;
 - le immagini si guardano con un'unica procedura e si allegano alla sessione, così i delegate le ritrovano per nome;
-- la knowledge del progetto prevale sul codice esistente, che si legge per i contratti e non come modello.
+- la knowledge del progetto prevale sul codice esistente, che si legge per i contratti e non come modello;
+- ogni esplorazione del codice comincia dai cluster; le ricerche nei file vengono dopo, senza un limite di numero, dentro una parte che un cluster ha già nominato.
 
-Le istruzioni di ogni workflow sono elencate nel [riferimento dei workflow](../../slides/reference-flow.md).
+Le istruzioni di ogni workflow sono elencate nel [riferimento dei workflow](../../slides/reference-flow.md). Gli strumenti che l'orchestrator chiama in ciascuna: [DESIGN](../../reference/strumenti-design.md) · [FAST_IMPLEMENTATION](../../reference/strumenti-fast-implementation.md) · [DOCUMENTATION](../../reference/strumenti-documentation.md).
 
 **Da ricordare:** l'orchestrator non sa che cosa farà finché il runtime non glielo serve. La sua affidabilità sta nel seguire il contratto e le istruzioni, non nell'improvvisare un piano.
 

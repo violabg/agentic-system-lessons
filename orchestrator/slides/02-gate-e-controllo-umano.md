@@ -42,6 +42,14 @@ L'[orchestrator](../role-maps/agents/orchestrator.md) la registra, non la decide
 
 ---
 
+## Comandi e test su richiesta
+
+Il batch automatico si ferma alla `Build`.
+
+Le operazioni `Commands` e `Testing` partono solo quando lo sviluppatore le seleziona.
+
+---
+
 ## Cicli con un limite
 
 Quattro round di verifica al massimo.

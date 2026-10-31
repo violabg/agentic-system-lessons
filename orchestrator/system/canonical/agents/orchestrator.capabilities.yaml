@@ -8,10 +8,10 @@ delegates: [general-purpose, design-verifier, implementation-verifier, code-impl
 capabilities:
   - token: codebase-cluster-files
     kind: runtime
-    evidence: [tools, workflow]
+    evidence: [tools, body, workflow]
   - token: codebase-clusters
     kind: runtime
-    evidence: [tools, workflow]
+    evidence: [tools, body, workflow]
   - token: delegate
     kind: host
     evidence: [tools, workflow]
@@ -60,9 +60,6 @@ capabilities:
   - token: design-overview
     kind: runtime
     evidence: [workflow]
-  - token: design-schema
-    kind: runtime
-    evidence: [tools, workflow]
   - token: design-snapshot
     kind: runtime
     evidence: [tools, body, workflow]

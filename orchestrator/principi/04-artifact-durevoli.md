@@ -28,7 +28,7 @@ La chat può contenere un'approvazione, ma l'artifact ne conserva la traccia. L'
 
 **Il documento di review è una vista.** Il runtime rigenera il documento HTML del design a ogni scrittura: è ciò che lo sviluppatore legge per approvare, non un file da modificare. L'approvazione è permanente; una modifica successiva viene registrata nella storia e il documento mostra “Approved, modified after approval”. [Come si legge il documento](../reference/documento-di-design.md).
 
-**L'implementazione lascia una traccia propria.** Ogni round di implementazione è un'iterazione. Quando si apre, il runtime fotografa il workspace; quando si chiude, calcola lui i file aggiunti, modificati ed eliminati. L'elenco dei file non dipende da ciò che l'agente ricorda di aver toccato.
+**L'implementazione lascia una traccia propria.** Ogni unità di lavoro affidata a un delegate è un'iterazione. Quando si apre, il runtime fotografa il workspace; quando si chiude, calcola lui i file aggiunti, modificati ed eliminati. L'elenco dei file non dipende da ciò che l'agente ricorda di aver toccato.
 
 **Il contesto pulito è un test dell'handoff.** I delegate partono senza la conversazione dell'orchestrator e ricevono solo identificatori: leggono obbligazioni, design e immagini dalla sessione. Se un dettaglio esisteva solo nella chat, il delegate non lo trova, e l'handoff era incompleto.
 

@@ -40,7 +40,9 @@ flowchart TD
 | Conflitti | Il design contraddice una regola citabile della knowledge? | Regola citata e elemento del design che la contraddice | Verdict |
 | Verdict | Il design può essere presentato? | `PASS` solo se i conflitti sono `none` e ogni obbligazione è coperta | Orchestrator |
 
-La knowledge grounding comprende ogni documento `MustHave`, ogni documento letto nella sessione del design e ogni documento che il design nomina. La vista di verifica mostra solo le etichette delle obbligazioni: operazioni, decisioni e file arrivano senza id, così il verificatore giudica il contenuto e non ricostruisce una mappatura. Il verificatore può chiedere solo più design, mai meno.
+La knowledge grounding comprende ogni documento `MustHave`, ogni documento letto nella sessione del design e ogni documento che il design nomina. La vista di verifica mostra ogni operazione, contratto, API, file e decisione, anche quando non riguarda un'obbligazione: una regola su ordine o struttura si può giudicare solo così. Conserva solo le etichette di obbligazioni ed elementi: il resto arriva senza id, così il verificatore giudica il contenuto e non ricostruisce una mappatura. Il verificatore può chiedere solo più design, mai meno.
+
+Quali strumenti chiama: [Strumenti di DESIGN](../../reference/strumenti-design.md#design-verifier).
 
 **Da ricordare:** “nominare non è realizzare”. Un riferimento a un elemento seguito da una frase generica, un rimando o un nome di test non è copertura.
 

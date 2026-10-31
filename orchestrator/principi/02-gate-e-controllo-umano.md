@@ -33,7 +33,8 @@ Nel workflow `DESIGN` i passaggi che contano sono questi:
 | Avvio | Sessione o workflow non indicati | Sessione e workflow scelti esplicitamente | Sviluppatore |
 | Presentazione del design | Errori dei controlli meccanici, verdict diverso da `PASS` | Nessun errore e `VERDICT: PASS` | Runtime e [Design Verifier](../role-maps/agents/design-verifier.md) |
 | Approvazione | Design non approvato | Risposta “1. Approva” dello sviluppatore | Sviluppatore; il runtime rifiuta l'approvazione finché un controllo fallisce |
-| Fine implementazione | Verdict diverso da `PASS` | `VERDICT: PASS` dell'[Implementation Verifier](../role-maps/agents/implementation-verifier.md) | Verificatore; dopo quattro round falliti il blocco è registrato nell'iterazione e riportato nello handoff |
+| Unità di lavoro con codice di produzione | Verdict diverso da `PASS` | `VERDICT: PASS` dell'[Implementation Verifier](../role-maps/agents/implementation-verifier.md) | Verificatore; dopo quattro round falliti il blocco è registrato nell'iterazione e riportato nello handoff |
+| Comandi e test | Operazioni `Commands` e `Testing` non selezionate | Scelta esplicita delle operazioni | Sviluppatore; dopo ogni unità di lavoro l'orchestrator elenca ciò che manca e chiede come procedere |
 
 L'approvazione la dà solo lo sviluppatore: [l'orchestrator](../role-maps/agents/orchestrator.md) la registra con un'operazione del runtime, che la rifiuta finché il design ha errori. Approvare un design che lo sviluppatore non ha approvato è un difetto.
 

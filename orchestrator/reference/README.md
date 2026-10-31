@@ -10,6 +10,7 @@ Letture facoltative: aprile quando vuoi approfondire una domanda. Nessuna è nec
 | Che cosa fa ciascun agent e ciascuna skill? | [Mappe di agent e skill](../role-maps/README.md) |
 | Quando si usa ciascun agent o skill? | [Riferimento rapido](../slides/reference-roster.md) |
 | Quali sono tutte le istruzioni dei workflow? | [I tre workflow](../slides/reference-flow.md) |
+| Chi chiama quali strumenti in ogni workflow? | [DESIGN](strumenti-design.md), [FAST_IMPLEMENTATION](strumenti-fast-implementation.md) e [DOCUMENTATION](strumenti-documentation.md) |
 | Che cosa significano i termini? | [Glossario canonical](../system/canonical/CONTEXT.md) |
 | Come il runtime serve le istruzioni? | [Ciclo del workflow](../system/canonical/contracts/workflow-loop.md) |
 | Come si conservano memoria, eventi e artifact? | [Session store](../system/canonical/contracts/session-store.md) e [regole delle sessioni](../system/canonical/instructions/sessions.instructions.md) |

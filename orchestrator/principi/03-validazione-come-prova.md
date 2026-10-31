@@ -26,9 +26,9 @@ Il workflow `DESIGN` usa prove diverse, ognuna con il suo limite:
 
 | Prova | Che cosa controlla | Che cosa non controlla |
 | --- | --- | --- |
-| [Controlli meccanici del design](../system/canonical/contracts/design-checks.md) | Che ogni elemento del requisito abbia un'operazione, che ogni decisione sia realizzata, che il piano sia eseguibile in ordine | Se il design realizza davvero il requisito |
+| [Controlli meccanici del design](../system/canonical/contracts/design-checks.md) | Che ogni elemento del requisito abbia un'operazione, che ogni decisione sia realizzata, che il piano sia eseguibile in ordine e abbia una sola operazione `Build` | Se il design realizza davvero il requisito |
 | [Design Verifier](../role-maps/agents/design-verifier.md) | Se ogni obbligazione è realizzata da un meccanismo concreto e se il design contraddice una regola citabile della knowledge grounding | Il codice, che ancora non esiste |
-| Build e test del [Code Implementor](../role-maps/agents/code-implementor.md) | Compilazione e scenari di comportamento del codice prodotto | Ciò che i test non rappresentano |
+| Operazioni `Build` e `Testing` eseguite dal [Code Implementor](../role-maps/agents/code-implementor.md) | Build, errori del compilatore, linter e scenari di comportamento del codice prodotto | Ciò che i test non rappresentano |
 | [Implementation Verifier](../role-maps/agents/implementation-verifier.md) | Se il codice realizza la specifica e applica la knowledge, toccando solo i file previsti | Il comportamento a runtime oltre il codice letto |
 
 **Struttura e significato sono prove diverse.** I controlli meccanici sono fatti sull'artifact: un'operazione dichiara un elemento che le istruzioni non nominano, una decisione non ha un'operazione che la realizzi. Il design verifier risponde a un'altra domanda: se si implementasse il design *esattamente* com'è scritto, l'effetto richiesto si produrrebbe? Nominare un elemento non è realizzarlo; una realizzazione parziale non è copertura; un nome di test non è una prova.
@@ -37,7 +37,7 @@ Il workflow `DESIGN` usa prove diverse, ognuna con il suo limite:
 
 **Il verificatore non va condizionato.** Alla prima invocazione il design verifier riceve solo l'id della sessione e del job: niente riassunto del design, niente verdict suggerito. Legge le obbligazioni e il design dalla vista di verifica, da solo. Quando riprende dopo un `FAIL`, il prompt aggiunge solo l'elenco delle correzioni fatte: descrive ciò che è cambiato, non chiede un verdict. La verifica può chiedere solo *più* design, mai meno: un design che passa perdendo scope ha fallito.
 
-**I test devono poter fallire.** Quando la specifica del lavoro include i test, il code implementor li scrive dopo il codice, ricavando un inventario completo dei comportamenti: percorsi felici, condizioni, input non validi, errori. Nel workflow `DESIGN` l'operazione di test unitari è autorizzata dallo sviluppatore; in `FAST_IMPLEMENTATION` i test fanno parte del lavoro di implementazione. I test tautologici sono vietati: un test che non può fallire, perché asserisce una costante o verifica solo che un mock è stato chiamato, non osserva il codice.
+**I test devono poter fallire.** Quando la specifica del lavoro include i test, il code implementor li scrive dopo il codice, ricavando un inventario completo dei comportamenti: percorsi felici, condizioni, input non validi, errori. Nel workflow `DESIGN` il piano ha al massimo un'operazione `Testing` per tipo di test (`Unit`, `Integration`, `E2E`, `Harness`), e parte solo quando lo sviluppatore la seleziona; in `FAST_IMPLEMENTATION` i test unitari fanno parte del lavoro di implementazione. I test tautologici sono vietati: un test che non può fallire, perché asserisce una costante o verifica solo che un mock è stato chiamato, non osserva il codice.
 
 **Il messaggio finale non dichiara più di quello che è successo.** Al termine l'orchestrator mostra file toccati, test eseguiti con il loro esito, verdict del verificatore e blocchi aperti. Se resta un blocco, il messaggio lo dice; non presenta come successo ciò che non è passato.
 
@@ -45,7 +45,7 @@ Anche `DOCUMENTATION` separa le prove: un controllo meccanico cerca segnaposti n
 
 ## Nel caso guida
 
-I controlli meccanici trovano un'operazione senza ramo negativo; il design verifier trova un'obbligazione non coperta sul canale API. Dopo l'implementazione quattro test passano, ma l'implementation verifier segnala che la risposta di errore viola la regola API: i test verdi non coprivano quella regola. Il messaggio finale afferma che i quattro scenari passano nell'ambiente eseguito. Non afferma che i client esterni siano stati provati. [Leggi la traccia](../caso-guida.md#traccia-4-implementazione-e-prove).
+I controlli meccanici trovano un'operazione senza ramo negativo; il design verifier trova un'obbligazione non coperta sul canale API. Dopo l'implementazione la build è verde, ma l'implementation verifier segnala che la risposta di errore viola la regola API: la build non diceva nulla su quella regola. Dopo la correzione lo sviluppatore seleziona l'operazione di test unitari e quattro scenari passano. Il messaggio finale afferma che quei quattro scenari passano nell'ambiente eseguito. Non afferma che i client esterni siano stati provati. [Leggi la traccia](../caso-guida.md#traccia-4-implementazione-e-prove).
 
 ## Nel tuo repository
 

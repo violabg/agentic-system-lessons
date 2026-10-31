@@ -24,7 +24,7 @@ Quando cambia l'autorità, cambia il ruolo.
 
 [Orchestrator](../role-maps/agents/orchestrator.md): segue il workflow. Non scrive codice di produzione.
 
-[Code Implementor](../role-maps/agents/code-implementor.md): scrive codice e test.
+[Code Implementor](../role-maps/agents/code-implementor.md): scrive il codice; build e test quando la specifica li chiede.
 
 [Design Verifier](../role-maps/agents/design-verifier.md) e [Implementation Verifier](../role-maps/agents/implementation-verifier.md): giudicano. Non correggono.
 

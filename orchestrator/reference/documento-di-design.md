@@ -29,7 +29,7 @@ Il file è una **vista**: il runtime lo riscrive a ogni modifica del design e no
 | --- | --- | --- | --- |
 | 1 | `Overview` | Che cosa fa oggi il codice e che cosa manca per soddisfare il requisito. | Il punto di partenza è descritto correttamente? |
 | 2 | `Decisions` | Le scelte che il design ha dovuto fare: domanda, contesto, risposta scelta, alternative considerate, operazioni che la realizzano. Prima le decisioni `highlight`, poi le altre raggruppate per origine (requisito, codice, ragionamento dell'agente). | Sono d'accordo con le risposte, soprattutto con quelle evidenziate? |
-| 3 | `Implementation plan` | Le operazioni in ordine, ciascuna con tipo, peso, stato, file, obbligazioni realizzate e knowledge applicata. I casi limite (rami, casi negativi, errori) sono richiusi sotto *Edge cases*. | Il piano fa tutto ciò che serve, e niente di più? |
+| 3 | `Implementation plan` | Le operazioni in ordine, ciascuna con tipo (`Code`, `NotCode`, `Commands`, `Testing`, `Build`), tipo di test, peso, stato, file, obbligazioni, decisioni realizzate e knowledge applicata. I casi limite (rami, casi negativi, errori) sono richiusi sotto *Edge cases*. | Il piano fa tutto ciò che serve, e niente di più? |
 | 4 | `Filesystem` | L'albero dei file aggiunti (`A`) o modificati (`M`). Cliccando un file si vedono motivo, modifica, impatto, operazioni e decisioni collegate. | Il perimetro della modifica è quello che mi aspetto? |
 | 5 | `Contracts` | Le API pubbliche (metodo, percorso, richiesta, risposte) e i contratti interni (che cosa promette un modulo, firma, rischi in *What could break it*). | Le interfacce sono quelle giuste da mantenere nel tempo? |
 | 6 | `History` | Le iterazioni di implementazione: richiesta, file cambiati, verifiche, blocchi. Prima dell'implementazione è vuota. | Che cosa è già stato fatto e verificato? |
@@ -79,4 +79,4 @@ Nel caso guida, lo sviluppatore legge la decisione `highlight` sugli spazi e chi
 
 ---
 
-[← Precedente: Mappa del sistema](mappa-del-sistema.md) · [↑ Approfondimenti](README.md)
+[← Precedente: Mappa del sistema](mappa-del-sistema.md) · [↑ Approfondimenti](README.md) · [Successivo: Strumenti di DESIGN →](strumenti-design.md)

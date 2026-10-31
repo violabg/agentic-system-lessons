@@ -27,7 +27,7 @@ Il sistema separa chi **dirige** il lavoro da chi lo **esegue** e da chi lo **gi
 | Ruolo | Può | Non può |
 | --- | --- | --- |
 | [Orchestrator](../role-maps/agents/orchestrator.md) | Seguire il workflow scelto dallo sviluppatore, scrivere le obbligazioni del requisito e il design nella sessione, avviare i delegate e agire sui loro verdict | Scrivere codice di produzione, scegliere il workflow, tagliare lo scope del requisito |
-| [Code Implementor](../role-maps/agents/code-implementor.md) | Modificare i file, compilare, scrivere ed eseguire i test unitari | Cambiare la specifica che riceve |
+| [Code Implementor](../role-maps/agents/code-implementor.md) | Modificare i file; eseguire build e test quando la specifica lo chiede | Cambiare la specifica che riceve, vedere le operazioni successive |
 | [Design Verifier](../role-maps/agents/design-verifier.md) | Leggere requisito, design e knowledge e dare un verdict | Progettare, correggere o scrivere codice: non ha strumenti sui file, solo le operazioni del runtime |
 | [Implementation Verifier](../role-maps/agents/implementation-verifier.md) | Leggere il codice prodotto e dare un verdict | Correggere: non ha strumenti di scrittura |
 
@@ -49,7 +49,9 @@ flowchart TD
 
 **Che cosa può decidere l'orchestrator, e che cosa no.** Ogni scelta che il requisito non fissa diventa una decisione con la risposta scelta e alternative complete. L'orchestrator può scegliere *come* realizzare il requisito; non può cambiare *che cosa* il requisito chiede. Solo lo sviluppatore aggiunge, modifica o toglie un'obbligazione, e una sua decisione prevale sul requisito.
 
-**I delegate ricevono identificatori, non riassunti.** L'orchestrator avvia i delegate in un contesto pulito con un prompt fisso: id della sessione e del job, operazioni da eseguire, knowledge. Il delegate legge la specifica da solo. Un riassunto scritto da chi dirige il lavoro sarebbe un modo di condizionare chi lo esegue o lo giudica.
+**I delegate ricevono identificatori, non riassunti.** L'orchestrator avvia i delegate in un contesto pulito con un prompt fisso: id della sessione e del job, più ciò che l'istruzione prevede, come le operazioni scelte dallo sviluppatore o la knowledge. Il delegate legge la specifica da solo. Un riassunto scritto da chi dirige il lavoro sarebbe un modo di condizionare chi lo esegue o lo giudica.
+
+**Il limite sta anche negli strumenti.** Ogni ruolo ha un elenco di operazioni del runtime, e con l'opzione [`--role`](../system/canonical/contracts/workflow-loop.md#step-serving) il runtime rifiuta le altre. Il ruolo si dichiara da solo, quindi questo ferma una chiamata sbagliata, non una ostile; dove il client può imporre lo stesso limite, lo fa lui. Le pagine [DESIGN](../reference/strumenti-design.md), [FAST_IMPLEMENTATION](../reference/strumenti-fast-implementation.md) e [DOCUMENTATION](../reference/strumenti-documentation.md) mostrano chi chiama che cosa.
 
 **Altri ruoli, per altri bisogni.**
 

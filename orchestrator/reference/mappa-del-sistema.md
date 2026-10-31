@@ -51,7 +51,7 @@ flowchart TD
 
 Mappe dei ruoli: [Orchestrator](../role-maps/agents/orchestrator.md) · [Code Implementor](../role-maps/agents/code-implementor.md) · [Implementation Verifier](../role-maps/agents/implementation-verifier.md) · [Documentation Reviewer](../role-maps/agents/documentation-reviewer.md) · [Come scegliere](../role-maps/README.md#quale-percorso-scegliere).
 
-Il diagramma riassume i percorsi: non permette di unire o saltare istruzioni. Tutte le istruzioni sono nel [riferimento dei workflow](../slides/reference-flow.md).
+Il diagramma riassume i percorsi: non permette di unire o saltare istruzioni. Tutte le istruzioni sono nel [riferimento dei workflow](../slides/reference-flow.md). Gli strumenti che ogni ruolo chiama lungo il flusso sono in [DESIGN](strumenti-design.md), [FAST_IMPLEMENTATION](strumenti-fast-implementation.md) e [DOCUMENTATION](strumenti-documentation.md).
 
 ## Ciclo di manutenzione
 
