@@ -3,15 +3,12 @@
 # (tools: upstream tools map; body: the role contract; workflow: the served steps; skill: role-bound skills).
 role: code-implementor
 invocation: delegate
-operations: [read, write, terminal, runtime]
+operations: [read, search, write, terminal, runtime]
 capabilities:
   - token: codebase-cluster-files
     kind: runtime
-    evidence: [tools, body]
+    evidence: [tools]
   - token: codebase-clusters
-    kind: runtime
-    evidence: [tools, body]
-  - token: design-implementation-context
     kind: runtime
     evidence: [tools]
   - token: design-implementation-operation

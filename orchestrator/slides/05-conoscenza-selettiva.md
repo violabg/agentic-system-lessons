@@ -40,15 +40,15 @@ Il codice serve per i contratti, non come modello da imitare.
 
 Prevale su buon senso, best practice e codice esistente.
 
-Un conflitto con il requisito non si risolve in silenzio.
+Un conflitto con il requisito si registra, non si risolve in silenzio.
 
 ---
 
-## Lo stesso bundle
+## La regola, non il file
 
-In `FAST_IMPLEMENTATION` chi scrive e chi giudica ricevono lo stesso bundle.
+Nel `DESIGN` si registrano solo le prescrizioni applicabili: intervalli di righe, non documenti interi.
 
-Nel `DESIGN` l'implementor riceve la knowledge con ogni operazione servita; il verificatore quella raccolta nel job.
+Il runtime le serve con ogni operazione; l'orchestrator rivede il codice con le stesse.
 
 ---
 

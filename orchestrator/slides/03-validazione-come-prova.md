@@ -22,39 +22,45 @@ Per ogni prova: **quale rischio controlla**, **che cosa è stato eseguito**, **c
 
 Controlli meccanici: l'artifact è completo e coerente?
 
-[Design Verifier](../role-maps/agents/design-verifier.md): il design realizza davvero il requisito?
+Revisione dell'[orchestrator](../role-maps/agents/orchestrator.md): il design realizza davvero il requisito?
 
 ---
 
 ## Nominare non è realizzare
 
-Un elemento citato senza meccanismo non è coperto.
+Un'obbligazione citata senza meccanismo non è coperta.
 
-Una realizzazione parziale non è copertura.
-
----
-
-## Il verdict è meccanico
-
-`VERDICT: PASS` o `VERDICT: FAIL`.
-
-Qualsiasi altra prima riga vale `FAIL`.
+Un nome di test non è una prova.
 
 ---
 
-## Non condizionare chi giudica
+## Cercare di smentire
 
-Alla prima invocazione solo identificatori. Nessun riassunto, nessun verdict suggerito.
+Chi rivede dà per sbagliato il lavoro e cerca il difetto più forte.
 
-Alla ripresa dopo un `FAIL`, in più solo l'elenco delle correzioni fatte.
+Una revisione che conferma non è una verifica.
+
+---
+
+## Il report porta le prove
+
+Comandi eseguiti, esiti, regole di knowledge applicate e dove.
+
+Un'affermazione senza prova non passa.
 
 ---
 
 ## Test che possono fallire
 
-Quando la specifica lo chiede, il [Code Implementor](../role-maps/agents/code-implementor.md) scrive prima il codice, poi i test.
+Se un test rivela un difetto, si corregge il codice, non il test.
 
-Test tautologici vietati.
+---
+
+## Il limite
+
+Il design lo rivede chi l'ha scritto.
+
+La prova indipendente è lo sviluppatore che lo approva.
 
 ---
 

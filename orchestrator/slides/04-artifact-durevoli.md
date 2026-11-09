@@ -28,7 +28,7 @@ La memoria tiene puntatori, non copie. [Session store](../system/canonical/contr
 
 ## Il requisito diventa obbligazioni
 
-Ogni obbligazione cita la frase da cui deriva (`sourceRef`, `sourceSpan`).
+Ogni obbligazione cita la frase da cui deriva (`sourceRef`).
 
 Si rilegge da lì, non dal ricordo della chat.
 
@@ -50,7 +50,9 @@ Il runtime fotografa il workspace e calcola lui i file cambiati.
 
 ## Il contesto pulito come test
 
-Il delegate non vede la chat. Se un dettaglio manca nella sessione, l'handoff era incompleto.
+Il delegate non vede la chat: ogni operazione deve bastare a chi parte da zero.
+
+Se un dettaglio manca nella sessione, l'handoff era incompleto.
 
 ---
 

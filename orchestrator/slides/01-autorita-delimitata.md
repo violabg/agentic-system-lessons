@@ -22,11 +22,21 @@ Quando cambia l'autorità, cambia il ruolo.
 
 ## Dirigere, eseguire, giudicare
 
-[Orchestrator](../role-maps/agents/orchestrator.md): segue il workflow. Non scrive codice di produzione.
+[Orchestrator](../role-maps/agents/orchestrator.md): segue il workflow, scrive il design, rivede il codice. In `DESIGN` non scrive codice di produzione.
 
-[Code Implementor](../role-maps/agents/code-implementor.md): scrive il codice; build e test quando la specifica li chiede.
+[Code Implementor](../role-maps/agents/code-implementor.md): realizza un'operazione alla volta; build e test quando l'operazione li chiede.
 
-[Design Verifier](../role-maps/agents/design-verifier.md) e [Implementation Verifier](../role-maps/agents/implementation-verifier.md): giudicano. Non correggono.
+Sviluppatore: giudica il design che l'orchestrator ha scritto, e lo approva.
+
+---
+
+## Chi giudica chi
+
+Il codice lo giudica chi non l'ha scritto: l'orchestrator.
+
+Il design lo attacca il suo autore; il giudizio indipendente è dello sviluppatore.
+
+I contratti dei verificatori ([Design](../role-maps/agents/design-verifier.md), [Implementation](../role-maps/agents/implementation-verifier.md)) restano, ma nessuna istruzione li avvia.
 
 ---
 
@@ -48,7 +58,9 @@ Solo lo sviluppatore cambia che cosa il requisito chiede.
 
 ## Identificatori, non riassunti
 
-I delegate ricevono id di sessione e job, e leggono la specifica da soli.
+I delegate ricevono id di sessione e job, e chiedono la specifica al runtime.
+
+Mai un riassunto, mai la knowledge nel prompt.
 
 ---
 

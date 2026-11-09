@@ -10,19 +10,19 @@ Ognuno è la conversazione principale della propria sessione.
 
 | Agent | Usalo quando | Sorgente |
 | --- | --- | --- |
-| [Orchestrator](../role-maps/agents/orchestrator.md) | Vuoi progettare e implementare (`DESIGN`), implementare un cambiamento semplice (`FAST_IMPLEMENTATION`) o scrivere documentazione (`DOCUMENTATION`) | [orchestrator.agent.md](../system/canonical/agents/orchestrator.agent.md) |
+| [Orchestrator](../role-maps/agents/orchestrator.md) | Vuoi progettare e implementare (`DESIGN`), implementare direttamente un cambiamento semplice (`FAST_IMPLEMENTATION`) o scrivere documentazione (`DOCUMENTATION`) | [orchestrator.agent.md](../system/canonical/agents/orchestrator.agent.md) |
 | [Ask](../role-maps/agents/ask.md) | Serve una risposta tecnica, senza modifiche | [ask.agent.md](../system/canonical/agents/ask.agent.md) |
 | [Knowledge Builder](../role-maps/agents/knowledge-builder.md) | Una regola del progetto va ricavata dal codice e salvata come knowledge | [knowledge-builder.agent.md](../system/canonical/agents/knowledge-builder.agent.md) |
 
 ## Delegate avviati dall'orchestrator
 
-Ognuno parte in un contesto pulito e riferisce nella stessa conversazione. Non si avviano a mano.
+Ognuno parte in un contesto pulito e riferisce nella stessa conversazione. Non si avviano a mano. Le istruzioni attuali ne avviano due: il code implementor e il documentation reviewer.
 
 | Delegate | Quando lo avvia l'orchestrator | Sorgente |
 | --- | --- | --- |
-| [Code Implementor](../role-maps/agents/code-implementor.md) | Per scrivere codice e test, in `DESIGN` e in `FAST_IMPLEMENTATION` | [code-implementor.agent.md](../system/canonical/agents/code-implementor.agent.md) |
-| [Design Verifier](../role-maps/agents/design-verifier.md) | Prima di presentare il design per l'approvazione | [design-verifier.agent.md](../system/canonical/agents/design-verifier.agent.md) |
-| [Implementation Verifier](../role-maps/agents/implementation-verifier.md) | Dopo ogni unità di lavoro che scrive codice di produzione | [implementation-verifier.agent.md](../system/canonical/agents/implementation-verifier.agent.md) |
+| [Code Implementor](../role-maps/agents/code-implementor.md) | Per realizzare le operazioni del design approvato, in `DESIGN` | [code-implementor.agent.md](../system/canonical/agents/code-implementor.agent.md) |
+| [Design Verifier](../role-maps/agents/design-verifier.md) | Mai, dalla versione 3.0.3: il contratto resta, ma la revisione del design è dell'orchestrator | [design-verifier.agent.md](../system/canonical/agents/design-verifier.agent.md) |
+| [Implementation Verifier](../role-maps/agents/implementation-verifier.md) | Mai, dalla versione 3.0.3: il contratto resta, ma la revisione del codice è dell'orchestrator | [implementation-verifier.agent.md](../system/canonical/agents/implementation-verifier.agent.md) |
 | [Documentation Reviewer](../role-maps/agents/documentation-reviewer.md) | Dopo la stesura di un documento in `DOCUMENTATION` | [documentation-reviewer.agent.md](../system/canonical/agents/documentation-reviewer.agent.md) |
 
 ## Skill

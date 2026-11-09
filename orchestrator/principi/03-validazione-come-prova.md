@@ -12,7 +12,7 @@ L'agente dichiara che il lavoro è corretto perché il codice compila e i test c
 
 ## Il principio
 
-Scegli la prova più piccola e pertinente per ogni passaggio: un controllo meccanico, un test mirato, una build, una revisione indipendente. Per ogni prova, distingui sempre tre cose:
+Scegli la prova più piccola e pertinente per ogni passaggio: un controllo meccanico, un test mirato, una build, una revisione di chi non ha prodotto il risultato. Per ogni prova, distingui sempre tre cose:
 
 1. **quale rischio controlla**;
 2. **che cosa è stato eseguito davvero**;
@@ -26,30 +26,32 @@ Il workflow `DESIGN` usa prove diverse, ognuna con il suo limite:
 
 | Prova | Che cosa controlla | Che cosa non controlla |
 | --- | --- | --- |
-| [Controlli meccanici del design](../system/canonical/contracts/design-checks.md) | Che ogni elemento del requisito abbia un'operazione, che ogni decisione sia realizzata, che il piano sia eseguibile in ordine e abbia una sola operazione `Build` | Se il design realizza davvero il requisito |
-| [Design Verifier](../role-maps/agents/design-verifier.md) | Se ogni obbligazione è realizzata da un meccanismo concreto e se il design contraddice una regola citabile della knowledge grounding | Il codice, che ancora non esiste |
-| Operazioni `Build` e `Testing` eseguite dal [Code Implementor](../role-maps/agents/code-implementor.md) | Build, errori del compilatore, linter e scenari di comportamento del codice prodotto | Ciò che i test non rappresentano |
-| [Implementation Verifier](../role-maps/agents/implementation-verifier.md) | Se il codice realizza la specifica e applica la knowledge, toccando solo i file previsti | Il comportamento a runtime oltre il codice letto |
+| [Controlli meccanici del design](../system/canonical/contracts/design-checks.md) | Che ogni obbligazione, contratto, API e decisione abbia un'operazione che la realizza, che ogni file dichiarato abbia un'operazione, che i riferimenti esistano, che il piano sia eseguibile in ordine e abbia al massimo un'operazione `Testing` per tipo di test | Se il design realizza davvero il requisito |
+| [Revisione avversariale](../system/canonical/workflows/design/09-design-review.md) dell'[orchestrator](../role-maps/agents/orchestrator.md) | Quattro punti di vista: knowledge applicata, obbligazioni realizzate da un meccanismo concreto, sezioni coerenti tra loro, operazioni eseguibili da chi parte senza contesto | Il codice, che ancora non esiste; e non è uno sguardo indipendente, perché la fa chi ha scritto il design |
+| Build e test riportati dal [Code Implementor](../role-maps/agents/code-implementor.md) | Compilazione e scenari di comportamento del codice prodotto, con i comandi eseguiti e il loro esito | Ciò che i test non rappresentano |
+| [Revisione dell'unità di lavoro](../system/canonical/workflows/design/10-implementation.md) dell'orchestrator | Se il codice e il report rispettano istruzioni, obbligazioni, contratti, decisioni e knowledge dell'operazione, e se il report porta le prove che dichiara | Il comportamento a runtime oltre il codice letto e i comandi riportati |
 
-**Struttura e significato sono prove diverse.** I controlli meccanici sono fatti sull'artifact: un'operazione dichiara un elemento che le istruzioni non nominano, una decisione non ha un'operazione che la realizzi. Il design verifier risponde a un'altra domanda: se si implementasse il design *esattamente* com'è scritto, l'effetto richiesto si produrrebbe? Nominare un elemento non è realizzarlo; una realizzazione parziale non è copertura; un nome di test non è una prova.
+**Struttura e significato sono prove diverse.** I controlli meccanici sono fatti sull'artifact: un contratto che nessuna operazione realizza, un file che nessuna operazione dichiara, una dipendenza verso un'operazione successiva. La revisione risponde a un'altra domanda: un'operazione che dichiara di realizzare un'obbligazione ne nomina anche il meccanismo? Citare un'obbligazione non è realizzarla, e un nome di test non è una prova.
 
-**Il verdict è meccanico.** Il report di un verificatore inizia con `VERDICT: PASS` o `VERDICT: FAIL`. Qualunque altra prima riga vale come `FAIL`. Se il dubbio è reale, il verificatore sceglie “non coperto” e nomina l'elemento irrisolto.
+**Chi giudica cerca di smentire.** Una revisione che conferma ciò che è stato scritto non è una verifica. L'istruzione chiede all'orchestrator di dare per sbagliato il proprio design e di cercare il difetto più forte da ogni punto di vista: “un punto di vista che non riesci ad attaccare è un punto di vista che non hai esaminato”. Lo stesso vale per il codice: l'orchestrator dà per sbagliata l'unità di lavoro e prova a smentire il report. Un'affermazione senza prova nel report non passa.
 
-**Il verificatore non va condizionato.** Alla prima invocazione il design verifier riceve solo l'id della sessione e del job: niente riassunto del design, niente verdict suggerito. Legge le obbligazioni e il design dalla vista di verifica, da solo. Quando riprende dopo un `FAIL`, il prompt aggiunge solo l'elenco delle correzioni fatte: descrive ciò che è cambiato, non chiede un verdict. La verifica può chiedere solo *più* design, mai meno: un design che passa perdendo scope ha fallito.
+**Il report è una prova solo se porta le prove.** Il code implementor consegna l'inventario dei comportamenti con il test che copre ciascuno, le regole di knowledge applicate e dove, i file toccati, i comandi eseguiti e il loro esito. L'orchestrator non ripete la build: giudica quella riportata. Una regola di knowledge che il report non nomina, o che il codice contraddice, è un difetto.
 
-**I test devono poter fallire.** Quando la specifica del lavoro include i test, il code implementor li scrive dopo il codice, ricavando un inventario completo dei comportamenti: percorsi felici, condizioni, input non validi, errori. Nel workflow `DESIGN` il piano ha al massimo un'operazione `Testing` per tipo di test (`Unit`, `Integration`, `E2E`, `Harness`), e parte solo quando lo sviluppatore la seleziona; in `FAST_IMPLEMENTATION` i test unitari fanno parte del lavoro di implementazione. I test tautologici sono vietati: un test che non può fallire, perché asserisce una costante o verifica solo che un mock è stato chiamato, non osserva il codice.
+**I test devono poter fallire.** Nel workflow `DESIGN` il piano ha al massimo un'operazione `Testing` per tipo di test (`Unit`, `Integration`, `E2E`, `Harness`), e parte solo quando lo sviluppatore la seleziona. Se un test rivela un difetto reale nel codice di produzione, si corregge il codice e il test resta come prova: aggirare il difetto dentro il test è vietato. In `FAST_IMPLEMENTATION` l'orchestrator scrive i test unitari dopo il codice e ripete build e test finché passano.
 
-**Il messaggio finale non dichiara più di quello che è successo.** Al termine l'orchestrator mostra file toccati, test eseguiti con il loro esito, verdict del verificatore e blocchi aperti. Se resta un blocco, il messaggio lo dice; non presenta come successo ciò che non è passato.
+**Il messaggio finale non dichiara più di quello che è successo.** Al termine l'orchestrator mostra file toccati, esito delle revisioni e blocchi aperti. Se resta un blocco, il messaggio lo dice; non presenta come successo ciò che non è passato.
+
+**Il limite di questa scelta.** Nel sistema di riferimento il design non ha più un verificatore indipendente prima della review: i contratti del [Design Verifier](../role-maps/agents/design-verifier.md) e dell'[Implementation Verifier](../role-maps/agents/implementation-verifier.md), con il loro verdict meccanico `VERDICT: PASS` o `VERDICT: FAIL`, restano nel sistema ma nessuna istruzione li avvia. La prova indipendente sul design è lo sviluppatore che lo legge e lo approva. Saperlo serve a non attribuire alla revisione dell'autore un valore che non ha.
 
 Anche `DOCUMENTATION` separa le prove: un controllo meccanico cerca segnaposti non risolti nel documento, poi il [Documentation Reviewer](../role-maps/agents/documentation-reviewer.md) lo rilegge come farebbe un lettore nuovo.
 
 ## Nel caso guida
 
-I controlli meccanici trovano un'operazione senza ramo negativo; il design verifier trova un'obbligazione non coperta sul canale API. Dopo l'implementazione la build è verde, ma l'implementation verifier segnala che la risposta di errore viola la regola API: la build non diceva nulla su quella regola. Dopo la correzione lo sviluppatore seleziona l'operazione di test unitari e quattro scenari passano. Il messaggio finale afferma che quei quattro scenari passano nell'ambiente eseguito. Non afferma che i client esterni siano stati provati. [Leggi la traccia](../caso-guida.md#traccia-4-implementazione-e-prove).
+I controlli meccanici trovano un'API che nessuna operazione realizza; la revisione dell'orchestrator trova un'operazione che non passa la motivazione dal canale API. Dopo l'implementazione la build è verde, ma la revisione dell'unità di lavoro trova che la risposta di errore viola la regola API: la build non diceva nulla su quella regola. Dopo la correzione lo sviluppatore seleziona l'operazione di test unitari e quattro scenari passano. Il messaggio finale afferma che quei quattro scenari passano nell'ambiente eseguito. Non afferma che i client esterni siano stati provati. [Leggi la traccia](../caso-guida.md#traccia-4-implementazione-e-prove).
 
 ## Nel tuo repository
 
-- Chi verifica il lavoro del tuo agente: lo stesso agente, nella stessa conversazione, con lo stesso contesto?
+- Chi verifica il lavoro del tuo agente: lo stesso agente, nella stessa conversazione, con lo stesso contesto? Se sì, dove si trova la prova indipendente?
 - Nei report del tuo agente, è chiaro che cosa *non* è stato verificato?
 
 ---

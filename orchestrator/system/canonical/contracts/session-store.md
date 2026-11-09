@@ -9,7 +9,6 @@ sessions/<sessionId>/
   session.json             { sessionId, createdAt, lastActivatedAt }
   memory.md                appended memory entries, oldest first
   log.md                   appended events, oldest first
-  execution-report.json    report entries (an empty array when nothing was reported)
   artifacts/<name>.md      one artifact per file: front matter + content
   artifacts/<name>.<ext>   the image file of an image artifact
   jobs/<jobId>.json        one job per workflow run (contracts/workflow-loop.md)
@@ -29,7 +28,7 @@ Response: `Available sessions (most recent first):` followed by one `- <sessionI
 
 Arguments: `sessionId`.
 
-Create `sessions/<sessionId>/` with an empty `memory.md`, `log.md`, `artifacts/` and `execution-report.json` (`[]`) when it does not exist; otherwise keep everything and update `lastActivatedAt`. A session is activated only on the developer's explicit request.
+Create `sessions/<sessionId>/` with an empty `memory.md`, `log.md` and `artifacts/` when it does not exist; otherwise keep everything and update `lastActivatedAt`. A session is activated only on the developer's explicit request.
 
 Response:
 
@@ -85,6 +84,4 @@ Copy the file, or download the URL, to `artifacts/<name>.<ext>` and write `artif
 
 Attaching persists an image; it does not look at it. Looking at an image is `#capability:visual-evidence`, the model's own vision.
 
-## session-execution-report
-
-`session-execution-report-read` — arguments `sessionId`. Return the JSON array in `execution-report.json`.
+There is no execution report: upstream stopped exposing `read_current_execution_report` in 3.0.1 and removed its capture in run 4 (3.0.3), so the runtime no longer serves it.

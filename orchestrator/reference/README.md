@@ -17,7 +17,7 @@ Letture facoltative: aprile quando vuoi approfondire una domanda. Nessuna è nec
 | Come si legge il documento di design prima di approvarlo? | [Il documento di design](documento-di-design.md) |
 | Com'è fatto un design? | [Modello del design](../system/canonical/contracts/design-model.md) |
 | Che cosa controllano i controlli meccanici? | [Controlli del design](../system/canonical/contracts/design-checks.md) |
-| Che cosa vedono il verificatore e lo sviluppatore? | [Viste del design](../system/canonical/contracts/projections.md) |
+| Quali viste del design leggono l'orchestrator e lo sviluppatore? | [Viste del design](../system/canonical/contracts/projections.md) |
 | Come si organizza la knowledge? | [Catalogo della knowledge](../system/canonical/contracts/knowledge-catalog.md) |
 | Che cosa dicono le istruzioni sempre attive? | [Router del repository](../system/canonical/instructions/AGENTS.md) |
 

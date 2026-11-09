@@ -43,7 +43,7 @@ flowchart TD
 
 I gate sono obbligatori e lineari. Se la knowledge e il codice si contraddicono, Ask si ferma e chiede invece di scegliere.
 
-**Da ricordare:** la knowledge viene prima del repository. Il codice serve a confermare o completare un punto aperto, non a sostituire le regole del progetto.
+**Da ricordare:** la knowledge viene prima del repository. Il codice serve a confermare un dettaglio o colmare una lacuna, non a sostituire le regole del progetto.
 
 ---
 

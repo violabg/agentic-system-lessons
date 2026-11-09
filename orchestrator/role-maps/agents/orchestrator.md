@@ -6,11 +6,11 @@
 
 ## In 30 secondi
 
-**Fa:** attiva la sessione indicata dallo sviluppatore, avvia il job del workflow che lo sviluppatore ha scelto e ne segue le istruzioni alla lettera, una alla volta. Scrive le obbligazioni del requisito, il design e la memoria attraverso il runtime, avvia i delegate e agisce sui loro verdict.
+**Fa:** attiva la sessione indicata dallo sviluppatore, avvia il job del workflow che lo sviluppatore ha scelto e ne segue le istruzioni alla lettera, una alla volta. Scrive le obbligazioni del requisito, il design e la memoria attraverso il runtime, attacca il proprio design prima di presentarlo, avvia i delegate e rivede il lavoro che consegnano. In `FAST_IMPLEMENTATION` implementa da solo il requisito, con build e test.
 
-**Non fa:** non scrive codice di produzione, non sceglie né deduce il workflow, non attiva una sessione senza richiesta esplicita, non taglia lo scope del requisito e non approva il design al posto dello sviluppatore. Se il runtime non è disponibile, si ferma.
+**Non fa:** in `DESIGN` non scrive codice di produzione; non sceglie né deduce il workflow, non attiva una sessione senza richiesta esplicita, non taglia lo scope del requisito e non approva il design al posto dello sviluppatore. Se il runtime non è disponibile, si ferma.
 
-**Consegna:** nel workflow `DESIGN`, un design approvato e implementato con le prove; in `FAST_IMPLEMENTATION`, un'implementazione verificata; in `DOCUMENTATION`, un documento salvato nella sessione. Sempre con i blocchi aperti dichiarati.
+**Consegna:** nel workflow `DESIGN`, un design approvato e implementato con le prove; in `FAST_IMPLEMENTATION`, un'implementazione con build e test eseguiti; in `DOCUMENTATION`, un documento salvato nella sessione. Sempre con i blocchi aperti dichiarati.
 
 ## Flusso, istruzioni e artifact
 
@@ -44,7 +44,7 @@ flowchart TD
 | Sessione | Su quale registro durevole si lavora? | Sessione attivata su richiesta esplicita; memoria letta | Workflow |
 | Workflow | Quale sequenza di istruzioni si segue? | Scelta esplicita dello sviluppatore, mai dedotta | Job |
 | Job | Quale esecuzione, e su quale design? | Job attivo; design nuovo o riusato se lo sviluppatore indica un `designId` | Prima istruzione |
-| Istruzione N/M | Che cosa è autorizzato adesso? | Ciò che l'istruzione prescrive: requisito, design, delegate, documento | Istruzione successiva o halt point |
+| Istruzione N/M | Che cosa è autorizzato adesso? | Ciò che l'istruzione prescrive: requisito, design, revisione, delegate, documento | Istruzione successiva o halt point |
 | Halt point | Serve una persona? | Review, domanda o decisione presentata | Risposta dello sviluppatore |
 | Handoff finale | Il risultato è dichiarato con le prove? | Messaggio che non afferma più di quanto accaduto | Lo sviluppatore |
 
@@ -54,9 +54,9 @@ flowchart TD
 
 - una decisione dello sviluppatore registrata come obbligazione con origine `Developer` prevale sul requisito;
 - lo scope lo fissa solo il requisito: “il resto è analogo” o “e così via” sono omissioni, non design;
-- le immagini si guardano con un'unica procedura e si allegano alla sessione, così i delegate le ritrovano per nome;
-- la knowledge del progetto prevale sul codice esistente, che si legge per i contratti e non come modello;
-- ogni esplorazione del codice comincia dai cluster; le ricerche nei file vengono dopo, senza un limite di numero, dentro una parte che un cluster ha già nominato.
+- le immagini si guardano con un unico strumento e si allegano alla sessione prima di usarle, così i delegate le ritrovano per nome;
+- applicare la knowledge del progetto è obbligatorio: un design che realizza il requisito ma viola una regola è rifiutato, e il codice esistente si legge per i contratti, non come modello;
+- l'orchestrator non asseconda lo sviluppatore: se qualcosa non va, lo dice apertamente.
 
 Le istruzioni di ogni workflow sono elencate nel [riferimento dei workflow](../../slides/reference-flow.md). Gli strumenti che l'orchestrator chiama in ciascuna: [DESIGN](../../reference/strumenti-design.md) · [FAST_IMPLEMENTATION](../../reference/strumenti-fast-implementation.md) · [DOCUMENTATION](../../reference/strumenti-documentation.md).
 

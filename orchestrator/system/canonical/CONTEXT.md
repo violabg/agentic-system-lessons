@@ -33,11 +33,11 @@ A canonical agent contract in `agents/`. Its `invocation` is `user` (started by 
 _Avoid_: agent file, persona, mode
 
 **Orchestrator**
-The user role that drives the workflow the developer chooses. It follows the served instructions to the letter, never writes production code, and delegates the code and the verifications.
+The user role that drives the workflow the developer chooses. It follows the served instructions to the letter. In DESIGN it never writes production code: it delegates the code to the implementor and reviews every work unit itself. In FAST_IMPLEMENTATION it implements the requirement directly, with its build and tests.
 _Avoid_: planner, main agent, router
 
 **Delegate**
-A role the orchestrator starts in a fresh context with a fixed prompt that carries identifiers only (session, job, operation ids, image artifact names, and for a verifier the knowledge bundle). The delegate reads its specification itself, reports back in the same conversation, and can be resumed by its delegate id; without resume the same role is started again with a complete correction prompt. The delegates are `code-implementor`, `design-verifier`, `implementation-verifier` and `documentation-reviewer`.
+A role the orchestrator starts in a fresh context with a fixed prompt that carries identifiers only (session, job, operation ids, image artifact names, and for a verifier the knowledge bundle). The delegate reads its specification itself, reports back in the same conversation, and can be resumed by its delegate id; without resume the same role is started again with a complete correction prompt. The delegates are `code-implementor`, `design-verifier`, `implementation-verifier` and `documentation-reviewer`. Since 3.0.3 the served steps start only `code-implementor` and `documentation-reviewer`; the two verifier roles are still shipped upstream and kept.
 _Avoid_: subagent handoff, second conversation, helper agent
 
 **Verdict**
@@ -47,7 +47,7 @@ _Avoid_: approval, score, status
 ## Workflow
 
 **Workflow**
-An ordered set of instructions the runtime serves for one workflow type: `DESIGN` (9 instructions), `FAST_IMPLEMENTATION` (8) or `DOCUMENTATION` (8). The developer always chooses the type explicitly.
+An ordered set of instructions the runtime serves for one workflow type: `DESIGN` (11 instructions), `FAST_IMPLEMENTATION` (5) or `DOCUMENTATION` (8). The developer always chooses the type explicitly.
 _Avoid_: plan, pipeline, mode
 
 **Instruction**
@@ -55,7 +55,7 @@ One served step of a workflow, headed `Instruction N/M.`. It names the operation
 _Avoid_: gate, prompt, phase
 
 **Part**
-One slice of a long runtime answer (an instruction, knowledge, the snapshot or the verification view), no larger than the client's limit and starting at a whole unit where one fits. It ends by naming the call that returns the next part, run as a shell command of its own; every part is read before acting.
+One slice of a long runtime answer (an instruction, knowledge, the snapshot, the verification view, or any other response longer than the limit, served from a stored copy), no larger than the client's limit and starting at a whole unit where one fits. It ends by naming the call that returns the next part, run as a shell command of its own; every part is read before acting.
 _Avoid_: page, chunk, truncated output
 
 **Halt Point**
@@ -63,7 +63,7 @@ An explicit stop inside an instruction (a review awaiting approval, an interview
 _Avoid_: checkpoint, pause, confirmation
 
 **Job**
-One run of a workflow inside a session, identified by a job id. A DESIGN job owns or reuses a design; a FAST_IMPLEMENTATION job owns a job design that holds its obligations.
+One run of a workflow inside a session, identified by a job id. A DESIGN job owns or reuses a design; FAST_IMPLEMENTATION and DOCUMENTATION jobs have none.
 _Avoid_: task, ticket, run
 
 **Session**
@@ -77,39 +77,27 @@ _Avoid_: preferences, prompt notes
 ## Design
 
 **Design**
-The structured artifact a DESIGN job builds and the developer approves (a FAST_IMPLEMENTATION job keeps only its obligations, open points and knowledge references in one, with no approval): obligations, open points, overview, file references, decisions and the path (contracts, APIs, filesystem, operations), plus the iteration history. Rendered as a review document.
+The structured artifact a DESIGN job builds and the developer approves: obligations, overview, file references, knowledge references, decisions and the path (contracts, APIs, filesystem, operations), plus the iteration history. Rendered as a review document.
 _Avoid_: implementation plan, plan file, spec document
 
 **Obligation**
-`O#` — one atomic, independently falsifiable behavior R imposes (or the developer decided, origin `Developer`), with its necessary elements `O#.k`. The obligations are the requirement of the job: every later step and every verifier reads R from them, never from a separate copy of R.
-_Avoid_: requirement line, acceptance criterion, task, requirement lock
-
-**Element**
-`O#.k` — a necessary condition of an obligation that demands a distinct realization: `Direction`, `Conjunct`, `Quantifier`, `Guard`, `Effect`, `StateSemantics` or `Exception`.
-_Avoid_: sub-requirement, bullet
-
-**Open Point**
-`OP#` — an internal question the design raises. Open points become decisions; the developer never sees their ids.
-_Avoid_: question for the user, blocker
+`O#` — one atomic, independently falsifiable behavior R imposes (or the developer decided, origin `Developer`), written as one closed claim with its class, boundaries and source in R. The obligations are the requirement of the job: every later step reads R from them, never from a separate copy of R. Since 3.0.3 an obligation has no elements.
+_Avoid_: requirement line, acceptance criterion, task, requirement lock, element
 
 **Decision**
-`D#` — a settled answer to an open point: the chosen option first plus comparable alternatives. A highlighted decision (`highlight`, formerly `blocking`) is where the developer's judgment is most needed: it is read first at the review, and one about the situation is not realized by code.
-_Avoid_: choice log, ADR
+`D#` — a fork the design settled from the accumulated context: the chosen option first plus comparable alternatives. A highlighted decision (`highlight`, formerly `blocking`) is where the developer's judgment is most needed: it is read first at the review, and one about the situation is not realized by code. A breaking-change decision records a break the design introduces (a contract signature, a public API, a persisted schema) instead of where the question came from.
+_Avoid_: choice log, ADR, open point
 
 **Operation (design)**
-`IM#` — one ordered unit of implementation work in the design path, with its kind, instructions that name every element it carries out as `{{O#.k}}`, and its failure arms (branches, negatives, exceptions).
+`IM#` — one ordered unit of implementation work in the design path: a semantic unit with every file it needs, its kind (`Production`, `Documentation` or `Testing`), complete instructions an implementor can execute from an empty context, the obligations, contracts, APIs and decisions it realizes, the knowledge and file references it consumes (or the reason it needs none), and its failure arms (branches, negatives, exceptions).
 _Avoid_: step, task, ticket
 
-**Build Operation**
-The one operation of a plan that runs the build, the compiler-error checks, the linter and the static verifications. It comes after every Code and NotCode operation and before every Commands and Testing operation; no other operation builds.
-_Avoid_: compile step, verification operation
-
-**Weight Class**
-The class of an operation, from its kind: `authoring` (Code, NotCode), `commands` (Commands), `testing` (Testing, at most one per test type), `build` (Build, exactly one per plan). It is metadata: the plan keeps the order it was declared in, and `dependsOn` is the only precedence constraint. `authoring` and `build` form the automatic batch; `commands` and `testing` need the developer's authorisation.
-_Avoid_: priority, phase, batch
+**Batch**
+When an operation is served: the production batch, then the documentation batch, without the developer's selection. A `Testing` operation, or one with destructive side effects, is served only when the developer selects it. The plan keeps the order it was declared in, and `dependsOn` is the only precedence constraint.
+_Avoid_: priority, phase, weight class
 
 **Work Unit**
-What one implementor delegation realizes: the operations the runtime serves it one at a time (the automatic batch, or one operation the developer authorised), ending at a terminator — `batch-complete` or `complete` — and verified as one unit. An operation is `Implemented` when the implementor closes it and `Completed` once the work unit's verification passes.
+What one implementor delegation realizes: the operations the runtime serves it one at a time (the production and documentation batches, or the operations the developer selected), ending at a terminator — `batch-complete` or `complete` — and reviewed by the orchestrator as one unit. An operation is `Implemented` when the implementor closes it and `Completed` once the orchestrator's review of the work unit passes.
 _Avoid_: sprint, task list, whole plan
 
 **Iteration**
@@ -139,5 +127,5 @@ Whether a knowledge reference or a file reference governs the production code (`
 _Avoid_: tier, category
 
 **Knowledge Bundle**
-The merged rules the orchestrator passes, unchanged, to the delegates of the same step: the implementor and the verifier in FAST_IMPLEMENTATION, only the verifier in the DESIGN Implementation step, where the implementor receives the knowledge references of each served operation instead.
+The merged rules of the project knowledge that govern one implementation. In FAST_IMPLEMENTATION the orchestrator builds it and implements from it itself. In DESIGN no bundle goes into a delegate prompt: the implementor receives the knowledge references of each served operation.
 _Avoid_: knowledge dump, summary

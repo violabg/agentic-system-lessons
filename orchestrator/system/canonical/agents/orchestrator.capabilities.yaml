@@ -4,14 +4,14 @@
 role: orchestrator
 invocation: user
 operations: [read, search, write, terminal, question, runtime]
-delegates: [general-purpose, design-verifier, implementation-verifier, code-implementor, documentation-reviewer]
+delegates: [general-purpose, design-verifier, code-implementor, documentation-reviewer]
 capabilities:
   - token: codebase-cluster-files
     kind: runtime
-    evidence: [tools, body, workflow]
+    evidence: [tools, workflow]
   - token: codebase-clusters
     kind: runtime
-    evidence: [tools, body, workflow]
+    evidence: [tools, workflow]
   - token: delegate
     kind: host
     evidence: [tools, workflow]
@@ -19,6 +19,9 @@ capabilities:
     kind: runtime
     evidence: [tools, workflow]
   - token: design-checks
+    kind: runtime
+    evidence: [tools, workflow]
+  - token: design-contracts
     kind: runtime
     evidence: [tools, workflow]
   - token: design-decisions
@@ -30,7 +33,7 @@ capabilities:
   - token: design-file-references
     kind: runtime
     evidence: [workflow]
-  - token: design-implementation-context
+  - token: design-file-system
     kind: runtime
     evidence: [tools, workflow]
   - token: design-implementation-operation
@@ -51,10 +54,10 @@ capabilities:
   - token: design-obligations
     kind: runtime
     evidence: [tools, workflow]
-  - token: design-open-points
+  - token: design-operation-status
     kind: runtime
     evidence: [tools, workflow]
-  - token: design-operation-status
+  - token: design-operations
     kind: runtime
     evidence: [tools, workflow]
   - token: design-overview
@@ -63,9 +66,6 @@ capabilities:
   - token: design-snapshot
     kind: runtime
     evidence: [tools, body, workflow]
-  - token: design-submit
-    kind: runtime
-    evidence: [tools, workflow]
   - token: documentation-check
     kind: runtime
     evidence: [workflow]
@@ -86,19 +86,19 @@ capabilities:
     evidence: [tools, workflow]
   - token: session-activate
     kind: runtime
-    evidence: [tools, body]
+    evidence: [tools, body, skill]
   - token: session-artifact-list
     kind: runtime
     evidence: [tools, workflow]
   - token: session-artifact-read
     kind: runtime
-    evidence: [tools, body, workflow]
+    evidence: [tools, workflow]
   - token: session-artifact-write
     kind: runtime
-    evidence: [tools, workflow]
+    evidence: [tools, workflow, skill]
   - token: session-event-log
     kind: runtime
-    evidence: [tools]
+    evidence: [tools, workflow]
   - token: session-image-attach
     kind: runtime
     evidence: [tools, body, workflow]

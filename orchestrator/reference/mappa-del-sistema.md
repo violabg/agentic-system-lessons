@@ -15,7 +15,7 @@ flowchart TD
     Workflow --> Knowledge[Glossario e catalogo della knowledge]
     Knowledge --> Evidence[Fonti selezionate]
     Evidence --> Delegate[Delegate in contesto pulito]
-    Delegate --> Validation[Validazione e verdict]
+    Delegate --> Validation[Controlli e revisione]
     Validation --> Gate[Gate o halt point]
     Human --> Gate
     Gate --> Artifact[Artifact nella sessione]
@@ -28,7 +28,7 @@ flowchart TD
 | Ruolo | Limita autorità, strumenti e output | [1. Autorità delimitata](../principi/01-autorita-delimitata.md) |
 | Workflow e runtime | Impongono l'ordine dei passaggi | [2. Gate e controllo umano](../principi/02-gate-e-controllo-umano.md) |
 | Gate e halt point | Controllano il passaggio | [2. Gate e controllo umano](../principi/02-gate-e-controllo-umano.md) |
-| Delegate e verificatori | Separano chi produce da chi giudica | [3. Validazione come prova](../principi/03-validazione-come-prova.md) |
+| Delegate, controlli e revisioni | Separano chi produce da chi giudica, e dichiarano che cosa ciascuna prova copre | [3. Validazione come prova](../principi/03-validazione-come-prova.md) |
 | Sessione e design | Conservano le obbligazioni (il requisito), le decisioni, le prove e lo stato | [4. Artifact durevoli](../principi/04-artifact-durevoli.md) |
 | Glossario e catalogo | Stabilizzano i termini e selezionano le fonti | [5. Conoscenza selettiva](../principi/05-conoscenza-selettiva.md) |
 
@@ -38,10 +38,10 @@ flowchart TD
 flowchart TD
     Request[Richiesta e output desiderato] --> Choice{Lo sviluppatore sceglie<br/>il workflow}
     Choice -->|scelte da giudicare| Design[DESIGN]
-    Design --> Approved[Design verificato<br/>e approvato]
-    Approved --> Impl1[Code implementor<br/>e implementation verifier]
+    Design --> Approved[Design rivisto<br/>e approvato]
+    Approved --> Impl1[Code implementor<br/>e revisione dell'orchestrator]
     Choice -->|cambiamento semplice| Fast[FAST_IMPLEMENTATION]
-    Fast --> Impl2[Code implementor<br/>e implementation verifier]
+    Fast --> Impl2[L'orchestrator implementa<br/>con build e test]
     Choice -->|documentare l'esistente| Doc[DOCUMENTATION]
     Doc --> Review[Documento compilato<br/>e documentation reviewer]
     Impl1 --> Handoff[Handoff con le prove<br/>e i blocchi aperti]
@@ -49,7 +49,7 @@ flowchart TD
     Review --> Artifact[Documento salvato<br/>nella sessione]
 ```
 
-Mappe dei ruoli: [Orchestrator](../role-maps/agents/orchestrator.md) · [Code Implementor](../role-maps/agents/code-implementor.md) · [Implementation Verifier](../role-maps/agents/implementation-verifier.md) · [Documentation Reviewer](../role-maps/agents/documentation-reviewer.md) · [Come scegliere](../role-maps/README.md#quale-percorso-scegliere).
+Mappe dei ruoli: [Orchestrator](../role-maps/agents/orchestrator.md) · [Code Implementor](../role-maps/agents/code-implementor.md) · [Documentation Reviewer](../role-maps/agents/documentation-reviewer.md) · [Come scegliere](../role-maps/README.md#quale-percorso-scegliere).
 
 Il diagramma riassume i percorsi: non permette di unire o saltare istruzioni. Tutte le istruzioni sono nel [riferimento dei workflow](../slides/reference-flow.md). Gli strumenti che ogni ruolo chiama lungo il flusso sono in [DESIGN](strumenti-design.md), [FAST_IMPLEMENTATION](strumenti-fast-implementation.md) e [DOCUMENTATION](strumenti-documentation.md).
 

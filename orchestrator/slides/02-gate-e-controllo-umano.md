@@ -42,25 +42,25 @@ L'[orchestrator](../role-maps/agents/orchestrator.md) la registra, non la decide
 
 ---
 
-## Comandi e test su richiesta
+## Test su richiesta
 
-Il batch automatico si ferma alla `Build`.
+I batch automatici: prima la produzione, poi la documentazione.
 
-Le operazioni `Commands` e `Testing` partono solo quando lo sviluppatore le seleziona.
+Le operazioni `Testing` e quelle distruttive partono solo quando lo sviluppatore le seleziona.
 
 ---
 
-## Cicli con un limite
+## Correggere, non indebolire
 
-Quattro round di verifica al massimo.
+La revisione si ripete finché un giro completo non trova difetti.
 
-Poi il report va allo sviluppatore, senza indebolire il design.
+Una contraddizione si corregge nel design; solo un difetto non correggibile diventa un blocco.
 
 ---
 
 ## Gate proporzionati
 
-`FAST_IMPLEMENTATION`: niente documento di design né approvazione; le obbligazioni sono il requisito, la verifica resta.
+`FAST_IMPLEMENTATION`: niente design, niente approvazione, niente delegate. L'orchestrator implementa e lo sviluppatore giudica alla fine.
 
 La scelta è dello sviluppatore. [Tutti i workflow](reference-flow.md).
 

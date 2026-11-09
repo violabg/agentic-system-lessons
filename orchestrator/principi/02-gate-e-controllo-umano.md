@@ -31,16 +31,16 @@ Nel workflow `DESIGN` i passaggi che contano sono questi:
 | Passaggio | Che cosa blocca | Che cosa sblocca | Chi decide |
 | --- | --- | --- | --- |
 | Avvio | Sessione o workflow non indicati | Sessione e workflow scelti esplicitamente | Sviluppatore |
-| Presentazione del design | Errori dei controlli meccanici, verdict diverso da `PASS` | Nessun errore e `VERDICT: PASS` | Runtime e [Design Verifier](../role-maps/agents/design-verifier.md) |
+| Presentazione del design | Errori dei [controlli meccanici](../system/canonical/contracts/design-checks.md); difetti trovati dalla revisione avversariale | Un giro completo della revisione senza difetti, poi un controllo finale senza errori | Runtime e [orchestrator](../role-maps/agents/orchestrator.md) |
 | Approvazione | Design non approvato | Risposta “1. Approva” dello sviluppatore | Sviluppatore; il runtime rifiuta l'approvazione finché un controllo fallisce |
-| Unità di lavoro con codice di produzione | Verdict diverso da `PASS` | `VERDICT: PASS` dell'[Implementation Verifier](../role-maps/agents/implementation-verifier.md) | Verificatore; dopo quattro round falliti il blocco è registrato nell'iterazione e riportato nello handoff |
-| Comandi e test | Operazioni `Commands` e `Testing` non selezionate | Scelta esplicita delle operazioni | Sviluppatore; dopo ogni unità di lavoro l'orchestrator elenca ciò che manca e chiede come procedere |
+| Unità di lavoro | Operazioni realizzate ma non riviste | Revisione dell'orchestrator senza difetti: le operazioni passano a `Completed` | Orchestrator; un difetto che non si può correggere diventa un blocco registrato nell'iterazione |
+| Test e operazioni distruttive | Operazioni `Testing` o con effetti distruttivi non selezionate | Scelta esplicita delle operazioni | Sviluppatore; dopo ogni unità di lavoro l'orchestrator elenca ciò che manca e chiede come procedere |
 
-L'approvazione la dà solo lo sviluppatore: [l'orchestrator](../role-maps/agents/orchestrator.md) la registra con un'operazione del runtime, che la rifiuta finché il design ha errori. Approvare un design che lo sviluppatore non ha approvato è un difetto.
+L'approvazione la dà solo lo sviluppatore: l'orchestrator la registra con un'operazione del runtime, che la rifiuta finché il design ha errori. Approvare un design che lo sviluppatore non ha approvato è un difetto.
 
-**I cicli di correzione hanno un limite.** Verifica del design e verifica dell'implementazione fanno al massimo quattro round. Se il problema persiste e la causa non è dell'orchestrator (un'ambiguità del requisito, una decisione dello sviluppatore), il design non viene indebolito per far passare la verifica: la verifica del design si ferma e porta il report allo sviluppatore; un blocco dell'implementazione viene registrato nell'iterazione e arriva allo sviluppatore con l'handoff.
+**Le correzioni non hanno scorciatoie.** La revisione del design si ripete finché un giro completo non trova più difetti, e l'[istruzione](../system/canonical/workflows/design/09-design-review.md) se ne aspetta almeno tre; la revisione di un'unità di lavoro si ripete finché è pulita. Una contraddizione nel design non è un blocco da segnalare: è un difetto che l'orchestrator corregge nel design prima di continuare. Solo un difetto che non si può correggere diventa un blocco: l'iterazione lo registra, l'istruzione resta incompleta e il blocco arriva allo sviluppatore.
 
-**Non ogni lavoro merita lo stesso gate.** `FAST_IMPLEMENTATION` non ha un documento di design né un'approvazione: le obbligazioni del job design sono il requisito, e la verifica dell'implementazione resta. Scegliere quel workflow è una decisione dello sviluppatore sul rischio, non una scorciatoia che l'agente può prendere da solo. Il [riferimento dei workflow](../slides/reference-flow.md) elenca tutte le istruzioni e i loro halt point.
+**Non ogni lavoro merita lo stesso gate.** `FAST_IMPLEMENTATION` non ha un documento di design, un'approvazione né un delegate: l'orchestrator prende il requisito dal prompt così com'è scritto, implementa, esegue build e test e riferisce. Lo sviluppatore giudica il risultato alla fine. Scegliere quel workflow è una decisione dello sviluppatore sul rischio, non una scorciatoia che l'agente può prendere da solo. Il [riferimento dei workflow](../slides/reference-flow.md) elenca tutte le istruzioni e i loro halt point.
 
 **Lo sviluppatore può cambiare il processo, non le garanzie.** Nel primo step di ogni workflow le richieste particolari dello sviluppatore (saltare l'intervista, partire da un certo punto, aggiungere un controllo) diventano effetti vincolanti. Uno skip che toglierebbe un gate o un artifact richiesto dal requisito o dalla knowledge è un conflitto: il workflow si ferma e chiede.
 
@@ -48,7 +48,7 @@ Anche fuori dai workflow vale la stessa regola: [Manage Work Item](../role-maps/
 
 ## Nel caso guida
 
-L'orchestrator presenta il design solo dopo che i controlli meccanici non segnalano errori e il design verifier ha risposto `PASS`. Lo sviluppatore chiede una modifica: l'orchestrator la applica, ripete controlli e verifica e ripresenta. Il design passa all'implementazione solo dopo la risposta “approva”. [Leggi la traccia](../caso-guida.md#traccia-3-design-verifica-e-approvazione).
+L'orchestrator presenta il design solo dopo che la sua revisione non trova più difetti e il controllo finale non segnala errori. Lo sviluppatore chiede una modifica: l'orchestrator la applica, ripete controlli e revisione e ripresenta. Il design passa all'implementazione solo dopo la risposta “approva”. [Leggi la traccia](../caso-guida.md#traccia-3-design-revisione-e-approvazione).
 
 ## Nel tuo repository
 

@@ -53,7 +53,7 @@ Supponi che, in un altro lavoro, l'API chiuda una richiesta senza motivazione. L
 | Lo sviluppatore ha scelto `FAST_IMPLEMENTATION` per un cambiamento con decisioni aperte | [Gate e controllo umano](02-gate-e-controllo-umano.md) | Le regole del team su quale workflow usare |
 | La regola API esisteva ma il suo intent non la faceva scegliere | [Conoscenza selettiva](05-conoscenza-selettiva.md) | L'intent del documento nel catalogo |
 | Il prompt del delegate conteneva un riassunto invece degli identificatori | [Autorità delimitata](01-autorita-delimitata.md) | Il contratto che fissa il prompt del delegate |
-| I test passavano, ma nessuna verifica confrontava il codice con la regola | [Validazione come prova](03-validazione-come-prova.md) | La verifica dell'implementazione e il bundle che riceve |
+| I test passavano, ma nessuna revisione confrontava il codice con la regola | [Validazione come prova](03-validazione-come-prova.md) | La revisione dell'unità di lavoro e i riferimenti di knowledge dell'operazione |
 
 Prima la diagnosi, poi la modifica. [Leggi il caso](../caso-guida.md#applicare-il-ciclo-al-tuo-repository).
 

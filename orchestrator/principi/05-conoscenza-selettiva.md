@@ -27,13 +27,15 @@ Scegli fonti autorevoli e proporzionate al task, e registra quali bastano e perc
 | `PerContext` | Quando il tipo di lavoro lo richiede | Regola per le modifiche alle API |
 | `PerComponent` | Quando il task tocca quel componente | Regola del servizio Richieste |
 
-**Prima le regole, poi il codice.** In ogni workflow lo step di knowledge legge solo la knowledge: non apre file di codice. Solo dopo arriva la ricognizione del codice. Le regole decidono come scrivere il codice; il codice esistente serve per i contratti e il comportamento, non come modello da imitare.
+**Prima le regole, poi il codice.** In ogni workflow lo step di knowledge legge solo la knowledge: non apre file di codice. Le regole decidono come scrivere il codice; il codice esistente serve per i contratti e il comportamento, non come modello da imitare.
 
-**La knowledge è vincolante.** Una regola della knowledge prevale sul buon senso, sulle best practice e sul codice esistente. Un design che realizza il requisito ma viola una regola viene rifiutato. Se la knowledge contraddice il requisito, l'orchestrator non sceglie in silenzio: nel workflow `DESIGN` il conflitto diventa una domanda da decidere, in `FAST_IMPLEMENTATION` un blocco.
+**La knowledge è vincolante.** Una regola della knowledge prevale sul buon senso, sulle best practice e sul codice esistente. Un design che realizza il requisito ma viola una regola viene rifiutato. Se la knowledge contraddice il requisito, l'orchestrator non sceglie in silenzio: nel workflow `DESIGN` registra il conflitto, la regola e la scelta che lo risolve, e applica la regola; in `FAST_IMPLEMENTATION` registra un blocco e non cambia il comportamento richiesto.
 
-**Leggere il codice è selettivo quanto leggere le regole.** La ricognizione del codice costruisce un panorama dei soli componenti coinvolti e delle lacune rispetto al requisito. Comincia sempre dalla mappa dei cluster; le ricerche nei file vengono dopo, senza un limite di numero ma dentro una parte che un cluster ha già nominato. Legge dichiarazioni e firme prima dei corpi, non segue catene di dipendenze e non sceglie un file perché “sembra simile”: la somiglianza non è pertinenza.
+**Si registra la regola, non il file.** Nel workflow `DESIGN` ogni lettura di knowledge è seguita dalla registrazione delle sole prescrizioni che valgono per questo requisito: ogni [riferimento](../system/canonical/contracts/design-model.md#knowledge-references) è un intervallo di righe di un documento, con un ambito (`Production` o `Test`). Un documento può dare zero, una o molte prescrizioni; registrarlo intero perché è stato letto non è ammesso. Le prescrizioni vincolano anche il design stesso: contratti, file, operazioni e decisioni dichiarano le regole su cui si fondano.
 
-**La stessa knowledge per chi scrive e per chi giudica.** In `FAST_IMPLEMENTATION` l'orchestrator unisce le regole lette in un *knowledge bundle* e lo passa invariato al [Code Implementor](../role-maps/agents/code-implementor.md) e all'[Implementation Verifier](../role-maps/agents/implementation-verifier.md). Nel workflow `DESIGN` il runtime espande la knowledge di ogni operazione servita all'implementor, mentre il verificatore riceve nel prompt la knowledge raccolta nel job. In entrambi i casi il verificatore giudica il codice con le stesse regole che lo hanno governato.
+**Leggere il codice è selettivo quanto leggere le regole.** Nel `DESIGN` l'orchestrator legge il codice solo quando una decisione, un contratto, un file o un'operazione ne ha bisogno, e registra ogni simbolo usato come riferimento, con il file che lo definisce e i punti in cui è usato: un riferimento non letto non si inventa. In `FAST_IMPLEMENTATION` esplora quanto basta per capire il codice esistente. In `DOCUMENTATION` l'esplorazione comincia dalla mappa dei cluster e legge dichiarazioni e firme prima dei corpi. In tutti i casi la somiglianza non è pertinenza.
+
+**La stessa knowledge per chi scrive e per chi giudica.** Nel workflow `DESIGN` ogni operazione elenca le prescrizioni che le servono, e il runtime le consegna al [Code Implementor](../role-maps/agents/code-implementor.md) con l'operazione: nessun bundle nel prompt. L'orchestrator rivede l'unità di lavoro con le stesse prescrizioni e chiede che il report dica quale regola è stata applicata e dove. In `FAST_IMPLEMENTATION` l'orchestrator unisce le regole lette in un *knowledge bundle* e implementa da quello.
 
 **Si legge solo il delta.** Quando serve una regola nuova, l'agente legge solo i documenti che non ha ancora letto e annota quali ha ricordato e quali ha letto adesso. Una decisione presa su una knowledge non letta non è una decisione.
 
@@ -43,12 +45,12 @@ Scegli fonti autorevoli e proporzionate al task, e registra quali bastano e perc
 
 ## Nel caso guida
 
-Il catalogo contiene quattro documenti: la regola sul changelog, la regola API, la regola del servizio Richieste e una guida per il componente Fatture. La guida Fatture sembra utile, ma non riguarda il servizio Richieste: resta fuori. La regola API aggiunge un comportamento funzionale al requisito, e l'implementation verifier la usa per trovare una risposta di errore sbagliata. [Leggi la traccia](../caso-guida.md#traccia-2-knowledge).
+Il catalogo contiene quattro documenti: la regola sul changelog, la regola API, la regola del servizio Richieste e una guida per il componente Fatture. La guida Fatture sembra utile, ma non riguarda il servizio Richieste: resta fuori. La regola API aggiunge un comportamento funzionale al requisito e diventa un riferimento del design; l'orchestrator la usa per trovare, nel codice, una risposta di errore sbagliata. [Leggi la traccia](../caso-guida.md#traccia-2-knowledge).
 
 ## Nel tuo repository
 
 - Quali documenti devono essere letti sempre, quali dipendono dal tipo di lavoro e quali appartengono a un solo componente?
-- Chi verifica il lavoro del tuo agente lo fa con le stesse regole che hanno guidato chi lo ha scritto?
+- Chi verifica il lavoro del tuo agente lo fa con le stesse regole che hanno guidato chi lo ha scritto? Riesce a dire quale regola è stata applicata, e dove?
 
 ---
 

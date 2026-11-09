@@ -22,26 +22,30 @@ Serve un ruolo separato quando cambiano l'autorità, gli strumenti, il tipo di o
 
 ## Nel sistema di riferimento
 
-Il sistema separa chi **dirige** il lavoro da chi lo **esegue** e da chi lo **giudica**:
+Il sistema separa chi **dirige** il lavoro da chi lo **esegue**, e lascia allo **sviluppatore** il giudizio che nessun agente può dare al posto suo:
 
 | Ruolo | Può | Non può |
 | --- | --- | --- |
-| [Orchestrator](../role-maps/agents/orchestrator.md) | Seguire il workflow scelto dallo sviluppatore, scrivere le obbligazioni del requisito e il design nella sessione, avviare i delegate e agire sui loro verdict | Scrivere codice di produzione, scegliere il workflow, tagliare lo scope del requisito |
-| [Code Implementor](../role-maps/agents/code-implementor.md) | Modificare i file; eseguire build e test quando la specifica lo chiede | Cambiare la specifica che riceve, vedere le operazioni successive |
-| [Design Verifier](../role-maps/agents/design-verifier.md) | Leggere requisito, design e knowledge e dare un verdict | Progettare, correggere o scrivere codice: non ha strumenti sui file, solo le operazioni del runtime |
-| [Implementation Verifier](../role-maps/agents/implementation-verifier.md) | Leggere il codice prodotto e dare un verdict | Correggere: non ha strumenti di scrittura |
+| [Orchestrator](../role-maps/agents/orchestrator.md) | Seguire il workflow scelto dallo sviluppatore, scrivere le obbligazioni e il design nella sessione, attaccare il proprio design prima di presentarlo, avviare il code implementor e rivedere ogni unità di lavoro che consegna | Scrivere codice di produzione in `DESIGN`, scegliere il workflow, tagliare lo scope del requisito, approvare il design al posto dello sviluppatore |
+| [Code Implementor](../role-maps/agents/code-implementor.md) | Modificare i file dell'operazione servita; usare il terminale per build e test solo quando il prompt o l'operazione lo chiede | Cambiare il design o i flag di avanzamento, chiedere o indovinare le operazioni successive, dichiarare concluso il proprio lavoro |
+| Sviluppatore | Scegliere il workflow, approvare o cambiare il design, selezionare le operazioni di test e quelle distruttive | — |
 
 ```mermaid
 flowchart TD
     Dev[Sviluppatore<br/>sceglie il workflow] --> Orch[Orchestrator<br/>segue le istruzioni del runtime]
     Orch --> Design[Design nella sessione]
-    Design --> DV[Design Verifier<br/>giudica il design]
-    DV --> Review{Lo sviluppatore<br/>approva?}
+    Design --> Self[Orchestrator<br/>attacca il proprio design]
+    Self --> Review{Lo sviluppatore<br/>approva?}
     Review -->|no, cambia| Orch
-    Review -->|sì| CI[Code Implementor<br/>scrive codice e test]
-    CI --> IV[Implementation Verifier<br/>giudica il codice]
-    IV --> Orch
+    Review -->|sì| CI[Code Implementor<br/>realizza un'operazione alla volta]
+    CI --> Check[Orchestrator<br/>rivede l'unità di lavoro]
+    Check -->|difetti| CI
+    Check -->|pulita| Orch
 ```
+
+**Chi giudica che cosa.** Il codice lo scrive il code implementor e lo giudica l'orchestrator, che non l'ha scritto. Il design, invece, lo scrive l'orchestrator, e la revisione prima della review è sua: l'[istruzione di review](../system/canonical/workflows/design/09-design-review.md) gli chiede di attaccarlo come se fosse di un altro, perché “non c'è un verificatore esterno”. Il giudizio di chi non ha scritto il design arriva dallo sviluppatore, alla review. Nel sistema esistono ancora due contratti di verifica, il [Design Verifier](../role-maps/agents/design-verifier.md) e l'[Implementation Verifier](../role-maps/agents/implementation-verifier.md), ma dalla versione 3.0.3 nessuna istruzione li avvia. È una scelta del sistema di riferimento, con un costo: dove l'autore giudica sé stesso, il controllo indipendente deve trovarsi altrove, e qui si trova nella persona che approva.
+
+**In `FAST_IMPLEMENTATION` i ruoli si riducono.** L'orchestrator scrive da solo codice e test, li esegue e riferisce; nessun delegate interviene. È lo sviluppatore che sceglie questo workflow per un lavoro semplice, e che giudica il risultato alla fine.
 
 **Chi sceglie il workflow.** Lo sviluppatore indica sempre in modo esplicito `DESIGN`, `FAST_IMPLEMENTATION` o `DOCUMENTATION`. Se non lo fa, l'orchestrator mostra l'elenco e chiede. Un ragionamento come “mi ha chiesto un design, quindi il workflow è DESIGN” è una violazione del [contratto](../role-maps/agents/orchestrator.md).
 
@@ -49,7 +53,7 @@ flowchart TD
 
 **Che cosa può decidere l'orchestrator, e che cosa no.** Ogni scelta che il requisito non fissa diventa una decisione con la risposta scelta e alternative complete. L'orchestrator può scegliere *come* realizzare il requisito; non può cambiare *che cosa* il requisito chiede. Solo lo sviluppatore aggiunge, modifica o toglie un'obbligazione, e una sua decisione prevale sul requisito.
 
-**I delegate ricevono identificatori, non riassunti.** L'orchestrator avvia i delegate in un contesto pulito con un prompt fisso: id della sessione e del job, più ciò che l'istruzione prevede, come le operazioni scelte dallo sviluppatore o la knowledge. Il delegate legge la specifica da solo. Un riassunto scritto da chi dirige il lavoro sarebbe un modo di condizionare chi lo esegue o lo giudica.
+**I delegate ricevono identificatori, non riassunti.** L'orchestrator avvia il code implementor in un contesto pulito con un prompt fisso: id della sessione e del job, i nomi delle immagini allegate, il ciclo di lavoro e, quando serve, le operazioni scelte dallo sviluppatore o l'elenco esatto delle correzioni. Mai la knowledge e mai il testo del design: il delegate chiede al runtime un'operazione alla volta, con tutto il suo contesto. Un riassunto scritto da chi dirige il lavoro sarebbe un modo di condizionare chi lo esegue.
 
 **Il limite sta anche negli strumenti.** Ogni ruolo ha un elenco di operazioni del runtime, e con l'opzione [`--role`](../system/canonical/contracts/workflow-loop.md#step-serving) il runtime rifiuta le altre. Il ruolo si dichiara da solo, quindi questo ferma una chiamata sbagliata, non una ostile; dove il client può imporre lo stesso limite, lo fa lui. Le pagine [DESIGN](../reference/strumenti-design.md), [FAST_IMPLEMENTATION](../reference/strumenti-fast-implementation.md) e [DOCUMENTATION](../reference/strumenti-documentation.md) mostrano chi chiama che cosa.
 
@@ -69,7 +73,7 @@ La story non dice se una motivazione di soli spazi è valida. L'orchestrator non
 
 ## Nel tuo repository
 
-- Nel tuo flusso, chi produce il codice è anche chi dichiara che è corretto?
+- Nel tuo flusso, chi produce il codice è anche chi dichiara che è corretto? E chi giudica il design, se non chi lo ha scritto?
 - Quale scelta ricorrente del tuo agente oggi non lascia traccia di alternative, e quindi nessuno la può contestare?
 
 ---

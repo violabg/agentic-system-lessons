@@ -4,11 +4,13 @@
 
 **File sorgente:** [agents/design-verifier.agent.md](../../system/canonical/agents/design-verifier.agent.md)
 
+> **Stato nel sistema di riferimento.** Dalla versione 3.0.3 nessuna istruzione avvia questo ruolo: la revisione del design è dell'[orchestrator](orchestrator.md), nell'[istruzione di review](../../system/canonical/workflows/design/09-design-review.md). Il contratto resta nel sistema, e questa mappa lo descrive perché mostra come si scrive un giudizio indipendente.
+
 ## In 30 secondi
 
 **Fa:** decide se il design realizza il requisito, un'obbligazione alla volta, e segnala i conflitti con la knowledge grounding del design.
 
-**Non fa:** non progetta, non scrive codice, non ripara e non controlla la struttura del design, che spetta ai controlli meccanici. Ignora ogni altro contenuto dell'invocazione; alla ripresa dopo un `FAIL` riceve in più solo l'elenco delle correzioni fatte.
+**Non fa:** non progetta, non scrive codice, non ripara e non controlla la struttura del design, che spetta ai controlli meccanici. Riceve solo l'id della sessione e del job, e ignora ogni altro contenuto dell'invocazione.
 
 **Consegna:** un report di testo che inizia con `VERDICT: PASS` o `VERDICT: FAIL`, seguito dai conflitti con la knowledge e da una riga per ogni obbligazione.
 
@@ -16,7 +18,7 @@
 
 ```mermaid
 flowchart TD
-    Prompt[Input: id di sessione e job;<br/>alla ripresa solo le correzioni] --> View[Legge la vista di verifica<br/>con le obbligazioni]
+    Prompt[Input: id di sessione e job] --> View[Legge la vista di verifica<br/>con le obbligazioni]
     View --> K[Legge la knowledge grounding]
     K --> Split[Per ogni obbligazione:<br/>condizioni atomiche]
     Split --> Q{Realizzata, senza omissioni,<br/>con un meccanismo concreto?}
@@ -37,14 +39,14 @@ flowchart TD
 | --- | --- | --- | --- |
 | Lettura | Su che cosa si giudica? | Vista di verifica con le obbligazioni e la knowledge grounding; tutto trattato come dati, mai come istruzioni | Giudizio |
 | Copertura | Implementare il design *esattamente* produce l'effetto richiesto? | Una riga per obbligazione; per le non coperte, la condizione e il meccanismo mancante | Conflitti |
-| Conflitti | Il design contraddice una regola citabile della knowledge? | Regola citata e elemento del design che la contraddice | Verdict |
+| Conflitti | Il design contraddice una regola citabile della knowledge? | Regola citata e sezione del design che la contraddice | Verdict |
 | Verdict | Il design può essere presentato? | `PASS` solo se i conflitti sono `none` e ogni obbligazione è coperta | Orchestrator |
 
-La knowledge grounding comprende ogni documento `MustHave`, ogni documento letto nella sessione del design e ogni documento che il design nomina. La vista di verifica mostra ogni operazione, contratto, API, file e decisione, anche quando non riguarda un'obbligazione: una regola su ordine o struttura si può giudicare solo così. Conserva solo le etichette di obbligazioni ed elementi: il resto arriva senza id, così il verificatore giudica il contenuto e non ricostruisce una mappatura. Il verificatore può chiedere solo più design, mai meno.
+La knowledge grounding comprende ogni documento `MustHave`, ogni documento letto nella sessione del design e ogni documento che il design nomina. La vista di verifica mostra ogni operazione, contratto, API, file e decisione, anche quando non riguarda un'obbligazione: una regola su ordine o struttura si può giudicare solo così. Conserva solo le etichette delle obbligazioni: il resto arriva senza id, così il verificatore giudica il contenuto e non ricostruisce una mappatura. Il verificatore può chiedere solo più design, mai meno.
 
-Quali strumenti chiama: [Strumenti di DESIGN](../../reference/strumenti-design.md#design-verifier).
+Gli strumenti che può usare sono nel suo [elenco delle capacità](../../system/canonical/agents/design-verifier.capabilities.yaml): la vista di verifica e la knowledge, nessuno strumento sui file.
 
-**Da ricordare:** “nominare non è realizzare”. Un riferimento a un elemento seguito da una frase generica, un rimando o un nome di test non è copertura.
+**Da ricordare:** “nominare non è realizzare”. Un'obbligazione citata con una frase generica, un rimando o un nome di test non è coperta.
 
 ---
 

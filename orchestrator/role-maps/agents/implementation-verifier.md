@@ -4,21 +4,23 @@
 
 **File sorgente:** [agents/implementation-verifier.agent.md](../../system/canonical/agents/implementation-verifier.agent.md)
 
+> **Stato nel sistema di riferimento.** Dalla versione 3.0.3 nessuna istruzione avvia questo ruolo: nel workflow `DESIGN` è l'[orchestrator](orchestrator.md) a rivedere ogni unità di lavoro, nell'[istruzione di implementazione](../../system/canonical/workflows/design/10-implementation.md). Il contratto resta nel sistema, e questa mappa lo descrive perché mostra come si scrive un giudizio indipendente sul codice.
+
 ## In 30 secondi
 
 **Fa:** giudica se il codice prodotto per un'unità di lavoro realizza la sua specifica, applica la knowledge ricevuta e rispetta i confini della specifica.
 
 **Non fa:** non progetta, non scrive codice e non ripara: non ha strumenti di scrittura. Non giudica la specifica rispetto al requisito e non giudica documenti renderizzati.
 
-**Consegna:** un report di testo che inizia con `VERDICT: PASS` o `VERDICT: FAIL`, con una riga per ogni elemento dell'unità di lavoro e l'elenco delle violazioni di knowledge o specifica.
+**Consegna:** un report di testo che inizia con `VERDICT: PASS` o `VERDICT: FAIL`, con una riga per ogni voce dell'unità di lavoro e l'elenco delle violazioni di knowledge o specifica.
 
 ## Flusso, controlli e output
 
 ```mermaid
 flowchart TD
-    Prompt[Input: id, operazioni,<br/>knowledge bundle, immagini] --> Spec[Legge la specifica<br/>con la procedura del prompt]
+    Prompt[Input: id, unità di lavoro,<br/>knowledge, immagini] --> Spec[Legge la specifica<br/>con la procedura del prompt]
     Spec --> Code[Legge il codice prodotto<br/>e conferma i riferimenti]
-    Code --> Part1{Parte 1: ogni elemento<br/>è realizzato con un meccanismo?}
+    Code --> Part1{Parte 1: ogni condizione<br/>è realizzata con un meccanismo?}
     Part1 --> Part2{Parte 2: knowledge applicata,<br/>solo file previsti, nulla in più?}
     Part2 --> Units[UNITS: COVERED o NOT COVERED]
     Units --> Findings[FINDINGS: violazioni o none]
@@ -35,15 +37,15 @@ flowchart TD
 | --- | --- | --- | --- |
 | Specifica | Contro che cosa si giudica? | Design o requisito letti dalla sessione | Codice |
 | Codice | Che cosa è stato scritto davvero? | File dichiarati letti; riferimenti confermati nel repository | Giudizio |
-| Parte 1 | Il codice produce necessariamente l'effetto richiesto da ogni elemento e rispetta i contratti? | Elementi coperti o non coperti, con il meccanismo mancante | Parte 2 |
+| Parte 1 | Il codice produce necessariamente l'effetto richiesto da ogni condizione e rispetta i contratti? | Voci coperte o non coperte, con il meccanismo mancante | Parte 2 |
 | Parte 2 | Il codice applica la knowledge alla lettera e resta nei confini della specifica? | Violazioni con file e regola | Verdict |
 | Verdict | L'implementazione può chiudersi? | `PASS` solo se tutto è coperto e non ci sono violazioni | Orchestrator |
 
-Giudica con le stesse regole che hanno guidato il [Code Implementor](code-implementor.md): in `FAST_IMPLEMENTATION` riceve lo stesso knowledge bundle; in `DESIGN` riceve la knowledge raccolta nel job, mentre l'implementor riceve quella di ogni operazione servita. In `DESIGN` interviene per ogni unità di lavoro che scrive codice di produzione: le operazioni `Build`, `Commands` e `Testing` non aprono una verifica, perché il loro report è l'esito. Con un dubbio reale sceglie “non coperto”. Codice morto, guardie mai impostate e rami irraggiungibili non contano come realizzazione.
+Giudica con la knowledge che riceve, la stessa che ha guidato chi ha scritto il codice. Con un dubbio reale sceglie “non coperto”. Codice morto, guardie mai impostate e rami irraggiungibili non contano come realizzazione. Può chiedere solo più conformità, mai meno.
 
-Quali strumenti chiama, istruzione per istruzione: [DESIGN](../../reference/strumenti-design.md#implementation-verifier) · [FAST_IMPLEMENTATION](../../reference/strumenti-fast-implementation.md#implementation-verifier).
+Gli strumenti che può usare sono nel suo [elenco delle capacità](../../system/canonical/agents/implementation-verifier.capabilities.yaml): lettura e ricerca nei file, nessuno strumento di scrittura.
 
-**Da ricordare:** dopo un `FAIL`, l'orchestrator riprende lo stesso code implementor con questo report, poi lo stesso verificatore. Al massimo quattro round; poi il blocco va allo sviluppatore.
+**Da ricordare:** il verdict è meccanico. Qualsiasi prima riga diversa da `VERDICT: PASS` vale come `FAIL`.
 
 ---
 

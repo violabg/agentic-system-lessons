@@ -8,15 +8,15 @@ Le mappe sono materiale didattico. Non prescrivono ruoli, nomi o strumenti per i
 
 ## Agent avviati dallo sviluppatore
 
-1. [Orchestrator](agents/orchestrator.md): guida il workflow scelto dallo sviluppatore, senza scrivere codice di produzione.
+1. [Orchestrator](agents/orchestrator.md): guida il workflow scelto dallo sviluppatore; in `DESIGN` affida il codice a un delegate e ne rivede il lavoro.
 2. [Ask](agents/ask.md): risponde a domande tecniche senza modificare nulla.
 3. [Knowledge Builder](agents/knowledge-builder.md): ricava regole dal repository e le salva come knowledge.
 
 ## Delegate avviati dall'orchestrator
 
-4. [Code Implementor](agents/code-implementor.md): scrive il codice e, quando la specifica lo chiede, i test unitari, e li esegue.
-5. [Design Verifier](agents/design-verifier.md): giudica se il design realizza il requisito.
-6. [Implementation Verifier](agents/implementation-verifier.md): giudica se il codice realizza la specifica e applica la knowledge.
+4. [Code Implementor](agents/code-implementor.md): realizza le operazioni del design una alla volta, test compresi quando l'operazione li chiede.
+5. [Design Verifier](agents/design-verifier.md): giudica se il design realizza il requisito. Nessuna istruzione lo avvia dalla versione 3.0.3.
+6. [Implementation Verifier](agents/implementation-verifier.md): giudica se il codice realizza la specifica e applica la knowledge. Nessuna istruzione lo avvia dalla versione 3.0.3.
 7. [Documentation Reviewer](agents/documentation-reviewer.md): rilegge una guida come un lettore nuovo e la corregge.
 
 ## Skill
@@ -32,8 +32,8 @@ Le mappe sono materiale didattico. Non prescrivono ruoli, nomi o strumenti per i
 | Esigenza | Percorso | Che cosa serve prima di modificare |
 | --- | --- | --- |
 | Capire o spiegare | [Ask](agents/ask.md) | Fonti verificabili; nessuna implementazione implicita |
-| Un cambiamento con scelte da giudicare | [Orchestrator](agents/orchestrator.md) con `DESIGN` | Un design verificato e approvato dallo sviluppatore |
-| Un cambiamento semplice o meccanico | [Orchestrator](agents/orchestrator.md) con `FAST_IMPLEMENTATION` | Un requisito chiaro: non c'è approvazione intermedia |
+| Un cambiamento con scelte da giudicare | [Orchestrator](agents/orchestrator.md) con `DESIGN` | Un design rivisto dall'orchestrator e approvato dallo sviluppatore |
+| Un cambiamento semplice o meccanico | [Orchestrator](agents/orchestrator.md) con `FAST_IMPLEMENTATION` | Un requisito chiaro: non c'è approvazione intermedia e l'orchestrator implementa da solo |
 | Documentare ciò che esiste | [Orchestrator](agents/orchestrator.md) con `DOCUMENTATION` | Un template e la modalità scelta |
 | Chiarire una story prima di lavorarci | [User Story Analysis](skills/user-story-analysis.md) | Nessuna modifica: domande per gli stakeholder |
 | Salvare una regola del progetto | [Knowledge Builder](agents/knowledge-builder.md) | Evidenza letta nel codice e bozza approvata |

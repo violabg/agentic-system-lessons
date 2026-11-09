@@ -34,14 +34,14 @@ Alcuni termini restano in inglese perché sono quelli che troverai nei file del 
 | Termine | Significato |
 | --- | --- |
 | Agent (ruolo) | Un contratto scritto: che cosa può fare, che cosa non può fare, che cosa consegna. |
-| Orchestrator | Il ruolo che guida il workflow scelto dallo sviluppatore. Non scrive codice di produzione. |
-| Delegate | Un ruolo che l'orchestrator avvia in un contesto pulito per un compito preciso: scrivere il codice o verificare. |
+| Orchestrator | Il ruolo che guida il workflow scelto dallo sviluppatore. In `DESIGN` non scrive codice di produzione: lo affida a un delegate e ne rivede il lavoro. |
+| Delegate | Un ruolo che l'orchestrator avvia in un contesto pulito per un compito preciso: scrivere il codice o rileggere un documento. |
 | Workflow | Una sequenza ordinata di istruzioni: `DESIGN`, `FAST_IMPLEMENTATION` o `DOCUMENTATION`. Lo sceglie sempre lo sviluppatore. |
 | Runtime | Il programma locale che serve le istruzioni una alla volta e custodisce sessioni, design e controlli. |
 | Halt point | Un punto in cui il workflow si ferma e attende lo sviluppatore: una review, una domanda, una decisione. |
 | Sessione | Il registro durevole di un lavoro: memoria, log, artifact, job e design. |
 | Design | L'artifact strutturato che lo sviluppatore rivede e approva prima dell'implementazione. |
-| Verdict | La prima riga del report di un verificatore: `VERDICT: PASS` oppure `VERDICT: FAIL`. |
+| Obbligazione | Un comportamento atomico e verificabile che il requisito impone. Insieme, le obbligazioni sono il requisito del job. |
 | Knowledge | Documenti con le regole del progetto, da leggere solo quando servono. |
 | Skill | Una procedura ripetibile che una persona o un ruolo può richiamare. |
 
