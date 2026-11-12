@@ -24,6 +24,8 @@ Quando cambia l'autorità, cambia il ruolo.
 
 [Orchestrator](../role-maps/agents/orchestrator.md): segue il workflow, scrive il design, rivede il codice. In `DESIGN` non scrive codice di produzione.
 
+[Explorer](../role-maps/agents/explorer.md): localizza i fatti del codice che l'orchestrator chiede. Sola lettura.
+
 [Code Implementor](../role-maps/agents/code-implementor.md): realizza un'operazione alla volta; build e test quando l'operazione li chiede.
 
 Sviluppatore: giudica il design che l'orchestrator ha scritto, e lo approva.
@@ -58,7 +60,7 @@ Solo lo sviluppatore cambia che cosa il requisito chiede.
 
 ## Identificatori, non riassunti
 
-I delegate ricevono id di sessione e job, e chiedono la specifica al runtime.
+Il code implementor riceve id di sessione e job, e chiede la specifica al runtime.
 
 Mai un riassunto, mai la knowledge nel prompt.
 

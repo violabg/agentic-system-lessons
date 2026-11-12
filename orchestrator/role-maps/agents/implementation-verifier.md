@@ -4,7 +4,7 @@
 
 **File sorgente:** [agents/implementation-verifier.agent.md](../../system/canonical/agents/implementation-verifier.agent.md)
 
-> **Stato nel sistema di riferimento.** Dalla versione 3.0.3 nessuna istruzione avvia questo ruolo: nel workflow `DESIGN` è l'[orchestrator](orchestrator.md) a rivedere ogni unità di lavoro, nell'[istruzione di implementazione](../../system/canonical/workflows/design/10-implementation.md). Il contratto resta nel sistema, e questa mappa lo descrive perché mostra come si scrive un giudizio indipendente sul codice.
+> **Stato nel sistema di riferimento.** Dalla versione 3.0.3 nessuna istruzione avvia questo ruolo: nel workflow `DESIGN` è l'[orchestrator](orchestrator.md) a rivedere ogni unità di lavoro, nell'[istruzione di implementazione](../../system/canonical/workflows/design/09-implementation.md). Il contratto resta nel sistema, e questa mappa lo descrive perché mostra come si scrive un giudizio indipendente sul codice.
 
 ## In 30 secondi
 

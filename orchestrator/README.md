@@ -35,7 +35,7 @@ Alcuni termini restano in inglese perché sono quelli che troverai nei file del 
 | --- | --- |
 | Agent (ruolo) | Un contratto scritto: che cosa può fare, che cosa non può fare, che cosa consegna. |
 | Orchestrator | Il ruolo che guida il workflow scelto dallo sviluppatore. In `DESIGN` non scrive codice di produzione: lo affida a un delegate e ne rivede il lavoro. |
-| Delegate | Un ruolo che l'orchestrator avvia in un contesto pulito per un compito preciso: scrivere il codice o rileggere un documento. |
+| Delegate | Un ruolo che l'orchestrator avvia in un contesto pulito per un compito preciso: localizzare un fatto nel codice, scrivere il codice o rileggere un documento. |
 | Workflow | Una sequenza ordinata di istruzioni: `DESIGN`, `FAST_IMPLEMENTATION` o `DOCUMENTATION`. Lo sceglie sempre lo sviluppatore. |
 | Runtime | Il programma locale che serve le istruzioni una alla volta e custodisce sessioni, design e controlli. |
 | Halt point | Un punto in cui il workflow si ferma e attende lo sviluppatore: una review, una domanda, una decisione. |

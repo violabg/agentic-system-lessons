@@ -8,7 +8,7 @@
 
 **Fa:** attiva la sessione indicata dallo sviluppatore, avvia il job del workflow che lo sviluppatore ha scelto e ne segue le istruzioni alla lettera, una alla volta. Scrive le obbligazioni del requisito, il design e la memoria attraverso il runtime, attacca il proprio design prima di presentarlo, avvia i delegate e rivede il lavoro che consegnano. In `FAST_IMPLEMENTATION` implementa da solo il requisito, con build e test.
 
-**Non fa:** in `DESIGN` non scrive codice di produzione; non sceglie né deduce il workflow, non attiva una sessione senza richiesta esplicita, non taglia lo scope del requisito e non approva il design al posto dello sviluppatore. Se il runtime non è disponibile, si ferma.
+**Non fa:** in `DESIGN` non scrive codice di produzione; in `DESIGN` e in `FAST_IMPLEMENTATION` non cerca nel codice da sé, lo chiede agli [explorer](explorer.md); non sceglie né deduce il workflow, non attiva una sessione senza richiesta esplicita, non taglia lo scope del requisito e non approva il design al posto dello sviluppatore. Se il runtime non è disponibile, si ferma.
 
 **Consegna:** nel workflow `DESIGN`, un design approvato e implementato con le prove; in `FAST_IMPLEMENTATION`, un'implementazione con build e test eseguiti; in `DOCUMENTATION`, un documento salvato nella sessione. Sempre con i blocchi aperti dichiarati.
 
@@ -48,7 +48,7 @@ flowchart TD
 | Halt point | Serve una persona? | Review, domanda o decisione presentata | Risposta dello sviluppatore |
 | Handoff finale | Il risultato è dichiarato con le prove? | Messaggio che non afferma più di quanto accaduto | Lo sviluppatore |
 
-**Gerarchia delle istruzioni.** Le regole obbligatorie del contratto valgono sempre; poi vengono le istruzioni servite dal runtime, poi le istruzioni di sistema, infine quelle dell'utente. Se una richiesta dello sviluppatore contraddice un'istruzione del workflow, l'orchestrator lo dice e segue l'istruzione. Le richieste particolari dichiarate nel primo prompt, invece, entrano nel registro del primo step e modificano il processo in modo tracciato.
+**Gerarchia delle istruzioni.** Le regole obbligatorie del contratto valgono sempre; poi vengono le istruzioni servite dal runtime, poi le istruzioni di sistema, infine quelle dell'utente. Se una richiesta dello sviluppatore contraddice un'istruzione del workflow, l'orchestrator lo dice e segue l'istruzione.
 
 **Regole che valgono in ogni istruzione:**
 
@@ -56,7 +56,9 @@ flowchart TD
 - lo scope lo fissa solo il requisito: “il resto è analogo” o “e così via” sono omissioni, non design;
 - le immagini si guardano con un unico strumento e si allegano alla sessione prima di usarle, così i delegate le ritrovano per nome;
 - applicare la knowledge del progetto è obbligatorio: un design che realizza il requisito ma viola una regola è rifiutato, e il codice esistente si legge per i contratti, non come modello;
-- l'orchestrator non asseconda lo sviluppatore: se qualcosa non va, lo dice apertamente.
+- in `DESIGN` e in `FAST_IMPLEMENTATION` legge da sé solo i file di cui conosce già il percorso: ogni altro fatto del codice arriva dagli explorer, avviati tutti insieme su perimetri piccoli e indipendenti;
+- l'orchestrator non asseconda lo sviluppatore: se qualcosa non va, lo dice apertamente, con le prove. Non ripete un approccio fallito perché gli viene chiesto di insistere, e su ciò che una discussione lascia aperto non agisce senza consenso esplicito;
+- dopo una compattazione del contesto o una ripresa a metà job rilegge il proprio contratto, l'istruzione attiva e la knowledge che il design cita.
 
 Le istruzioni di ogni workflow sono elencate nel [riferimento dei workflow](../../slides/reference-flow.md). Gli strumenti che l'orchestrator chiama in ciascuna: [DESIGN](../../reference/strumenti-design.md) · [FAST_IMPLEMENTATION](../../reference/strumenti-fast-implementation.md) · [DOCUMENTATION](../../reference/strumenti-documentation.md).
 

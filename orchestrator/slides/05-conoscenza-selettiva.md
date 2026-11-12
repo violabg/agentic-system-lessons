@@ -46,9 +46,17 @@ Un conflitto con il requisito si registra, non si risolve in silenzio.
 
 ## La regola, non il file
 
-Nel `DESIGN` si registrano solo le prescrizioni applicabili: intervalli di righe, non documenti interi.
+Si registrano solo le prescrizioni applicabili: intervalli di righe, non documenti interi.
 
-Il runtime le serve con ogni operazione; l'orchestrator rivede il codice con le stesse.
+In `DESIGN` il runtime le serve con ogni operazione; in `FAST_IMPLEMENTATION` l'orchestrator le rilegge contro il codice prima di chiudere.
+
+---
+
+## Cercare nel codice è delegato
+
+In `DESIGN` e `FAST_IMPLEMENTATION` l'orchestrator non cerca: chiede agli [Explorer](../role-maps/agents/explorer.md), in parallelo, un perimetro piccolo ciascuno.
+
+Tornano percorso, riga ed estratto verificati.
 
 ---
 

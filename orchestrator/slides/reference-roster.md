@@ -16,10 +16,11 @@ Ognuno è la conversazione principale della propria sessione.
 
 ## Delegate avviati dall'orchestrator
 
-Ognuno parte in un contesto pulito e riferisce nella stessa conversazione. Non si avviano a mano. Le istruzioni attuali ne avviano due: il code implementor e il documentation reviewer.
+Ognuno parte in un contesto pulito e riferisce nella stessa conversazione. Non si avviano a mano. Le istruzioni attuali ne avviano tre: l'explorer, il code implementor e il documentation reviewer.
 
 | Delegate | Quando lo avvia l'orchestrator | Sorgente |
 | --- | --- | --- |
+| [Explorer](../role-maps/agents/explorer.md) | Ogni volta che in `DESIGN` o in `FAST_IMPLEMENTATION` serve un fatto del codice di cui non conosce già la posizione: uno per perimetro, tutti insieme | [explorer.agent.md](../system/canonical/agents/explorer.agent.md) |
 | [Code Implementor](../role-maps/agents/code-implementor.md) | Per realizzare le operazioni del design approvato, in `DESIGN` | [code-implementor.agent.md](../system/canonical/agents/code-implementor.agent.md) |
 | [Design Verifier](../role-maps/agents/design-verifier.md) | Mai, dalla versione 3.0.3: il contratto resta, ma la revisione del design è dell'orchestrator | [design-verifier.agent.md](../system/canonical/agents/design-verifier.agent.md) |
 | [Implementation Verifier](../role-maps/agents/implementation-verifier.md) | Mai, dalla versione 3.0.3: il contratto resta, ma la revisione del codice è dell'orchestrator | [implementation-verifier.agent.md](../system/canonical/agents/implementation-verifier.agent.md) |

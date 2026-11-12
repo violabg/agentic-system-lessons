@@ -4,7 +4,7 @@
 role: orchestrator
 invocation: user
 operations: [read, search, write, terminal, question, runtime]
-delegates: [general-purpose, design-verifier, code-implementor, documentation-reviewer]
+delegates: [general-purpose, explorer, code-implementor]
 capabilities:
   - token: codebase-cluster-files
     kind: runtime

@@ -33,12 +33,16 @@ A canonical agent contract in `agents/`. Its `invocation` is `user` (started by 
 _Avoid_: agent file, persona, mode
 
 **Orchestrator**
-The user role that drives the workflow the developer chooses. It follows the served instructions to the letter. In DESIGN it never writes production code: it delegates the code to the implementor and reviews every work unit itself. In FAST_IMPLEMENTATION it implements the requirement directly, with its build and tests.
+The user role that drives the workflow the developer chooses. It follows the served instructions to the letter. In DESIGN it never writes production code: it delegates the code to the implementor and reviews every work unit itself. In FAST_IMPLEMENTATION it implements the requirement directly, with its build and tests. Since 3.0.4 it never explores the codebase itself: it reads the files whose path it already holds and gets every other codebase fact from explorers.
 _Avoid_: planner, main agent, router
 
 **Delegate**
-A role the orchestrator starts in a fresh context with a fixed prompt that carries identifiers only (session, job, operation ids, image artifact names, and for a verifier the knowledge bundle). The delegate reads its specification itself, reports back in the same conversation, and can be resumed by its delegate id; without resume the same role is started again with a complete correction prompt. The delegates are `code-implementor`, `design-verifier`, `implementation-verifier` and `documentation-reviewer`. Since 3.0.3 the served steps start only `code-implementor` and `documentation-reviewer`; the two verifier roles are still shipped upstream and kept.
+A role the orchestrator starts in a fresh context with a fixed prompt that carries identifiers only (session, job, operation ids, image artifact names, and for a verifier the knowledge bundle). The delegate reads its specification itself, reports back in the same conversation, and can be resumed by its delegate id; without resume the same role is started again with a complete correction prompt. The delegates are `explorer`, `code-implementor`, `design-verifier`, `implementation-verifier` and `documentation-reviewer`. Since 3.0.4 the served steps start `explorer`, `code-implementor` and `documentation-reviewer`; the two verifier roles are still shipped upstream and kept. The orchestrator's `delegates` list names `explorer` and `code-implementor` only: upstream 3.0.4 dropped `documentation-reviewer` from it while the DOCUMENTATION review still starts that role (recorded inconsistency, preserved).
 _Avoid_: subagent handoff, second conversation, helper agent
+
+**Explorer**
+The read-only delegate that locates codebase facts for the orchestrator: where a symbol, a string or a file is, where a symbol is used and who calls it. The orchestrator splits what it needs into the smallest independent scopes and starts one explorer per scope, all in one batch; each has a budget of 8 tool calls and answers with verified paths, lines and verbatim snippets.
+_Avoid_: search agent, codebase scan, researcher
 
 **Verdict**
 The first line of a verifier report: exactly `VERDICT: PASS` or `VERDICT: FAIL`. Any other first line counts as `FAIL`.
@@ -47,7 +51,7 @@ _Avoid_: approval, score, status
 ## Workflow
 
 **Workflow**
-An ordered set of instructions the runtime serves for one workflow type: `DESIGN` (11 instructions), `FAST_IMPLEMENTATION` (5) or `DOCUMENTATION` (8). The developer always chooses the type explicitly.
+An ordered set of instructions the runtime serves for one workflow type: `DESIGN` (10 instructions), `FAST_IMPLEMENTATION` (4) or `DOCUMENTATION` (7). Each starts with its own intake; since 3.0.4 no workflow has a User Instruction Space step. The developer always chooses the type explicitly.
 _Avoid_: plan, pipeline, mode
 
 **Instruction**
@@ -57,6 +61,14 @@ _Avoid_: gate, prompt, phase
 **Part**
 One slice of a long runtime answer (an instruction, knowledge, the snapshot, the verification view, or any other response longer than the limit, served from a stored copy), no larger than the client's limit and starting at a whole unit where one fits. It ends by naming the call that returns the next part, run as a shell command of its own; every part is read before acting.
 _Avoid_: page, chunk, truncated output
+
+**Command Definition**
+What the runtime appends to an instruction about a design write it names for the first time in its job: the command's arguments and every field of its request. It replaces a `--help` call before the first write.
+_Avoid_: help text, tool description, schema dump
+
+**Command Table**
+The one declaration of every runtime command (`runtime/lib/commands.mjs`): arguments, accepted aliases, request schema. Validation, help, bindings and command definitions derive from it.
+_Avoid_: argument list, registry, tool map
 
 **Halt Point**
 An explicit stop inside an instruction (a review awaiting approval, an interview question, a required decision) where the orchestrator presents what is required and waits for the developer before requesting the next instruction.
@@ -69,10 +81,6 @@ _Avoid_: task, ticket, run
 **Session**
 The durable working record of one piece of work: memory, event log, artifacts, jobs and designs under the session store. Created or resumed only on the developer's request.
 _Avoid_: planning session, conversation, chat history
-
-**User Instruction Register**
-The session artifact `user_instruction_register_<jobId>`: the developer's particular requests from the first prompt, recorded verbatim with their effects as conditions. The runtime appends it to every instruction after the first.
-_Avoid_: preferences, prompt notes
 
 ## Design
 
@@ -100,6 +108,14 @@ _Avoid_: priority, phase, weight class
 What one implementor delegation realizes: the operations the runtime serves it one at a time (the production and documentation batches, or the operations the developer selected), ending at a terminator — `batch-complete` or `complete` — and reviewed by the orchestrator as one unit. An operation is `Implemented` when the implementor closes it and `Completed` once the orchestrator's review of the work unit passes.
 _Avoid_: sprint, task list, whole plan
 
+**Edit**
+A design write that changes text inside one field of a stored row (`edit`: id, field, from, to), instead of replacing the field. All or nothing, like every design write.
+_Avoid_: patch (replaces whole fields), text replace script
+
+**Kept Request**
+A refused design write the runtime keeps, so the next call sends only its correction (`draft` with `set`, `drop`, `move` or `replace`). The corrected request is applied as one whole request.
+_Avoid_: partial write, retry, resend
+
 **Iteration**
 `IT#` — one implementation round recorded in the design history: the request, the files changed (computed by the runtime), the verifications, the blocks and the notes.
 _Avoid_: sprint, attempt
@@ -119,13 +135,17 @@ The knowledge a design is judged against: every `MustHave` document, every docum
 _Avoid_: cited knowledge, references
 
 **Knowledge Reference**
-`kid` — one prescription of a project knowledge document the design applies: the document's file id, the inclusive line range that carries it, and a scope (`Production` or `Test`). Every knowledge read in a job with a design is followed by registering its applicable prescriptions, which also bind the design's own sections; an operation lists the kids it needs, and the runtime serves their text with the operation.
+`kid` — one prescription of a project knowledge document the design, or a FAST_IMPLEMENTATION job, applies: the document's file id, the inclusive line range that carries it, and a scope (`Production` or `Test`). Every knowledge read in a job with a design is followed by registering its applicable prescriptions, which also bind the design's own sections; an operation lists the kids it needs, and the runtime serves their text with the operation. In FAST_IMPLEMENTATION the registered references are the knowledge of the job, kept in its job design.
 _Avoid_: citation, whole-file reference, knowledge link
 
 **Scope**
 Whether a knowledge reference or a file reference governs the production code (`Production`, the default) or the tests (`Test`).
 _Avoid_: tier, category
 
+**Knowledge Compliance Gate**
+The last check of a FAST_IMPLEMENTATION implementation, and of each reiteration: the orchestrator reads back every registered knowledge reference with its resolved text and verifies it against the code or the tests it governs, fixes every violation, rebuilds and reruns the tests, and repeats until a full pass is clean. A prescription that cannot be applied is a blocker.
+_Avoid_: lint, review, verifier
+
 **Knowledge Bundle**
-The merged rules of the project knowledge that govern one implementation. In FAST_IMPLEMENTATION the orchestrator builds it and implements from it itself. In DESIGN no bundle goes into a delegate prompt: the implementor receives the knowledge references of each served operation.
+The merged rules of the project knowledge that govern one implementation. In FAST_IMPLEMENTATION the orchestrator builds it, registers its applicable prescriptions as knowledge references and implements from them itself. In DESIGN no bundle goes into a delegate prompt: the implementor receives the knowledge references of each served operation.
 _Avoid_: knowledge dump, summary

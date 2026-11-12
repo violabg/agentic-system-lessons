@@ -4,7 +4,7 @@
 
 **File sorgente:** [agents/design-verifier.agent.md](../../system/canonical/agents/design-verifier.agent.md)
 
-> **Stato nel sistema di riferimento.** Dalla versione 3.0.3 nessuna istruzione avvia questo ruolo: la revisione del design è dell'[orchestrator](orchestrator.md), nell'[istruzione di review](../../system/canonical/workflows/design/09-design-review.md). Il contratto resta nel sistema, e questa mappa lo descrive perché mostra come si scrive un giudizio indipendente.
+> **Stato nel sistema di riferimento.** Dalla versione 3.0.3 nessuna istruzione avvia questo ruolo: la revisione del design è dell'[orchestrator](orchestrator.md), nell'[istruzione di review](../../system/canonical/workflows/design/08-design-review.md). Il contratto resta nel sistema, e questa mappa lo descrive perché mostra come si scrive un giudizio indipendente.
 
 ## In 30 secondi
 

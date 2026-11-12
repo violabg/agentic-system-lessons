@@ -6,13 +6,13 @@
 
 ## Quando lo ricevi
 
-Nel workflow `DESIGN`, alla fine della [Design review](../system/canonical/workflows/design/09-design-review.md), [l'orchestrator](../role-maps/agents/orchestrator.md) rigenera il documento, ti spiega come lo vede (le direzioni prese, la forma della soluzione, la sua fiducia, i compromessi, i rischi, le lacune e le decisioni `highlight`) e si ferma con tre possibilità:
+Nel workflow `DESIGN`, alla fine della [Design review](../system/canonical/workflows/design/08-design-review.md), [l'orchestrator](../role-maps/agents/orchestrator.md) rigenera il documento, ti spiega come lo vede (le direzioni prese, la forma della soluzione, la sua fiducia, i compromessi, i rischi, le lacune e le decisioni `highlight`) e si ferma con tre possibilità:
 
 1. approvare il design;
 2. chiedere una modifica, indicando un contratto, un file o un'operazione per ID (per esempio `CT2` o `IM3`);
 3. fare domande e ragionare insieme sul design.
 
-Il messaggio contiene il percorso del file e un link `file://` da aprire nel browser. Il documento torna anche nell'handoff finale. `FAST_IMPLEMENTATION` e `DOCUMENTATION` non producono questo documento.
+Il messaggio contiene il percorso del file e un link `file://` da aprire nel browser. Il documento torna anche nell'handoff finale. `FAST_IMPLEMENTATION` e `DOCUMENTATION` non producono questo documento: il design di job di `FAST_IMPLEMENTATION` contiene solo i riferimenti di knowledge e non si approva.
 
 Il file è una **vista**: il runtime lo riscrive a ogni modifica del design e non va mai modificato a mano ([regole delle sessioni](../system/canonical/instructions/sessions.instructions.md)). Si apre senza server, ha un tema chiaro e uno scuro e in stampa mostra tutte le sezioni.
 
@@ -21,7 +21,7 @@ Il file è una **vista**: il runtime lo riscrive a ogni modifica del design e no
 - **Intestazione.** Titolo, ID del design, numero di obbligazioni e, dopo l'approvazione, il nome del piano. A destra un timbro con lo stato: `Draft`, `Approved` con la data, oppure `Changed after approval` se il design è cambiato dopo l'approvazione.
 - **Strumenti.** `Legend` apre la legenda di tutti gli ID; `Theme` cambia tema. Accanto compaiono le sezioni da consultare, con il loro conteggio.
 - **Percorso.** A sinistra le sezioni numerate da leggere in ordine; se ne vede una alla volta, con i link *Previous* e *Next* in fondo.
-- **ID cliccabili.** Ogni voce del design ha un ID (`D3`, `D3.1`, `O1`, `IM4`, `FS7`…) e ogni menzione di un ID è un link alla voce. Puoi anche aprire direttamente `design.html#IM4`.
+- **ID cliccabili.** Ogni voce del design ha un ID (`D3`, `D3.1`, `O1`, `IM4`, `FS7`…) e ogni menzione di un ID è un link alla voce. Puoi anche aprire direttamente `design.html#IM4`. L'indirizzo segue la sezione o la voce aperta, quindi i tasti avanti e indietro del browser si muovono tra le sezioni, e tornando a una sezione già vista la pagina riprende dal punto in cui l'avevi lasciata.
 
 ## Il percorso di lettura
 

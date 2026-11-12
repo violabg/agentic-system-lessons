@@ -21,7 +21,7 @@ Una parte invece è già decisa: “solo dopo” vale per **ogni** chiusura, dal
 Principio: [1. Autorità delimitata](principi/01-autorita-delimitata.md)
 
 - Lo sviluppatore apre una sessione nuova, `richieste_chiusura`, e chiede all'[orchestrator](role-maps/agents/orchestrator.md) di lavorare sulla story con il workflow `DESIGN`. Il nome del workflow lo dà lui: l'orchestrator non lo deduce dalla richiesta.
-- La skill [Plan User Story From Id](role-maps/skills/plan-user-story-from-id.md) fa recuperare il ticket da un delegate e lo salva come artifact della sessione.
+- La skill [Plan User Story From Id](role-maps/skills/plan-user-story-from-id.md) fa recuperare il ticket da un delegate e lo salva come artifact della sessione, con un nome fisso: `work_item_` seguito dall'ID.
 - L'orchestrator scompone la story in obbligazioni verificabili, lavorando solo sul testo della story: non legge il codice e non decide nulla che la story lasci aperto. Ogni obbligazione è un'affermazione chiusa, con le sue condizioni e la frase da cui deriva. Estratto preparato:
 
   ```text
@@ -47,7 +47,7 @@ Il catalogo contiene una regola `MustHave` sul changelog, una regola `PerContext
 
 Principi: [2. Gate e controllo umano](principi/02-gate-e-controllo-umano.md) · [3. Validazione come prova](principi/03-validazione-come-prova.md)
 
-- L'orchestrator scrive il design una sezione per volta: prima i contratti e l'API di chiusura, poi i file, poi le operazioni e una sintesi della situazione di partenza. Prima di ogni sezione rilegge quelle già scritte, le obbligazioni e le decisioni.
+- L'orchestrator scrive il design una sezione per volta: prima i contratti e l'API di chiusura, poi i file, poi le operazioni e una sintesi della situazione di partenza. Prima di ogni sezione rilegge quelle già scritte, le obbligazioni e le decisioni. Non cerca nel codice: per sapere dove vive il servizio di chiusura e chi lo chiama avvia due [explorer](role-maps/agents/explorer.md) insieme, uno per domanda, e registra come riferimenti i simboli che usa, con le posizioni che gli explorer hanno verificato.
 - Nella revisione esegue subito i controlli meccanici. Segnalano `api-not-realized`: l'API di chiusura è dichiarata, ma nessuna operazione la realizza. Poi attacca il design da quattro punti di vista. Sulla copertura trova un difetto più serio: l'operazione del controller API chiama il servizio senza passargli la motivazione, quindi `O1` è realizzata solo per l'interfaccia. Corregge l'operazione e collega l'API. Il terzo giro non trova difetti, e il controllo finale non segnala errori.
 - L'orchestrator apre la review con il [documento del design](reference/documento-di-design.md), il suo giudizio sui rischi e la decisione `highlight` sugli spazi. Lo sviluppatore chiede una modifica: una richiesta già chiusa non si modifica. Diventa un'obbligazione con origine `Developer`, che prevale sul requisito; l'orchestrator la realizza, ripete controlli e revisione e ripresenta il design.
 - Lo sviluppatore approva. Il runtime registra l'approvazione con il nome `chiusura_con_motivazione`.
@@ -58,7 +58,7 @@ Principi: [2. Gate e controllo umano](principi/02-gate-e-controllo-umano.md) · 
 
 Principi: [3. Validazione come prova](principi/03-validazione-come-prova.md) · [4. Artifact durevoli](principi/04-artifact-durevoli.md)
 
-- L'orchestrator apre l'iterazione `IT1` e avvia il [code implementor](role-maps/agents/code-implementor.md). Il prompt contiene identificatori e il ciclo di lavoro, non il testo del design né la knowledge: il delegate chiede al runtime un'operazione alla volta, e ogni risposta porta con sé obbligazioni, decisioni, contratti, file e il testo delle prescrizioni che la riguardano.
+- L'orchestrator apre l'iterazione `IT1` e avvia il [code implementor](role-maps/agents/code-implementor.md). Il prompt contiene identificatori, i nomi degli artifact della sessione e il ciclo di lavoro, non il testo del design né la knowledge: il delegate chiede al runtime un'operazione alla volta, e ogni risposta porta con sé obbligazioni, decisioni, contratti, file e il testo delle prescrizioni che la riguardano.
 - Il runtime serve il batch di produzione, poi quello di documentazione: la voce di changelog che la regola `MustHave` richiede. Poi risponde `batch-complete` e il delegate restituisce il controllo con il suo report: file toccati, build eseguita con l'esito, regole applicate e dove. L'operazione di test resta fuori dai batch.
 - L'orchestrator rivede l'unità di lavoro: legge il report e il codice. La build è verde, ma la risposta di errore dell'API non nomina il campo mancante, come chiedono la regola API e le istruzioni dell'operazione. Manda allo **stesso** code implementor una correzione con il file e la modifica esatti; la seconda revisione è pulita.
 - Le operazioni passano a `Completed` e `IT1` si chiude: l'elenco dei file cambiati lo calcola il runtime confrontando il workspace con lo stato all'apertura.

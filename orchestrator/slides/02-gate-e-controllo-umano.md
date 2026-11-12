@@ -58,9 +58,17 @@ Una contraddizione si corregge nel design; solo un difetto non correggibile dive
 
 ---
 
+## Discutere non è assecondare
+
+L'orchestrator contesta un'ipotesi sbagliata con le prove: l'insistenza non è una prova.
+
+Su ciò che resta aperto non agisce senza consenso esplicito.
+
+---
+
 ## Gate proporzionati
 
-`FAST_IMPLEMENTATION`: niente design, niente approvazione, niente delegate. L'orchestrator implementa e lo sviluppatore giudica alla fine.
+`FAST_IMPLEMENTATION`: niente design da approvare, nessun delegate che scriva codice. L'orchestrator implementa, rilegge le regole registrate contro il codice e lo sviluppatore giudica alla fine.
 
 La scelta è dello sviluppatore. [Tutti i workflow](reference-flow.md).
 

@@ -31,7 +31,7 @@ flowchart TD
 
 | Passaggio | Decisione che protegge | Output | Passaggio successivo |
 | --- | --- | --- | --- |
-| Recupero | Che cosa dice il bug, esattamente? | Artifact con titolo, descrizione, immagini e commenti | Knowledge |
+| Recupero | Che cosa dice il bug, esattamente? | Artifact `work_item_` seguito dall'ID, con titolo, descrizione, immagini e commenti; il delegate non carica un contratto di ruolo né la knowledge e lo scrive una volta sola | Knowledge |
 | Knowledge | Quali regole spiegano il contesto del bug? | Knowledge lette | Analisi |
 | Dalla causa più probabile alle altre | Si sta guardando la causa o il sintomo? | Cause e fattori, interni ed esterni | Esposizione |
 | Scelta | Quale causa affrontare? | Decisione dello sviluppatore | Artifact |

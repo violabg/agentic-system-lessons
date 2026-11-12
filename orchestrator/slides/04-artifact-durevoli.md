@@ -56,6 +56,14 @@ Se un dettaglio manca nella sessione, l'handoff era incompleto.
 
 ---
 
+## Dopo un'interruzione
+
+Contesto compattato o sessione ripresa: l'agente rilegge il suo contratto, l'istruzione attiva e la knowledge citata.
+
+Non si fida del ricordo.
+
+---
+
 ## Nel tuo repository
 
 Il tuo agente rilegge il requisito da un file o dal ricordo della conversazione?

@@ -10,7 +10,7 @@
 
 **Non fa:** non analizza la story, non sceglie il workflow e non progetta. Se l'ID manca, lo chiede.
 
-**Consegna:** il nome dell'artifact con il contenuto del ticket, nell'ordine previsto.
+**Consegna:** il nome dell'artifact con il contenuto del ticket, nell'ordine previsto. Il nome è fisso: `work_item_` seguito dall'ID.
 
 ## Flusso, controlli e output
 
@@ -31,9 +31,9 @@ flowchart TD
 | --- | --- | --- | --- |
 | ID | Quale story, esattamente? | ID chiesto se manca | Delegate |
 | Recupero | Quali dati definiscono la story? | Dati restituiti dall'integrazione del tracker approvata per il repository | Artifact |
-| Artifact | Il contenuto sopravvive alla conversazione del delegate? | Un artifact con sezioni in ordine fisso | Orchestrator |
+| Artifact | Il contenuto sopravvive alla conversazione del delegate? | Un artifact con sezioni in ordine fisso, scritto una volta sola e non riletto dal delegate | Orchestrator |
 
-Le immagini presenti nel ticket non sono ancora osservate: l'orchestrator le acquisisce con la propria procedura durante il workflow.
+Il delegate non carica un contratto di ruolo né la knowledge: chiama solo le operazioni che il prompt nomina e la scrittura dell'artifact. Le immagini presenti nel ticket non sono ancora osservate: l'orchestrator le acquisisce con la propria procedura durante il workflow.
 
 **Da ricordare:** la skill porta il ticket nella sessione. La scelta del workflow resta allo sviluppatore.
 

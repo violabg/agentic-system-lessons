@@ -51,4 +51,4 @@ Un aggiornamento mantiene lo stile del documento esistente e cambia solo la part
 
 **Nei principi:** [1. Autorità delimitata](../../principi/01-autorita-delimitata.md) · [5. Conoscenza selettiva](../../principi/05-conoscenza-selettiva.md)
 
-[← Precedente: Ask](ask.md) · [↑ Mappe di agent e skill](../README.md) · [Successivo: Code Implementor →](code-implementor.md)
+[← Precedente: Ask](ask.md) · [↑ Mappe di agent e skill](../README.md) · [Successivo: Explorer →](explorer.md)
