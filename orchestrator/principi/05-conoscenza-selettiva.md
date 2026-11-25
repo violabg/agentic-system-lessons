@@ -41,7 +41,7 @@ Scegli fonti autorevoli e proporzionate al task, e registra quali bastano e perc
 
 **Glossario e catalogo sono oggetti diversi.** Il [glossario canonical](../system/canonical/CONTEXT.md) dice che cosa significano i termini; il catalogo decide quali documenti leggere. Il [router del repository](../system/canonical/instructions/AGENTS.md) li tiene separati.
 
-**La knowledge si mantiene.** Il [Knowledge Builder](../role-maps/agents/knowledge-builder.md) ricava una regola dal codice letto davvero, intervista lo sviluppatore su contenuto, struttura e uso, prepara una bozza, la fa approvare e la salva con un intent chiaro. Quando il codice cambia, un fatto non più vero va corretto.
+**La knowledge si mantiene.** Il [Knowledge Builder](../role-maps/agents/knowledge-builder.md) ricava una regola dal codice letto davvero, intervista lo sviluppatore su contenuto, struttura e uso, prepara una bozza, la fa approvare e la salva con un intent chiaro. La scrive per l'agente che la leggerà: breve, con ogni regola detta una volta e niente che l'agente ricavi già da sé, perché ogni riga in più è contesto caricato a ogni lettura. Quando il codice cambia, un fatto non più vero va corretto.
 
 ## Nel caso guida
 

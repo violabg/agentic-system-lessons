@@ -37,7 +37,7 @@ The user role that drives the workflow the developer chooses. It follows the ser
 _Avoid_: planner, main agent, router
 
 **Delegate**
-A role the orchestrator starts in a fresh context with a fixed prompt that carries identifiers only (session, job, operation ids, image artifact names, and for a verifier the knowledge bundle). The delegate reads its specification itself, reports back in the same conversation, and can be resumed by its delegate id; without resume the same role is started again with a complete correction prompt. The delegates are `explorer`, `code-implementor`, `design-verifier`, `implementation-verifier` and `documentation-reviewer`. Since 3.0.4 the served steps start `explorer`, `code-implementor` and `documentation-reviewer`; the two verifier roles are still shipped upstream and kept. The orchestrator's `delegates` list names `explorer` and `code-implementor` only: upstream 3.0.4 dropped `documentation-reviewer` from it while the DOCUMENTATION review still starts that role (recorded inconsistency, preserved).
+A role the orchestrator starts in a fresh context with a fixed prompt that carries identifiers only (session, job, operation ids, image artifact names, and for a verifier the knowledge bundle). The delegate reads its specification itself, reports back in the same conversation, and can be resumed by its delegate id; without resume the same role is started again with a complete correction prompt. The delegates are `explorer`, `code-implementor`, `design-verifier`, `implementation-verifier` and `documentation-reviewer`. Since 3.0.4 the served steps start `explorer`, `code-implementor` and `documentation-reviewer`; the two verifier roles are still shipped upstream and kept. The orchestrator's `delegates` list names `explorer`, `code-implementor` and `documentation-reviewer`: run 6 of 3.0.4 restored `documentation-reviewer`, which an earlier build of 3.0.4 had dropped while the DOCUMENTATION review still started that role.
 _Avoid_: subagent handoff, second conversation, helper agent
 
 **Explorer**
@@ -55,7 +55,7 @@ An ordered set of instructions the runtime serves for one workflow type: `DESIGN
 _Avoid_: plan, pipeline, mode
 
 **Instruction**
-One served step of a workflow, headed `Instruction N/M.`. It names the operations the step may use. The orchestrator never sees a future instruction.
+One served step of a workflow, headed `Instruction N/M.`. It names the operations the step may use. The orchestrator never sees a future instruction. A step body may close by naming the next `#capability:workflow-step-next` call itself; since run 6 of 3.0.4 the DESIGN bodies do, and the last one says the workflow is complete. The runtime adds no trailer of its own.
 _Avoid_: gate, prompt, phase
 
 **Part**

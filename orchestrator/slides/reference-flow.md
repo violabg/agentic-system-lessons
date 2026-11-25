@@ -24,6 +24,8 @@ flowchart TD
     Last -->|sì| Stay[Resta con lo sviluppatore<br/>nello scope del job]
 ```
 
+Ogni istruzione si chiude dicendo all'orchestrator di chiedere la successiva solo dopo averla eseguita tutta, senza azioni che non autorizza; l'ultima dichiara che il workflow è completo. La chiusura fa parte del testo servito: il runtime non ne aggiunge una sua ([ciclo del workflow](../system/canonical/contracts/workflow-loop.md#step-serving)).
+
 In `DESIGN` e in `FAST_IMPLEMENTATION` l'unico delegate che cerca nel codice è l'[Explorer](../role-maps/agents/explorer.md): l'orchestrator legge da sé solo i file di cui conosce già il percorso. Le istruzioni che contengono una discussione con lo sviluppatore (dalla review in poi in `DESIGN`, l'handoff in `FAST_IMPLEMENTATION`) si chiudono con le stesse regole: giudizio indipendente, una domanda alla volta, nessuna azione su ciò che resta aperto senza consenso esplicito.
 
 ## DESIGN

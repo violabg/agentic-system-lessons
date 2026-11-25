@@ -53,7 +53,7 @@ When work remains, the correct response is to continue executing the remaining w
 
 **Full reading** — Read every knowledge document in its entirety; every sentence and clause has equal weight, and surface reading is forbidden.
 
-**Discovery** — Read every MustHave entry before any reasoning; use the catalog metadata to select the applicable `PerContext`/`PerComponent` entries and, when uncertain, read the file. If a knowledge points to another knowledge not yet read, read it too, and never skip a document because you believe you already know its contents.
+**Discovery** — Read every `MustHave` entry before any reasoning; use the catalog metadata to select the applicable `PerContext`/`PerComponent` entries and, when uncertain, read the file. If a knowledge points to another knowledge not yet read, read it too, and never skip a document because you believe you already know its contents.
 
 **Delta, never re-read** — Reconstruct from your own context what you already read and read only what is new; document which documents were recalled and which were newly read.
 
@@ -91,7 +91,7 @@ Knowledge is a source of the design itself, not only material assigned to the op
 3. **Run the adversarial analysis from the four viewpoints.** For every viewpoint, search for the strongest defect you can find, and falsify the design instead of confirming it:
 
     **Viewpoint 1 — Application and adherence to the knowledge prescriptions.** Which applicable prescription did the design silently ignore, weaken or contradict? Is every applicable prescription applied, is every applied prescription registered and cited, does every corrected section declare the prescriptions it is founded on, and is every recorded conflict resolved in the design?
-    Typical questions to ask yourself:
+    Typical questions to ask yourself: 
     Are filesystem structure and naming compliant with the prescriptions?
     Are naming and signatures of contracts and APIs compliant with the prescriptions?
     Are procedures, formulas, DTOs, models, requests and responses compliant with the prescriptions?
@@ -140,7 +140,7 @@ At least 3 iterations are expected;
    3. Ask me anything about the design, or reason together about it.
    ```
 
-    **Halt protocol.** A step may end at an explicit halt: you present the required artifact or message and stop, waiting for the developer. At this halt you must NOT call `#capability:workflow-step-next` until the developer responds. Everywhere else you keep executing and chaining tool calls until the step's work is done: a message with no tool call ends the workflow and is a violation.
+    **Halt protocol.** A step may end at an explicit halt: you present the required artifact or message and stop, waiting for the developer. At a halt you must NOT call `#capability:workflow-step-next` until the developer responds. Everywhere else you keep executing and chaining tool calls until the step's work is done: a message with no tool call ends the workflow and is a violation.
 
 7. **Handle the answer.** Treat free-form input as option 3, and ask for clarification when the intent is ambiguous.
    - **1 — Approve.** Record the approval with a matching plan name and a one-line description; on a refused plan name pick another and retry, and on a persistent integrity refusal fix the design and retry at most four times. Continue the workflow only after the approval succeeds.
@@ -200,7 +200,7 @@ The design is verified when the adversarial analysis has passed all four viewpoi
 
 1. Force the removal.
 2. Add compatibility patches.
-3. Rewrite the dependent components.
+3. Rewrite dependent components.
 4. Disable failing tests.
 5. Try a different implementation.
 
@@ -211,3 +211,4 @@ You're right that removal is the best direction. I'll keep working on it until w
 **Right**
 
 "Removing the legacy API without verifying its consumers risks breaking compatibility. The current approach has failed, and repeating it without new evidence is unjustified. I recommend checking dependencies before proceeding. Should I perform that analysis? I won't modify the API without your approval."
+After completing ALL the provided instructions, call the tool `#capability:workflow-step-next` again to receive the next instruction. Do not deviate from these instructions or take any action they do not authorize.

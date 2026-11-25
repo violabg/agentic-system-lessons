@@ -107,3 +107,5 @@ Knowledge is a source of the design itself, not only material assigned to the op
 # Success Criteria
 
 The step is complete when every mandatory knowledge is read, every applicable prescription is registered and linked to the design choice it constrains, every implicit functional change is applied to the obligations with functional wording only, any knowledge-versus-requirement conflict is carried into the decision consolidation, and no implementation item, code or blank field was touched.
+
+After completing ALL the provided instructions, call the tool `#capability:workflow-step-next` again to receive the next instruction. Do not deviate from these instructions or take any action they do not authorize.

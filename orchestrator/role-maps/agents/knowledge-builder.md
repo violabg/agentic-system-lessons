@@ -6,7 +6,7 @@
 
 ## In 30 secondi
 
-**Fa:** legge il repository per produrre una knowledge che un agente senza conoscenza del progetto possa applicare, basata su evidenza letta davvero e salvata nel catalogo.
+**Fa:** legge il repository per produrre una knowledge che un agente senza conoscenza del progetto possa applicare, basata su evidenza letta davvero e salvata nel catalogo. La scrive per un agente, non per una persona: breve, ogni riga cambia ciò che l'agente fa, ogni regola detta una volta sola, il minimo di esempi, niente che l'agente ricavi già dal codice, da uno strumento o da un'altra knowledge.
 
 **Non fa:** non scrive né modifica codice, non usa nomi di file come evidenza e non trasforma supposizioni in fatti. Se il runtime non è disponibile, si ferma.
 
@@ -40,10 +40,10 @@ flowchart TD
 | 1.1. Topic | Quali concetti distinti esistono davvero nel codice? | Un artifact per ogni topic scelto | Gate 1.2 |
 | 1.2. Aspettative | Che cosa deve sapere e come userà la knowledge chi la legge? | Artifact dell'intervista | Gate 2 |
 | 2. Ricognizione | Quali prove derivano da file realmente letti? | Evidenza, relazioni ed esempi di codice | Bozza |
-| Bozza e approvazione | La knowledge è utile, supportata e leggibile senza conoscere i file? | Template e bozza approvati | Salvataggio |
+| Bozza e approvazione | La knowledge è utile, supportata, breve e leggibile senza conoscere i file? | Template e bozza approvati | Salvataggio |
 | Salvataggio | Dove e quando la troverà il prossimo agente? | Documento nel catalogo, con intent | Ruoli che consultano il catalogo |
 
-Un aggiornamento mantiene lo stile del documento esistente e cambia solo la parte interessata.
+Un aggiornamento mantiene lo stile del documento esistente e cambia solo la parte interessata. I vincoli di completezza valgono per la raccolta delle prove, non per il testo della knowledge.
 
 **Da ricordare:** un artifact di ricerca non è ancora knowledge. Diventa riusabile solo dopo bozza, approvazione e salvataggio nel catalogo.
 

@@ -61,7 +61,7 @@ Nelle stesse istruzioni il codice non lo cerca l'orchestrator. Legge direttament
 
 ## Scrivere nel design: tutto o niente
 
-Una scrittura del design si applica intera oppure non si applica: se una riga è rifiutata, nessuna riga cambia. Tre regole del runtime evitano che questo costi lavoro ripetuto.
+Una scrittura del design si applica intera oppure non si applica: se una riga è rifiutata, nessuna riga cambia. L'unica eccezione è un'intestazione che appartiene a un'altra sezione: il runtime la segnala con il comando che la possiede e applica comunque le righe della chiamata ([scritture di sezione](../system/canonical/contracts/design-model.md#section-writes)). Un campo inviato come `null` vale come assente, quindi non cancella il valore salvato. Tre regole del runtime evitano che il tutto o niente costi lavoro ripetuto.
 
 - **La forma arriva con l'istruzione.** Quando un'istruzione nomina per la prima volta una scrittura del design, il runtime le allega gli argomenti del comando e i campi della richiesta: l'agente non deve interrogare il comando prima di usarlo. È descritto nel [ciclo del workflow](../system/canonical/contracts/workflow-loop.md#step-serving).
 - **Una richiesta rifiutata non si rimanda.** Il runtime la [conserva](../system/canonical/contracts/design-model.md#kept-requests) e il rifiuto indica come correggerla: la chiamata successiva porta solo la correzione, e la richiesta corretta si applica di nuovo intera.

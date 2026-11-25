@@ -64,6 +64,8 @@ Tornano percorso, riga ed estratto verificati.
 
 [Knowledge Builder](../role-maps/agents/knowledge-builder.md): evidenza letta, bozza, approvazione, intent chiaro.
 
+Scritta per un agente: breve, ogni regola una volta.
+
 ---
 
 ## Nel tuo repository
