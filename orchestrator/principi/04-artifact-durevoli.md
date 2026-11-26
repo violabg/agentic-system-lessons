@@ -20,6 +20,8 @@ La chat può contenere un'approvazione, ma l'artifact ne conserva la traccia. L'
 
 **La sessione è il registro del lavoro.** Il [session store](../system/canonical/contracts/session-store.md) tiene, per ogni sessione, la memoria, il log degli eventi, gli artifact, i job e i design. Memoria ed eventi sono separati: la memoria conserva fatti validati e puntatori agli artifact, mai una loro copia; il log conserva azioni, decisioni ed errori. Una sessione si crea o si riprende solo su richiesta esplicita dello sviluppatore.
 
+**La sessione contiene job: uno per ogni esecuzione di un workflow.** Un job ha un id proprio e vive in `jobs/<jobId>.json`. Il [ciclo del workflow](../system/canonical/contracts/workflow-loop.md#job-activate) vi congela il tipo di workflow, l'elenco ordinato delle istruzioni e il punto raggiunto: per questo il job è l'unità che si riprende, non la conversazione. Riattivare lo stesso id riprende il job da dove era; chiedergli un tipo di workflow diverso è rifiutato, perché quel lavoro richiede un job nuovo. Un job `DESIGN` o `FAST_IMPLEMENTATION` crea un design con lo stesso id del job, a meno che lo sviluppatore non indichi un design esistente da riusare; un job `DOCUMENTATION` non ne crea uno e ne ha uno solo se gliene viene indicato uno esistente. L'id del job non è decorativo: è la chiave con cui il runtime serve l'istruzione attiva e con cui un lavoro interrotto riparte senza ricominciare.
+
 **Il requisito diventa obbligazioni durevoli.** L'orchestrator scompone il requisito in obbligazioni atomiche salvate nel design: ognuna è un'affermazione chiusa, verificabile, con le sue condizioni e il riferimento alla frase da cui deriva (`sourceRef`). Da lì in poi il requisito si legge da quelle obbligazioni, non dal ricordo della conversazione, e cambia solo se lo sviluppatore lo rivede.
 
 **Dopo un'interruzione si rilegge, non si ricorda.** Quando il contesto di un agente viene compattato, o la sessione riprende a metà di un job, ciò che l'agente aveva letto non c'è più. Il [router del repository](../system/canonical/instructions/AGENTS.md) gli chiede allora di rileggere il proprio contratto, di farsi servire dal runtime l'istruzione attiva e di rileggere la knowledge che il design cita, prima di continuare. Funziona perché tutto ciò che serve è in un file: l'agente non deve fidarsi di un riassunto della conversazione.
@@ -43,7 +45,7 @@ La decisione su “solo spazi” è la decisione `D1` del design, con la rispost
 ## Nel tuo repository
 
 - Quale traccia permetterebbe a una persona nuova di capire perché una modifica è stata approvata e che cosa resta da verificare?
-- Il tuo agente rilegge il requisito da un file, o dal ricordo della conversazione?
+- Se un lavoro si interrompe, il tuo agente riprende la stessa run o ne apre una nuova? E il requisito lo rilegge da un file, o dal ricordo della conversazione?
 
 ---
 

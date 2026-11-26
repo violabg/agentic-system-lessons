@@ -26,6 +26,14 @@ La memoria tiene puntatori, non copie. [Session store](../system/canonical/contr
 
 ---
 
+## Il job
+
+Una run di workflow nella sessione: id proprio, istruzioni congelate, punto raggiunto.
+
+Lo stesso id riprende; un workflow diverso richiede un job nuovo. [Ciclo del workflow](../system/canonical/contracts/workflow-loop.md#job-activate).
+
+---
+
 ## Il requisito diventa obbligazioni
 
 Ogni obbligazione cita la frase da cui deriva (`sourceRef`).

@@ -21,6 +21,7 @@ Una parte invece è già decisa: “solo dopo” vale per **ogni** chiusura, dal
 Principio: [1. Autorità delimitata](principi/01-autorita-delimitata.md)
 
 - Lo sviluppatore apre una sessione nuova, `richieste_chiusura`, e chiede all'[orchestrator](role-maps/agents/orchestrator.md) di lavorare sulla story con il workflow `DESIGN`. Il nome del workflow lo dà lui: l'orchestrator non lo deduce dalla richiesta.
+- Nella sessione l'orchestrator attiva il job `chiusura_motivazione` per quel workflow: è una singola run, con un id proprio, e il design che nasce ha lo stesso id. Se la conversazione si interrompe, lo stesso id riprende il job dall'istruzione in cui era arrivato, senza ricominciare.
 - La skill [Plan User Story From Id](role-maps/skills/plan-user-story-from-id.md) fa recuperare il ticket da un delegate e lo salva come artifact della sessione, con un nome fisso: `work_item_` seguito dall'ID.
 - L'orchestrator scompone la story in obbligazioni verificabili, lavorando solo sul testo della story: non legge il codice e non decide nulla che la story lasci aperto. Ogni obbligazione è un'affermazione chiusa, con le sue condizioni e la frase da cui deriva. Estratto preparato:
 

@@ -40,6 +40,7 @@ Alcuni termini restano in inglese perché sono quelli che troverai nei file del 
 | Runtime | Il programma locale che serve le istruzioni una alla volta e custodisce sessioni, design e controlli. |
 | Halt point | Un punto in cui il workflow si ferma e attende lo sviluppatore: una review, una domanda, una decisione. |
 | Sessione | Il registro durevole di un lavoro: memoria, log, artifact, job e design. |
+| Job | Una singola esecuzione di un workflow dentro una sessione, con un id proprio: conserva le istruzioni del workflow, il punto raggiunto e il design che ne nasce, quando c'è. Si riprende con lo stesso id. |
 | Design | L'artifact strutturato che lo sviluppatore rivede e approva prima dell'implementazione. |
 | Obbligazione | Un comportamento atomico e verificabile che il requisito impone. Insieme, le obbligazioni sono il requisito del job. |
 | Knowledge | Documenti con le regole del progetto, da leggere solo quando servono. |
